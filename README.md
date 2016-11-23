@@ -1,2 +1,3 @@
-# Bluecat-Proteus-import-export
-create a bulk import export script for the Bluecat Network Proteus IPAM (IP address manager) in Powershell Import, export, delete, list of subnets, IP-Addresses, devices, Tags, ...
+# ip subnet calculator
+IPsubnet calculator IPv4 IPv6 in HTML 5 and css
+originally created im 2006 in HTML4
