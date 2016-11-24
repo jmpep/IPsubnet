@@ -1,1 +1,106 @@
- 
+
+input[id|="listlanguage"]:after {
+	content: 'WORLD UK US FR DE IT';
+}
+
+div.WORLD[id|=maintitle]:after {
+	content: 'IP subnet calculator IPv4 & IPng (IPv6)';
+}
+div.UK[id|=maintitle]:after {
+	content: 'IP subnet calculator IPv4 & IPv6';
+}
+div.US[id|=maintitle]:after {
+	content: 'IP subnet calculator IPv4 & IPv6';
+}
+div.FR[id|=maintitle]:after {
+	content: 'IPv4 & IPv6 subnet calculatrice';
+}
+div.DE[id|=maintitle]:after {
+	content: 'IPv4 & IPv6 subnet Rechner';
+}
+div.IT[id|=maintitle]:after {
+	content: 'IPv4 & IPv6 subnet calcolatrice';
+}
+
+div.WORLD[id|=panelformat]:before{
+content: 'IP options default';
+}
+div.UK[id|=panelformat]:before{
+content: 'IP options';
+}
+div.US[id|=panelformat]:before{
+content: 'IP options';
+}
+div.FR[id|=panelformat]:before{
+content: 'Options IP';
+}
+div.DE[id|=panelformat]:before{
+content: 'IP Optionen';
+}
+div.IT[id|=panelformat]:before{
+content: 'opzioni di IP';
+}
+
+span.WORLD[id|=panelcalculationtxt]:before{
+content: 'calculator';
+}
+span.UK[id|=panelcalculationtxt]:before{
+content: 'calculation';
+}
+span.US[id|=panelcalculationtxt]:before{
+content: 'calculation';
+}
+span.FR[id|=panelcalculationtxt]:before{
+content: 'calculatrice';
+}
+span.DE[id|=panelcalculationtxt]:before{
+content: 'Rechner';
+}
+span.IT[id|=panelcalculationtxt]:before{
+content: 'calcolatrice';
+}
+
+.panel-info>.panel-heading:after{
+content: 'Info';
+}
+
+.panel-example>.panel-heading:after{
+content: 'Example';
+}
+
+#infoIPv4v6btn.hidetxt[class~=WORLD]:after {
+content:'more info about IPv6';
+}
+#infoIPv4v6btn.showtxt[class~=WORLD]:after {
+content:'hide info about IPv6';
+}
+#infoIPv4v6btn.hidetxt[class~=UK]:after {
+content:'more info about IPv6';
+}
+#infoIPv4v6btn.showtxt[class~=UK]:after {
+content:'hide info about IPv6';
+}
+#infoIPv4v6btn.hidetxt[class~=US]:after {
+content:'more info about IPv6';
+}
+#infoIPv4v6btn.showtxt[class~=US]:after {
+content:'hide info about IPv6';
+}
+#infoIPv4v6btn.hidetxt[class~=FR]:after {
+content:"plus d'information sur IPv6";
+}
+#infoIPv4v6btn.showtxt[class~=FR]:after {
+content:'cache les informations sur IPv6';
+}
+#infoIPv4v6btn.hidetxt[class~=DE]:after {
+content:"mehr Auskunft über IPv6";
+}
+#infoIPv4v6btn.showtxt[class~=DE]:after {
+content:'verstecke die Informationen über IPv6';
+}
+#infoIPv4v6btn.hidetxt[class~=IT]:after {
+content:"mostrare informazione sul IPv6";
+}
+#infoIPv4v6btn.showtxt[class~=IT]:after {
+content:'nascondere informazione sul IPv6';
+}

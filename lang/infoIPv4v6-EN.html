@@ -1,0 +1,56 @@
+<HTML>
+<BODY>
+<p id="p1">
+ <h3> IPv6 EN</h3>
+ <h4>Summary:</h4><BR/>
+ <SPAN id="infoipv6txt" onload="this.innerHTML=this.innerHTML.replace(/\s/gi,'&nbsp;');">
+ The biggest allocation size is /32 which is reserved for internet provider.<BR/>
+ Typically a big customer get /48, but could be bigger when requested with good reasons.<BR/>
+ Above /48 it needs a registration by RIPE NCC with implementation plan.<BR/>
+ IPv6 does not care like IPv4 about the number of devices. The standard subnet is /64 because the interface ID is 64 bits.<BR/>
+ Exception on routers (/127). [https://tools.ietf.org/html/rfc6177]<BR/>
+ /48 = 65536 subnets of /64.<BR/>
+<SPAN style="font-family:courier;">
+&nbsp;&nbsp;2&nbsp;0&nbsp;0&nbsp;1&nbsp;&nbsp;:&nbsp;&nbsp;x&nbsp;x&nbsp;x&nbsp;x&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;biggest&nbsp;customer&nbsp;bit&nbsp;mask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smallest&nbsp;subnet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+</SPAN>
+ <h4>Tips:</h4><BR/>
+ <BR/>
+ <h4>Some Terms:</h4><BR/>
+ IANA = responsible for global coordination of the Internet Protocol addressing systems<BR/>
+ RIR = Regional Internet Registry. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)<BR/>
+ LIR = <BR/>
+ RIPE<BR/>
+ PI = Provider Independent Assignments<BR/>
+ Detail:<BR/>
+  IPv6 assignation IANA ->RIR->LIR->customer<BR/>
+ <h4>Format:</h4><BR/>
+ Prefix FF00::/8. A IPng multicast address is an identifier for a group of interfaces.<BR/>
+ A interface may belong to any number of multicast groups. Multicast addresses have the following format:<BR/>
+<SPAN style="font-family:courier;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;112&nbsp;bits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+------&nbsp;-+----+----+---------------------------------------------+<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|11111111|FLGS|SCOP|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--------+----+----+---------------------------------------------+<BR/>
+&nbsp;11111111&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;address&nbsp;identifies&nbsp;the&nbsp;address&nbsp;as&nbsp;being&nbsp;a&nbsp;multicast&nbsp;address.<BR/>
+&nbsp;+-+-+-+-+&nbsp;FLGS&nbsp;is&nbsp;a&nbsp;set&nbsp;of&nbsp;4&nbsp;flags:&nbsp;|0|0|0|T|&nbsp;+-+-+-+-+<BR/>
+</SPAN>
+ The high-order 3 flags are reserved, and must be initialized to 0.<BR/>
+ T=0 indicates a permanently assigned (well-known) multicast address, assigned by the global internet numbering authority.<BR/>
+ T=1 indicates a non-permanently assigned (transient) multicast address.<BR/>
+ SCOP is a 4-bit multicast scope value used to limit the scope of the multicast group. The values are:<BR/>
+ 0 Reserved 8 Organization-local scope 1 Node-local scope 9 (unassigned) 2 Link-local scope A (unassigned)<BR/>
+ 3 (unassigned) B (unassigned) 4 (unassigned) C (unassigned) 5 Site-local scope D (unassigned) 6 (unassigned) E Global scope<BR/>
+ 7 (unassigned) F Reserved.<BR/>
+ GROUP ID identifies the multicast group, either permanent or transient, within the given scope.<BR/>
+ RFC4192<BR/>
+ </SPAN>
+ </p>
+</BODY>
+</HTML>
