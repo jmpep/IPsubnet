@@ -3,6 +3,12 @@
 
 var cookie_enable;
 
+function onEnter(obj,e){
+       var keycode =(window.event) ? event.keyCode : e.keyCode;
+       if (keycode == 13) //enter
+       { obj.onchange(); }
+};
+
 function initializeValues(iptype,ipval,nbrbits,mask,subnetval,broadcastval,hostfromval,hosttoval,hostsnbval,ipsnbval) {
   var IP = document.getElementById("IP");
   var bits = document.getElementById("bits");
@@ -30,10 +36,26 @@ function initializeValues(iptype,ipval,nbrbits,mask,subnetval,broadcastval,hostf
 //  else sectionbroadcast.style.display='inline';
   hostsnb.value=hostsnbval;
   ipsnb.value=ipsnbval;
+//  IP.onkeydown = function(e){
+//       var keycode =(window.event) ? event.keyCode : e.keyCode;
+//       if (keycode == 13) //enter
+//       { alert('HALLO');document.getElementById("IP").click(); }
+//       };
+  // correction Bug all IE
+  IP.onkeydown = function(e) {onEnter(IP,e);}
+  bits.onkeydown = function(e) {onEnter(bits,e);}
+  subnet.onkeydown = function(e) {onEnter(subnet,e);}
+  broadcast.onkeydown = function(e) {onEnter(broadcast,e);}
+  hostfrom.onkeydown = function(e) {onEnter(hostfrom,e);}
+  hostto.onkeydown = function(e) {onEnter(hostto,e);}
+  btIPv4.onkeydown = function(e) {onEnter(btIPv4,e);}
+  netmask.onkeydown = function(e) {onEnter(netmask,e);}
+  hostsnb.onkeydown = function(e) {onEnter(hostsnb,e);}
+  ipsnb.onkeydown = function(e) {onEnter(ipsnb,e);}
 }
 
 function initializeIPsubnet() {
-  initializeValues('IPv4','127.0.0.1',32,'255.255.255.255','127.0.0.0','127.0.0.1','127.0.0.1','127.0.0.1',1,1)
+  initializeValues('IPv4','192.168.0.10',24,'255.255.255.0','192.168.0.0','192.168.0.255','192.168.0.1','192.168.0.254',253,255)
 //2001:0db8:85a3:08d3:1319:8a2e:0370:7344;
 //2001:0db8:85a3:08d3:1319:8a2e:127.98.76.154;
   cookie_enable=(navigator.cookieEnabled == true);
@@ -45,6 +67,7 @@ function initializeIPsubnet() {
 //  calculwithIPv6condensed(0);
 //  calculwithIPv6alternative(0);
   changeInfo();
+  calculreversenetmaskval();
 }
 
 function storeAllCookie() {
@@ -302,7 +325,6 @@ function alerterrorIP(part,partip4,infoip) {
 
 function checkIPaddress(val,part,infoip) {
   var partip4 = new Array(4);  
-//  var infoip= new Array(2);
   
   // conversion in IPv6
   if (findIPversion(val,part,partip4,infoip)) {
@@ -316,7 +338,7 @@ function checkIPaddress(val,part,infoip) {
        valfinal= part[0].toString(16)+':'+part[1].toString(16)+':'+part[2].toString(16)+':'+part[3].toString(16)
           +':'+part[4].toString(16)+':'+part[5].toString(16)+':'+part[6].toString(16)+':'+part[7].toString(16);
     }
-//    alert('checkIPaddress:'+valfinal);
+    //alert('checkIPaddress:'+valfinal+' infoip[0]='+infoip[0]+' partip4='+partip4);
   } else alerterrorIP(part,partip4,infoip);
   return infoip[1];
 }
@@ -353,24 +375,45 @@ function condense(txt) {
   return rtrtxt;
 }
 
-function transformIPtotxt(ipversionv4,tip) {
+function showNumberInBin(val){
+	var masktxt='';
+	masktxt=val[0].toString(2)+':'+val[1].toString(2)+':'+val[2].toString(2)+':'+val[3].toString(2)+':'
+	       +val[4].toString(2)+':'+val[5].toString(2)+':'+val[6].toString(2)+':'+val[7].toString(2);
+	 return masktxt;
+}
+
+function showIPInv4(tip){
+	var val='';
+   var temp1,temp2,temp3,temp4;
+   temp1= tip[6]>>8;
+   temp2= tip[6] & 255;
+   temp3= tip[7]>>8;
+   temp4= tip[7] & 255;
+	val = temp1+'.'+temp2+'.'+temp3+'.'+temp4;
+	return val;
+}
+
+function showIPInHex(type,tip){
+	var masktxt='';
+	if (type.indexOf('a')>=0) {
+	  extension = showIPInv4(tip);
+	} else {
+	  extension = tip[6].toString(16)+':'+tip[7].toString(16);
+	}
+	masktxt=tip[0].toString(16)+':'+tip[1].toString(16)+':'+tip[2].toString(16)
+ 	   +':'+tip[3].toString(16)+':'+tip[4].toString(16)+':'+tip[5].toString(16)
+	   +':'+extension;
+	if (type.indexOf('c')>=0) condense(masktxt);
+	return masktxt;
+}
+
+function transformIPtotxt(ipversion,tip) {
   var masktxt='';
-  var temp1,temp2,temp3,temp4;
-    temp1= tip[6]>>8;
-    temp2= tip[6] & 255;
-    temp3= tip[7]>>8;
-    temp4= tip[7] & 255;
-    if (ipversionv4) {
- 	masktxt= temp1+'.'+temp2+'.'+temp3+'.'+temp4;
+    if (ipversion=='v4') {
+ 	  masktxt= showIPInv4(tip);
  	}
     else {
- 	masktxt=tip[0].toString(16)+':'+tip[1].toString(16)+':'+tip[2].toString(16)
- 	   +':'+tip[3].toString(16)+':'+tip[4].toString(16)+':'+tip[5].toString(16);
- 	if (btIPv6a.className.indexOf('active')>=0) {
- 	   masktxt=masktxt+':'+temp1+'.'+temp2+'.'+temp3+'.'+temp4;
- 	} else
- 	   masktxt=masktxt+':'+tip[6].toString(16)+':'+tip[7].toString(16);
- 	   masktxt=condense(masktxt);
+	  masktxt =showIPInHex(ipversion,tip)
    }
   return masktxt;
 }
@@ -378,6 +421,9 @@ function transformIPtotxt(ipversionv4,tip) {
 function changeSubnet() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   var subnet = document.getElementById("subnet");
   /* the DOM variable above are for compatibility wit IE */
@@ -385,10 +431,13 @@ function changeSubnet() {
   var valbin= new Array(8);
   var valbintxt= new Array(8);
   var subnetval= new Array(8);
-  var nbbits,ipversionv4,ipval;
+  var nbbits,ipversion,ipval;
   var infoip= new Array(2);
 
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   // calcul de l'IP dans le format ipv6
   ipval=IP.value;
   error=checkIPaddress(ipval,retval,infoip);
@@ -396,7 +445,7 @@ function changeSubnet() {
   valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
   valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
   bitszone=96;
-  nbbits=(ipversionv4)? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
+  nbbits=(ipversion=='v4')? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
   for (var i=0,j=0,k=0; i<128; i++) {
       if (i<nbbits) {
          valbintxt[j]=valbintxt[j]+'1';
@@ -411,7 +460,7 @@ function changeSubnet() {
     for (var i=0;i<8;i++) {
         subnetval[i]= retval[i] & valbin[i];
     }    
-    subnet.value= transformIPtotxt(ipversionv4,subnetval);
+    subnet.value= transformIPtotxt(ipversion,subnetval);
   }
 }
 
@@ -549,6 +598,9 @@ function ipsnbToBits() {
 function getBroadcast() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   var broadcast = document.getElementById("broadcast");
   /* the DOM variable above are for compatibility wit IE */
@@ -556,14 +608,17 @@ function getBroadcast() {
   var valbin= new Array(8);
   var valbintxt= new Array(8);
   var tbroadcast= new Array(8);
-  var ipversionv4,nbbits,broadcasttxt;
+  var ipversion,nbbits,broadcasttxt;
   var infoip= new Array(2);
 
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
   valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
   bitszone=96;
-  nbbits=(ipversionv4)? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,bitszone);
+  nbbits=(ipversion=='v4')? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,bitszone);
   for (var i=0,j=0,k=0; i<128; i++) {
       if (i<nbbits) {
          valbintxt[j]=valbintxt[j]+'0';
@@ -581,7 +636,7 @@ function getBroadcast() {
         tbroadcast[i]= retval[i] | valbin[i];
     }
     tbroadcast[0]= 65280; // no broadcast in IPv6, broadcast is a multicast FF00
-    broadcasttxt=transformIPtotxt(ipversionv4,tbroadcast);
+    broadcasttxt=transformIPtotxt(ipversion,tbroadcast);
     broadcast.value= broadcasttxt;
   }
 }
@@ -589,24 +644,35 @@ function getBroadcast() {
 function getHostfrom() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var subnet = document.getElementById("subnet");
   var hostfrom = document.getElementById("hostfrom");
+  var bits = document.getElementById("bits");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var valbin= new Array(8);
   var thostfrom= new Array(8);
-  var ipversionv4,nbbits,hostfromtxt,subnetval;
+  var ipversion,nbbits,hostfromtxt,subnetval;
   var infoip= new Array(2);
 
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   valbin = [ 0, 0, 0, 0, 0, 0, 0, 1 ];
   subnetval= subnet.value;
   error= checkIPaddress(subnetval,retval,infoip);
   if (!error) {
-    for (var i=0;i<8;i++) {
+	if ( ((ipversion == 'v4') && (bits.value=='32')) || ((ipversion != 'v4') && (bits.value=='128'))) {
+		thostfrom= retval;
+	} else {
+      for (var i=0;i<8;i++) {
         thostfrom[i]= retval[i] | valbin[i];
-    }
-   hostfromtxt=transformIPtotxt(ipversionv4,thostfrom);
+      }
+	}
+   hostfromtxt=transformIPtotxt(ipversion,thostfrom);
    hostfrom.value= hostfromtxt;
   }
 }
@@ -614,6 +680,9 @@ function getHostfrom() {
 function getHostTo() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   var subnet = document.getElementById("subnet");
   var hostto = document.getElementById("hostto");
@@ -622,14 +691,17 @@ function getHostTo() {
   var valbin= new Array(8);
   var valbintxt= new Array(8);
   var thostto= new Array(8);
-  var ipversionv4,nbbits,hosttotxt,valsubnet;
+  var ipversion,nbbits,hosttotxt,valsubnet;
   var infoip= new Array(2);
 
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
   valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
   bitszone=96;
-  nbbits=(ipversionv4)? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
+  nbbits=(ipversion=='v4')? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
   for (var i=0,j=0,k=0; i<128; i++) {
       if (i<nbbits) {
          valbintxt[j]=valbintxt[j]+'0';
@@ -647,7 +719,7 @@ function getHostTo() {
     for (var i=0;i<8;i++) {
         thostto[i]= retval[i] | valbin[i];
     }
-    hosttotxt=transformIPtotxt(ipversionv4,thostto);
+    hosttotxt=transformIPtotxt(ipversion,thostto);
     hostto.value= hosttotxt;
   }
 }
@@ -655,36 +727,54 @@ function getHostTo() {
 function subnetToIP() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   var subnet = document.getElementById("subnet");
   /* the DOM variable above are for compatibility wit IE */
   var retvalsub= new Array(8);
   var retvalip= new Array(8);
-  var newvalip= new Array(8);
-  var valbin= new Array(8);
-  var valbintxt= new Array(8);
+  var newvalip= [0,0,0,0,0,0,0,0];
+  var newvalsub= [0,0,0,0,0,0,0,0];
+  var valbin= [0,0,0,0,0,0,0,0];
+  var valbintxt= ['','','','','','','',''];
+  var valbinsub= [0,0,0,0,0,0,0,0];
+  var valbinsubtxt= ['','','','','','','',''];
   var valsub,valip,valiptxt,nbbits,error,error2;
   var infoip= new Array(2);
+  var ipversion;
   
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   valsub= subnet.value;
   error=checkIPaddress(valsub,retvalsub,infoip);
   valip = IP.value;
   error2=checkIPaddress(valip,retvalip,infoip);
-  valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
-  valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
   bitszone=96;
-  nbbits=(ipversionv4)? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
-  for (var i=0,j=4,k=0; i<128; i++) {
+  nbbits=(ipversion=='v4')? (parseInt(bits.value,10)+bitszone):parseInt(bits.value,10);
+  for (var i=0,j=0,k=0; i<128; i++) {
       if (i<nbbits) {
-         valbintxt[j]=valbintxt[j]+'0';
+        valbintxt[j]=valbintxt[j]+'0';
       } else {
         valbintxt[j]=valbintxt[j]+'1';
       }
       k++;
       if (k>15) { j++; k=0;}
   }
+  for (var i=0,j=0,k=0; i<128; i++) {
+      if (i<nbbits) {
+        valbinsubtxt[j]=valbinsubtxt[j]+'1';
+      } else {
+        valbinsubtxt[j]=valbinsubtxt[j]+'0';
+      }
+      k++;
+      if (k>15) { j++; k=0;}
+  }
   for (var i=0;i<8;i++) valbin[i]=parseInt(valbintxt[i],2);
+  for (var i=0;i<8;i++) valbinsub[i]=parseInt(valbinsubtxt[i],2);
   if (!error) {
     for (var i=0;i<8;i++) {
         // prend la partie hosts
@@ -692,8 +782,17 @@ function subnetToIP() {
         // rajoute le subnet
         newvalip[i]= retvalsub[i] | newvalip[i];
     }
-    valiptxt=transformIPtotxt(ipversionv4,newvalip);
+    valiptxt=transformIPtotxt(ipversion,newvalip);
     IP.value= valiptxt;
+	// Verifiy the submitted subnet
+    for (var i=0;i<8;i++) {
+        // prend la partie hosts
+        newvalsub[i]= retvalsub[i] & valbinsub[i];
+        // rajoute le subnet
+        //newvalsub[i]= retvalsub[i] & newvalip[i];
+    }
+    valiptxt=transformIPtotxt(ipversion,newvalsub);
+    subnet.value= valiptxt;
   }
 }
 
@@ -732,13 +831,19 @@ function subnetToNbbits() {
 function addIP(direction) {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var tnewip= new Array(8);
-  var newiptxt,ipval,ipversionv4;
+  var newiptxt,ipval,ipversion;
   var infoip= new Array(2);
   var valbin = [ 0, 0, 0, 0, 0, 0, 0, 1 ];
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+	ipversion = 'v4';
+	if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+ 	if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+	if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   ipval= IP.value;
   error= checkIPaddress(ipval,retval,infoip);
   if (!error) {
@@ -756,7 +861,7 @@ function addIP(direction) {
         else retenue=0;
       }
     }
-    newiptxt=transformIPtotxt(ipversionv4,tnewip);
+    newiptxt=transformIPtotxt(ipversion,tnewip);
     IP.value= newiptxt;
   }
 }
@@ -764,31 +869,36 @@ function addIP(direction) {
 function range(direction) {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var valbin= new Array(8);
   var valbintxt= new Array(8);
   var tnewip= new Array(8);
-  var ipversionv4,nbbits,newiptxt;
+  var ipversion,nbbits,newiptxt;
   var infoip= new Array(2);
 
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
-  valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
-  valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
-  bitszone=96;
-  nbbits=(ipversionv4)? (parseInt(bits.value,10)+bitszone):(parseInt(bits.value,10));
-  for (var i=1,j=0,k=0; i<=128; i++) {
-      if (nbbits==i) {
-         valbintxt[j]=valbintxt[j]+'1';
-      } else {
-        valbintxt[j]=valbintxt[j]+'0';
-      }
-      k++;
-      if (k>15) { j++; k=0;}
-  }
-  for (var i=0;i<8;i++) valbin[i]=parseInt(valbintxt[i],2);
-//alert('range('+direction+') nbbits='+nbbits+' valbin='+valbintxt[0]+valbintxt[1]+valbintxt[2]+valbintxt[3]+valbintxt[4]+valbintxt[5]+valbintxt[6]+valbintxt[7]);
+	ipversion = 'v4';
+	if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+ 	if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+	if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
+    valbintxt[0]=valbintxt[1]=valbintxt[2]=valbintxt[3]='';
+    valbintxt[4]=valbintxt[5]=valbintxt[6]=valbintxt[7]='';
+    bitszone=96;
+    nbbits=(ipversion=='v4')? (parseInt(bits.value,10)+bitszone):(parseInt(bits.value,10));
+    for (var i=1,j=0,k=0; i<=128; i++) {
+        if (nbbits==i) {
+           valbintxt[j]=valbintxt[j]+'1';
+        } else {
+          valbintxt[j]=valbintxt[j]+'0';
+        }
+        k++;
+        if (k>15) { j++; k=0;}
+    }
+    for (var i=0;i<8;i++) valbin[i]=parseInt(valbintxt[i],2);
   ipval= IP.value;
   error= checkIPaddress(ipval,retval,infoip);
 //alert('return range:'+retval[0].toString(16)+':'+retval[1].toString(16)+':'+retval[2].toString(16)+':'+retval[3].toString(16)
@@ -808,7 +918,7 @@ function range(direction) {
         else retenue=0;
       }
     }
-    newiptxt=transformIPtotxt(ipversionv4,tnewip);
+    newiptxt=transformIPtotxt(ipversion,tnewip);
 //alert('range('+direction+') newIP='+tnewip[0].toString(16)+':'+tnewip[1].toString(16)+':'+tnewip[2].toString(16)+':'+tnewip[3].toString(16)
 //+':'+tnewip[4].toString(16)+':'+tnewip[5].toString(16)+':'+tnewip[6].toString(16)+':'+tnewip[7].toString(16)
 //+' valbin='+valbintxt[0]+valbintxt[1]+valbintxt[2]+valbintxt[3]+valbintxt[4]+valbintxt[5]+valbintxt[6]+valbintxt[7]);
@@ -825,6 +935,30 @@ function calculmaskval() {
   } else {
 	bits.value=netmask.value;
 	calculeBits();
+  }
+  calculreversenetmaskval();
+}
+function inversionnetmask(mask) {
+	var lval;
+	lval= mask.split('.');
+	val1=255-parseInt(lval[0],10);
+	val= ''+val1;
+	for (i=1; i<lval.length;i++) {
+		val1=255-parseInt(lval[i],10);
+		val=val+'.'+val1;
+	}
+	return val;
+}
+
+function calculreversenetmaskval() {
+  var btIPv4 = document.getElementById("btIPv4");
+  var netmask = document.getElementById("netmask");
+  var reversenetmask = document.getElementById("reversenetmask");
+  /* the DOM variable above are for compatibility wit IE */
+  if (btIPv4.className.indexOf('active')>=0) {
+	reversenetmask.value=inversionnetmask(netmask.value);
+  } else {
+	reversenetmask.value=128-netmask.value;
   }
 }
 function calculsubnetmaskval() {
@@ -851,6 +985,8 @@ function calculeSubnetval() {
   getHostfrom();
   getHostTo();
   changeInfo();
+  calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -881,10 +1017,27 @@ function calculeBits() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
-function calculeEnter() {
+function calculeIPEnter() {
+  var IP = document.getElementById("IP");
+  var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6c = document.getElementById("btIPv6c");
+  var btIPv6a = document.getElementById("btIPv6a");
+  /* the DOM variable above are for compatibility wit IE */
+  var retval= new Array(8);
+  var infoip= new Array(2);
+  var ipversion;
+  ipversion = 'v4';
+  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
+  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
+  error=checkIPaddress(IP.value,retval,infoip);
+  IP.value=transformIPtotxt(ipversion,retval);
+
   calculeMaskBits();
   changeSubnet();
   bitsToHostsnb();
@@ -894,10 +1047,11 @@ function calculeEnter() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
-function calculeButton() {
+function calculeIPButton() {
   calculeMaskBits();
   changeSubnet();
   bitsToHostsnb();
@@ -907,6 +1061,7 @@ function calculeButton() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -937,6 +1092,7 @@ function calculIPsnbToBits() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -950,6 +1106,7 @@ function calculRange(direction) {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -963,6 +1120,7 @@ function calculeAddIP(direction) {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -1022,6 +1180,7 @@ function calculwithIPv6condensed() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -1049,7 +1208,7 @@ function calculwithIPv6alternative() {
   lang=imglanguage.className.replace('imglanguage').trim();
   readselectbits(lang);
   error=checkIPaddress(IP.value,retval,infoip);
-  IP.value=transformIPtotxt(0,retval);
+  IP.value=transformIPtotxt('v6a',retval);
   changeSubnet();
   bitsToHostsnb();
   bitsToIPsnb();
@@ -1063,6 +1222,7 @@ function calculwithIPv6alternative() {
   hostfrom.value=condense(hostfrom.value);
   hostto.value=condense(hostto.value);
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -1136,6 +1296,7 @@ function changeIPv4() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -1164,12 +1325,11 @@ function changeIPv6() {
   else if (0xC0A8==retval[6])			    retval[0]=0xFE80; // private class C
   else retval[0]=0x2002;
   // change les autres champs
-  ipvaltxt= transformIPtotxt(0,retval);
+  ipvaltxt= transformIPtotxt('v6',retval);
 // 	ipvaltxt=retval[0].toString(16)+':'+retval[1].toString(16)+':'+retval[2].toString(16)
 // 	   +':'+retval[3].toString(16)+':'+retval[4].toString(16)+':'+retval[5].toString(16)
 // 	   +':'+retval[6].toString(16)+':'+retval[7].toString(16);
   IP.value= ipvaltxt;
-  
   changeClassButton(btIPv6);
   changeClassSelecthostsnb('IPv6');
   lang=imglanguage.className.replace('imglanguage').trim();
@@ -1188,6 +1348,7 @@ function changeIPv6() {
   getHostTo();
   changeInfo();
   calculBitsToSelectHostsnb();
+  calculreversenetmaskval();
   storeAllCookie();
 }
 
@@ -1321,6 +1482,7 @@ function infoIPv4v6(){
   var infoIPv4v6btn = document.getElementById("infoIPv4v6btn");
   var iframeinfo = document.getElementById("iframeinfo");
   var selecthostsnb = document.getElementById("selecthostsnb");
+  var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
 	txt=infoIPv4v6txt.className;
 	btn=infoIPv4v6btn.className;
@@ -1474,14 +1636,36 @@ function setlanguageObjects(lang) {
   var panelcalculationtxt = document.getElementById("panelcalculationtxt");
   var infoIPv4v6btn = document.getElementById("infoIPv4v6btn");
   var iframeinfo = document.getElementById("iframeinfo");
+  var hostfromlabel = document.getElementById("hostfromlabel");
+  var hosttolabel = document.getElementById("hosttolabel");
+  var IPv4menutxt = document.getElementById("IPv4menutxt");
+  var IPv6menutxt = document.getElementById("IPv6menutxt");
+  var IPv6cmenutxt = document.getElementById("IPv6cmenutxt");
+  var IPv6amenutxt = document.getElementById("IPv6amenutxt");
+  var panelinfo = document.getElementById("panelinfo");
+  var panelexample = document.getElementById("panelexample");
+  var reversenetmasklabel = document.getElementById("reversenetmasklabel");
   /* the DOM variable above are for compatibility wit IE */
 	imglanguage.className='imglanguage '+lang;
 	imglanguage.src='./images/'+lang+'-flg.png';
 	changeDivLanguageText(maintitle,lang);
 	changeDivLanguageText(panelformat,lang);
+	changeDivLanguageText(hostfromlabel,lang);
+	changeDivLanguageText(hosttolabel,lang);
+	changeDivLanguageText(IPv4menutxt,lang);
+	changeDivLanguageText(IPv6menutxt,lang);
+	changeDivLanguageText(IPv6cmenutxt,lang);
+	changeDivLanguageText(IPv6amenutxt,lang);
 	changeDivLanguageText(panelcalculationtxt,lang);
+	changeDivLanguageText(panelinfo,lang);
+	changeDivLanguageText(panelexample,lang);
 	changeDivLanguageText(infoIPv4v6btn,lang);
 	changeDivLanguageText(iframeinfo,lang);
+	changeDivLanguageText(reversenetmasklabel,lang);
+	if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
+    iframeinfo.src ="./lang/infoIPv4v6-"+lang+".html"; // #p1";
+    //iframeinfo.contentDocument.location.reload(true);
+	iframeinfo.style.display='inline';
 	readselectbits(lang);
 }
 
@@ -1492,6 +1676,8 @@ function changelanguage(lang) {
 
 function readhtmlselectbits(){
   var imglanguage = document.getElementById("imglanguage");
+  var lang = imglanguage.className.replace('imglanguage','');
+  lang = lang.trim();
   readselectbits(lang);
 }
 
@@ -1764,4 +1950,14 @@ function browsertype(){
     browser="netscape6";
   }
   return browser;
+}
+
+function togglePanel(obj,pannelobj) {
+	if (obj.className.indexOf('fa-toggle-off')>=0){
+		obj.className='fa fa-toggle-on';
+		pannelobj.style.display='';
+	} else {
+		obj.className='fa fa-toggle-off';
+		pannelobj.style.display='none';
+	};
 }
