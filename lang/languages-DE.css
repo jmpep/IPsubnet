@@ -1,0 +1,54 @@
+
+a.DE[id|=IPv4menutxt]:after {
+	content: 'IPv4';
+}
+
+a.DE[id|=IPv6menutxt]:after {
+	content: 'IPv6';
+}
+
+a.DE[id|=IPv6cmenutxt]:after {
+	content: 'IPV6 dicht';
+}
+
+a.DE[id|=IPv6amenutxt]:after {
+	content: 'IPV6 alternativ';
+}
+
+div.DE[id|=maintitle]:after {
+	content: 'IPv4 & IPv6 subnet Rechner';
+}
+
+div.DE[id|=panelformat]:before{
+content: 'IP Optionen';
+}
+
+span.DE[id|=panelcalculationtxt]:before{
+content: 'Rechner';
+}
+
+label.DE[id|=hostfromlabel]:before{
+content: 'erster Host:';
+}
+
+label.DE[id|=hosttolabel]:before{
+content: 'lezter Host:';
+}
+
+span.DE[id|=panelinfo]:after{
+content: 'Informationen';
+}
+
+span.DE[id|=panelexample]:after{
+content: 'Beispiel';
+}
+label.DE[id|=reversenetmasklabel]:before{
+content: 'umgekehrte:';
+}
+
+#infoIPv4v6btn.hidetxt[class~=DE]:after {
+content:"mehr Auskunft über IPv6";
+}
+#infoIPv4v6btn.showtxt[class~=DE]:after {
+content:'verstecke die Informationen über IPv6';
+}

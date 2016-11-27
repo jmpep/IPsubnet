@@ -1,0 +1,54 @@
+
+a.FR[id|=IPv4menutxt]:after {
+	content: 'IPv4';
+}
+
+a.FR[id|=IPv6menutxt]:after {
+	content: 'IPv6';
+}
+
+a.FR[id|=IPv6cmenutxt]:after {
+	content: 'IPV6 condensé';
+}
+
+a.FR[id|=IPv6amenutxt]:after {
+	content: 'IPV6 alternative';
+}
+
+div.FR[id|=maintitle]:after {
+	content: 'IPv4 & IPv6 subnet calculatrice';
+}
+
+div.FR[id|=panelformat]:before{
+content: 'Options IP';
+}
+
+span.FR[id|=panelcalculationtxt]:before{
+content: 'calculatrice';
+}
+
+label.FR[id|=hostfromlabel]:before{
+content: 'premier Host:';
+}
+
+label.FR[id|=hosttolabel]:before{
+content: 'dernier Host:';
+}
+
+span.FR[id|=panelinfo]:after{
+content: 'Informations';
+}
+
+span.FR[id|=panelexample]:after{
+content: 'Exemple';
+}
+label.FR[id|=reversenetmasklabel]:before{
+content: 'inversé:';
+}
+
+#infoIPv4v6btn.hidetxt[class~=FR]:after {
+content:"plus d'information sur IPv6";
+}
+#infoIPv4v6btn.showtxt[class~=FR]:after {
+content:'cache les informations sur IPv6';
+}

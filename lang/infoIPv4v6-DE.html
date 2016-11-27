@@ -1,7 +1,64 @@
 <HTML>
 <p id="p1">
  <h2> IPv6 DE</h2>
- <h1>noch nicht &uuml;bersetzt</h1>
+ <h4>Zusammenfassung:</h4>
+ <SPAN id="infoipv6txt" onload="this.innerHTML=this.innerHTML.replace(/\s/gi,'&nbsp;');">
+ Die grösste Mask /32 is reserviert für die Provider.<BR/>
+ Eine übliche Vergabe ist /48 für einen wichtigen Kunden. Ein grösseres Netzwerk kann mit einem guten Grund vergeben werden.<BR/>
+ Alle Netzwerke über /48 müssen bei RIR mit einer Imlementierungsplan registriert werden (Zum Beispiel für Europa RIPE NCC).<BR/>
+ Die Anzahl von Geräten ist nicht wichtig, weil die IP ist die ID-Interface. Deshalb das Standard-Subnet ist /64.<BR/>
+ Die einzige Ausnahme /127 ist für die Router. [https://tools.ietf.org/html/rfc6177]<BR/>
+ /48 = 65536 subnets of /64.<BR/>
+<SPAN style="font-family:courier;">
+&nbsp;&nbsp;2&nbsp;0&nbsp;0&nbsp;1&nbsp;&nbsp;:&nbsp;&nbsp;x&nbsp;x&nbsp;x&nbsp;x&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;grösste&nbsp;bit&nbsp;mask&nbsp;für&nbsp;Endkunde&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;üblich&nbsp;bit&nbsp;mask&nbsp;für&nbsp;Firmen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kleinstes&nbsp;Subnetz<BR/>
+</SPAN>
+ <h4>Tips:</h4>
  <BR/>
-</p>
+ <h4>Einige Ausdrücke:</h4><BR/>
+ IANA = Verantwortlich für die globale Koordination von der Internet IP Adressierung.<BR/>
+ RIR = Regional Internet Registrierungszentrum. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)<BR/>
+ LIR = Lokal Internet Registrierungszentrum. Im End Effekt der Provider Ihres Betriebes. Sie sind der Endkunde.<BR/>
+ PI = Provider Independent Assignments<BR/>
+ <h4>Detail:</h4>
+  IPv6 assignation IANA->RIR->LIR->customer<BR/>
+ <h4>Formatierung:</h4>
+ Prefix FF00::/8. Eine IPng multicast Adresse ist Identfikation für eine Gruppe.<BR/>
+ Eine interface kann sich an irgendwelche Gruppe anmelden. Hier die Formatierung für die Adressen Multicast.<BR/>
+<SPAN style="font-family:courier;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;112&nbsp;bits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+------&nbsp;-+----+----+---------------------------------------------+<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|11111111|FLGS|SCOP|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--------+----+----+---------------------------------------------+<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefix<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11111111&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;address&nbsp;identifies&nbsp;the&nbsp;address&nbsp;as&nbsp;being&nbsp;a&nbsp;multicast&nbsp;address.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FLGS<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;is&nbsp;a&nbsp;set&nbsp;of&nbsp;4&nbsp;flags:&nbsp;|0|0|0|T|&nbsp;+-+-+-+-+<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The high-order 3 flags are reserved, and must be initialized to 0.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=0 indicates a permanently assigned (well-known) multicast address, assigned by the global internet numbering authority.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=1 indicates a non-permanently assigned (transient) multicast address.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCOP<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCOP is a 4-bit multicast scope value used to limit the scope of the multicast group. The values are:<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 Reserved 8 Organization-local scope 1 Node-local scope 9 (unassigned) 2 Link-local scope A (unassigned)<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 (unassigned) B (unassigned) 4 (unassigned) C (unassigned) 5 Site-local scope D (unassigned) 6 (unassigned) E Global scope<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 (unassigned) F Reserved.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP ID identifies the multicast group, either permanent or transient, within the given scope.<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
+</SPAN>
+ RFC4192<BR/>
+ </SPAN>
+ </p>
+ <p ID="iframeinfoIPfield" style="display:none">
+ text for IP text !!!!!!!!!
+ <p>
+</BODY>
 </HTML>

@@ -1,0 +1,53 @@
+a.WORLD[id|=IPv4menutxt]:after {
+	content: 'IPv4';
+}
+
+a.WORLD[id|=IPv6menutxt]:after {
+	content: 'IPv6';
+}
+
+a.WORLD[id|=IPv6cmenutxt]:after {
+	content: 'IPV6 condensed';
+}
+
+a.WORLD[id|=IPv6amenutxt]:after {
+	content: 'IPV6 alternativ';
+}
+
+div.WORLD[id|=maintitle]:after {
+	content: 'IP subnet calculator IPv4 & IPng (IPv6)';
+}
+
+div.WORLD[id|=panelformat]:before{
+content: 'IP options default';
+}
+
+span.WORLD[id|=panelcalculationtxt]:before{
+content: 'calculator';
+}
+
+label.WORLD[id|=hostfromlabel]:before{
+content: 'Host from:';
+}
+
+label.WORLD[id|=hosttolabel]:before{
+content: 'Host to:';
+}
+
+span.WORLD[id|=panelinfo]:after{
+content: 'Information';
+}
+
+span.WORLD[id|=panelexample]:after{
+content: 'Example';
+}
+label.WORLD[id|=reversenetmasklabel]:before{
+content: 'inversed:';
+}
+
+#infoIPv4v6btn.hidetxt[class~=WORLD]:after {
+content:'more info about IPv6';
+}
+#infoIPv4v6btn.showtxt[class~=WORLD]:after {
+content:'hide info about IPv6';
+}
