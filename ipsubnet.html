@@ -37,11 +37,15 @@
 	}
 	activePopOver("infoippopover");
 	activePopOver("infoippopover2");
-
 	</SCRIPT>
     <!-- application's class -->
     <link href="css/ipsubnet.css" rel="stylesheet" >
-    <link href="lang/languages.css" rel="stylesheet" >
+    <link href="lang/languages-WORLD.css" rel="stylesheet" >
+    <link href="lang/languages-UK.css" rel="stylesheet" >
+    <link href="lang/languages-US.css" rel="stylesheet" >
+    <link href="lang/languages-FR.css" rel="stylesheet" >
+    <link href="lang/languages-DE.css" rel="stylesheet" >
+    <link href="lang/languages-IT.css" rel="stylesheet" >
 </HEAD>
 <BODY onload="initializeIPsubnet();readhtmlselectbits();">
 <FORM class="form" >
@@ -78,10 +82,10 @@
 	  </SPAN>
      </DIV>
      <UL class="nav navbar-nav" >
-       <li ID='btIPv4' class="active" onclick="changeIPv4();"><a href="#">IPv4</a></li>
-       <li ID='btIPv6' class="" onclick="changeIPv6();"><a href="#">IPv6</a></li>
-       <li ID='btIPv6c' class="" onclick="calculwithIPv6condensed();"><a href="#">IPV6 condensed</a></li>
-       <li ID='btIPv6a' class="" onclick="calculwithIPv6alternative();"><a href="#">IPv6 alternativ</a></li>
+       <li ID='btIPv4' class="active" onclick="changeIPv4();"><a id="IPv4menutxt" class="WORLD" href="#"></a></li>
+       <li ID='btIPv6' class="" onclick="changeIPv6();"><a id="IPv6menutxt" class="WORLD"  href="#"></a></li>
+       <li ID='btIPv6c' class="" onclick="calculwithIPv6condensed();"><a id="IPv6cmenutxt" class="WORLD"  href="#"></a></li>
+       <li ID='btIPv6a' class="" onclick="calculwithIPv6alternative();"><a id="IPv6amenutxt" class="WORLD"  href="#"></a></li>
      </UL>
     </NAV>
    </DIV>
@@ -91,7 +95,7 @@
   <DIV class="panel panel-calculation ipsubnet">
    <DIV class="panel-heading">
    <i class="fa fa-toggle-on" aria-hidden="true"
-      onclick="if (this.className.includes('fa-toggle-off')){this.className='fa fa-toggle-on';collapse1.style.display='';}else{this.className='fa fa-toggle-off';collapse1.style.display='none';};"></i>
+      onclick="togglePanel(this,collapse1);"></i>
    <SPAN ID="panelcalculationtxt" >&nbsp;</SPAN>
    </DIV>
    <DIV id="collapse1" class="panel-collapse in">
@@ -102,9 +106,7 @@
       <label class="control-label col-sm-1 labelling" for="IP">IP:</label>
       <div class="col-sm-3">
        <input type="text" class="form-control" id="IP" placeholder="Enter IP"
-	         onchange="calculeEnter();"
-			 data-toggle="infoippopover" title="Info IP" data-trigger="focus" data-placement="auto bottom" data-content="Some content inside"
-			 >
+	         onChange="calculeIPEnter();" >
 	   <span class="form-control-feedback">
 	     <i class="fa fa-check-square-o" aria-hidden="true"></i>
 	   </span>
@@ -120,8 +122,8 @@
        <a onclick="calculeAddIP('+1');" ><i class="fa fa-plus-square fa-1x" aria-hidden="true"></i> </a>
       </div>
       <label class="control-label col-sm-1 col-lg-1 labelling" for="bits">bits:</label>
-      <div class="col-sm-3 col-lg-1">
-      <input type="bits" class="form-control" id="bits" placeholder="Enter bits" onchange="calculeBits();">
+      <div class="col-sm-3 col-lg-1 bits">
+      <input class="form-control" id="bits" placeholder="Enter bits" onchange="calculeBits();">
       </div>
       <label class="sr-only" for="bitsplusmoins"></label>
       <div class="col-sm-1" id="bitsplusmoins" >
@@ -140,7 +142,13 @@
      <div class="form-group">
      <label class="control-label col-sm-1 labelling" for="netmask">netmask:</label>
      <div class="col-sm-3">
-      <input type="netmask" class="form-control" id="netmask" placeholder="Enter netmask" onchange="calculmaskval();">
+      <input class="form-control" id="netmask" placeholder="Enter netmask" onchange="calculmaskval();">
+     </div>
+	 <div class="col-sm-1" id="tempcol" >
+     </div>
+     <label id="reversenetmasklabel" class="control-label col-sm-1 labelling WORLD" for="reversenetmask"></label>
+     <div class="col-sm-1 col-lg-1 reversenetmask">
+      <input class="form-control" id="reversenetmask" placeholder="Enter reversenetmask" onchange="calculreversenetmaskval();">
      </div>
 	</div>
    </div>
@@ -175,11 +183,13 @@
    <!-- begin row -->
    <div class="row">
     <div class="form-group">
-     <label class="control-label col-sm-1 labelling" for="hostfrom">Host from:</label>
+     <label id="hostfromlabel" class="control-label col-sm-1 labelling WORLD" for="hostfrom"></label>
      <div class="col-sm-3">
       <input type="hostfrom" class="form-control" id="hostfrom" placeholder="first IP" disabled>
      </div>
-     <label class="control-label col-sm-offset-1 col-sm-1 col-lg-1 labelling" for="hostto">Host to:</label>
+	 <div class="col-sm-1" id="tempcol" >
+     </div>
+     <label id="hosttolabel" class="control-label col-sm-1 col-lg-1 labelling WORLD" for="hostto"></label>
      <div class="col-sm-3">
       <input type="hostto" class="form-control" id="hostto" placeholder="last IP" disabled>
      </div>
@@ -193,7 +203,9 @@
      <div class="col-sm-3">
       <input type="hostsnb" class="form-control" id="hostsnb" placeholder="." disabled>
      </div>
-     <label class="control-label col-sm-offset-1 col-sm-1 col-lg-1 labelling" for="ipsnb">IPs #:</label>
+	 <div class="col-sm-1" id="tempcol" >
+     </div>
+     <label class="control-label col-sm-1 col-lg-1 labelling" for="ipsnb">IPs #:</label>
      <div class="col-sm-3 col-lg-2">
       <input type="ipsnb" class="form-control" id="ipsnb" placeholder="." disabled>
      </div>
@@ -210,7 +222,8 @@
   <DIV class="panel panel-info ipsubnet">
    <DIV class="panel-heading">
    <i class="fa fa-toggle-on" aria-hidden="true"
-      onclick="if (this.className.includes('fa-toggle-off')){this.className='fa fa-toggle-on';collapse2.style.display='';}else{this.className='fa fa-toggle-off';collapse2.style.display='none';};"></i>
+      onclick="togglePanel(this,collapse2);"></i>
+   <SPAN id="panelinfo" class="WORLD" >&nbsp;</SPAN>
    </DIV>
    <DIV id="collapse2" class="panel-collapse in">
     <DIV id="IPinfo" class="panel-body">
@@ -219,6 +232,8 @@
 	 &nbsp;</BUTTON>
 	 <DIV ID="infoIPv4v6txt" class="infoIPv4v6txt hidetxt" readonly ></DIV>
      <iframe id="iframeinfo" type="text/html" src="lang/infoIPv4v6-EN.html" class="iframeinfo WORLD" ></iframe>
+	 <DIV ID="infoIPfieldtxt" type="hidden" readonly ></DIV>
+     <iframe id="iframeinfoIPfield" type="text/html" src="lang/infoIPv4v6-EN.html#iframeinfoIPfield" class="iframeinfo WORLD" ></iframe>
     </DIV>
    </DIV>
   </DIV>
@@ -227,7 +242,8 @@
   <DIV class="panel panel-example ipsubnet">
    <DIV class="panel-heading">
    <i class="fa fa-toggle-on" aria-hidden="true"
-      onclick="if (this.className.includes('fa-toggle-off')){this.className='fa fa-toggle-on';collapse3.style.display='';}else{this.className='fa fa-toggle-off';collapse3.style.display='none';};"></i>
+      onclick="togglePanel(this,collapse3);"></i>
+   <SPAN id="panelexample" class="WORLD" >&nbsp;</SPAN>
    </DIV>
    <DIV id="collapse3" class="panel-collapse">
    <DIV id="IPexample" class="panel-body">
