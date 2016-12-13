@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <HEAD>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -54,6 +54,7 @@
 <!-- main panel -->
 <DIV class="panel panel-main">
 <DIV ID="maintitle" class="panel-heading maintitle WORLD">
+<i class="fa fa-calculator fa-2x"></i>
 </DIV>
 <DIV class="panel-body">
 <!-- panel group -->
@@ -61,6 +62,7 @@
  <!-- panel choose format -->
   <DIV class="panel panel-format">
    <DIV ID="panelformat" class="panel-heading WORLD">
+     &nbsp;<i class="fa fa-cog  fa-1x5"></i>&nbsp;
    </DIV>
    <DIV class="panel-body">
     <NAV class="navbar navbar-default y-xsm">
@@ -78,15 +80,20 @@
           <li><a class="flagmenu" onClick="changelanguage('US');" ><IMG ID="choiceUS" class="imglanguage" SRC="./images/US-flg.png" />&nbsp;US</a></li>
           <li><a class="flagmenu" onClick="changelanguage('DE');" ><IMG ID="choiceDE" class="imglanguage" SRC="./images/DE-flg.png" />&nbsp;DE</a></li>
         </ul>
-	  </DIV>
+	   </DIV>
 	  </SPAN>
      </DIV>
-     <UL class="nav navbar-nav" >
+      <UL class="nav navbar-nav" >
        <li ID='btIPv4' class="active" onclick="changeIPv4();"><a id="IPv4menutxt" class="WORLD" href="#"></a></li>
        <li ID='btIPv6' class="" onclick="changeIPv6();"><a id="IPv6menutxt" class="WORLD"  href="#"></a></li>
-       <li ID='btIPv6c' class="" onclick="calculwithIPv6condensed();"><a id="IPv6cmenutxt" class="WORLD"  href="#"></a></li>
        <li ID='btIPv6a' class="" onclick="calculwithIPv6alternative();"><a id="IPv6amenutxt" class="WORLD"  href="#"></a></li>
-     </UL>
+      </UL>
+      <DIV class="checkbox" >
+      <LABEL class="checkbox col-sm-1" for="IPv6cchk">
+        <input type="checkbox" id="IPv6cchk" value=" " onClick="setIPv6cCheckbox();" checked>
+		<a id="IPv6cmenutxt" class="WORLD"  href="#"></a>
+	  </LABEL>
+      </DIV>
     </NAV>
    </DIV>
   </DIV>
@@ -94,9 +101,10 @@
   <!-- begin panel calculation -->
   <DIV class="panel panel-calculation ipsubnet">
    <DIV class="panel-heading">
-   <i class="fa fa-toggle-on" aria-hidden="true"
+   <i ID="togglecollapse1" class="fa fa-toggle-on" aria-hidden="true"
       onclick="togglePanel(this,collapse1);"></i>
-   <SPAN ID="panelcalculationtxt" >&nbsp;</SPAN>
+   <SPAN ID="panelcalculationtxt" class="WORLD">&nbsp;</SPAN>
+   &nbsp;<i class="fa fa-calculator fa-1x5"></i>&nbsp;
    </DIV>
    <DIV id="collapse1" class="panel-collapse in">
    <DIV class="panel-body">
@@ -105,7 +113,7 @@
     <div class="form-group">
       <label class="control-label col-sm-1 labelling" for="IP">IP:</label>
       <div class="col-sm-3">
-       <input type="text" class="form-control" id="IP" placeholder="Enter IP"
+	  <input type="text" class="form-control" id="IP" placeholder="Enter IP"
 	         onChange="calculeIPEnter();" >
 	   <span class="form-control-feedback">
 	     <i class="fa fa-check-square-o" aria-hidden="true"></i>
@@ -113,7 +121,7 @@
        <a href="#" class="form-control-after fa fa-info" 
           data-toggle="infoippopover2" title="Info IP" data-trigger="hover"
      	 data-placement="auto top" 
-     	 data-content="Some content inside the popover">
+     	 data-content="Some content inside the popover" >
        </a>
       </div>
       <label class="sr-only" for="ipplusmoins"></label>
@@ -122,7 +130,7 @@
        <a onclick="calculeAddIP('+1');" ><i class="fa fa-plus-square fa-1x" aria-hidden="true"></i> </a>
       </div>
       <label class="control-label col-sm-1 col-lg-1 labelling" for="bits">bits:</label>
-      <div class="col-sm-3 col-lg-1 bits">
+      <div class="col-sm-1 bits">
       <input class="form-control" id="bits" placeholder="Enter bits" onchange="calculeBits();">
       </div>
       <label class="sr-only" for="bitsplusmoins"></label>
@@ -130,7 +138,7 @@
        <a onclick="calculeAddBits(-1);"><i class="fa fa-minus-square fa-1x" aria-hidden="true"></i> </a>
        <a onclick="calculeAddBits(1);"><i class="fa fa-plus-square fa-1x" aria-hidden="true"></i> </a>
       </div>
-      <div class="col-sm-2 col-lg-3" id="bitschoose" >
+      <div class="col-sm-2" id="bitschoose" >
 	   <select id="selecthostsnb" class="input-sm badged" value="256" onchange="calculHostsnbToBits();">
 	   </select>
       </div>
@@ -140,16 +148,20 @@
    <!-- begin row -->
    <div class="row">
      <div class="form-group">
-     <label class="control-label col-sm-1 labelling" for="netmask">netmask:</label>
+     <label id="netmasklabel" class="control-label col-sm-1 labelling" for="netmask">netmask:</label>
      <div class="col-sm-3">
       <input class="form-control" id="netmask" placeholder="Enter netmask" onchange="calculmaskval();">
      </div>
 	 <div class="col-sm-1" id="tempcol" >
      </div>
      <label id="reversenetmasklabel" class="control-label col-sm-1 labelling WORLD" for="reversenetmask"></label>
-     <div class="col-sm-1 col-lg-1 reversenetmask">
-      <input class="form-control" id="reversenetmask" placeholder="Enter reversenetmask" onchange="calculreversenetmaskval();">
+     <div class="col-sm-2 reversenetmask">
+      <input class="form-control" id="reversenetmask" placeholder="Enter reversenetmask" onchange="calculreversenetmaskval();" readonly >
      </div>
+     <div class="col-sm-2" id="nbsubchoose" >
+	   <select id="selectnbsubnet" class="input-sm badged" value="256" onchange="calculNbSubnet();">
+	   </select>
+	 </div>
 	</div>
    </div>
    <!-- end   row -->
@@ -173,9 +185,9 @@
    <!-- begin row -->
    <div class="row">
      <div ID="sectionbroadcast" class="form-group">
-     <label class="control-label col-sm-1 labelling" for="broadcast">broadcast:</label>
+     <label id="broadcastlabel" class="control-label col-sm-1 labelling WORLD" for="broadcast"></label>
      <div class="col-sm-3">
-      <input type="broadcast" class="form-control" id="broadcast" placeholder="broadcast" disabled>
+      <input type="broadcast" class="form-control" id="broadcast" placeholder="broadcast" readonly>
      </div>
 	</div>
    </div>
@@ -185,13 +197,13 @@
     <div class="form-group">
      <label id="hostfromlabel" class="control-label col-sm-1 labelling WORLD" for="hostfrom"></label>
      <div class="col-sm-3">
-      <input type="hostfrom" class="form-control" id="hostfrom" placeholder="first IP" disabled>
+      <input type="hostfrom" class="form-control hostfrominput" id="hostfrom" placeholder="first IP" readonly>
      </div>
 	 <div class="col-sm-1" id="tempcol" >
      </div>
      <label id="hosttolabel" class="control-label col-sm-1 col-lg-1 labelling WORLD" for="hostto"></label>
      <div class="col-sm-3">
-      <input type="hostto" class="form-control" id="hostto" placeholder="last IP" disabled>
+      <input type="hostto" class="form-control" id="hostto" placeholder="last IP" readonly>
      </div>
 	</div>
    </div>
@@ -201,13 +213,13 @@
     <div class="form-group">
      <label class="control-label col-sm-1 labelling" for="hostsnb">Hosts #:</label>
      <div class="col-sm-3">
-      <input type="hostsnb" class="form-control" id="hostsnb" placeholder="." disabled>
+      <input type="hostsnb" class="form-control" id="hostsnb" placeholder="." readonly>
      </div>
 	 <div class="col-sm-1" id="tempcol" >
      </div>
      <label class="control-label col-sm-1 col-lg-1 labelling" for="ipsnb">IPs #:</label>
-     <div class="col-sm-3 col-lg-2">
-      <input type="ipsnb" class="form-control" id="ipsnb" placeholder="." disabled>
+     <div class="col-sm-3">
+      <input type="ipsnb" class="form-control" id="ipsnb" placeholder="." disablreadonlyed>
      </div>
 	</div>
    </div>
@@ -218,16 +230,38 @@
    </DIV>
   </DIV>
   <!-- end panel IP calculation -->
+  <!-- panel IP TEXT -->
+  <DIV class="panel panel-text ipsubnet">
+   <DIV class="panel-heading">
+   <i ID="togglecollapse4" class="fa fa-toggle-on" aria-hidden="true"
+      onclick="togglePanel(this,collapse4);"></i>
+   <SPAN id="paneltext" class="WORLD" >&nbsp;</SPAN>
+   &nbsp;<i class="fa fa-sticky-note-o fa-1x5"></i>&nbsp;
+   </DIV>
+   <DIV id="collapse4" class="panel-collapse">
+    <DIV class="panel-body">
+     <DIV id="textipdiv" class="textipdiv" >
+	 <TEXTAREA ID="textip" name="textip" value="" class="textip" readonly></TEXTAREA>
+	 <BUTTON ID="textipbtn" type="button" class="btn textipbtn WORLD" onClick="textipbtn();" >
+	 <i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-sign-in fa-flip-horizontal" aria-hidden="true"></i>
+	 </BUTTON>
+	 <TEXTAREA ID="textipimport" name="textipimport" value="" class="textipimport" ></TEXTAREA>
+	 </DIV>
+    </DIV>
+   </DIV>
+  </DIV>
+  <!-- end panel IP TEXT -->
   <!-- panel IP Info -->
   <DIV class="panel panel-info ipsubnet">
    <DIV class="panel-heading">
-   <i class="fa fa-toggle-on" aria-hidden="true"
+   <i ID="togglecollapse2" class="fa fa-toggle-on" aria-hidden="true"
       onclick="togglePanel(this,collapse2);"></i>
    <SPAN id="panelinfo" class="WORLD" >&nbsp;</SPAN>
+   &nbsp;<i class="fa fa-comment-o fa-1x5"></i>&nbsp;
    </DIV>
-   <DIV id="collapse2" class="panel-collapse in">
+   <DIV id="collapse2" class="panel-collapse">
     <DIV id="IPinfo" class="panel-body">
-     <textarea ID="infotxt" name="infotxt" value="" class="infotxt" readonly ></textarea>
+     <DIV class="infotxt" ><SPAN ID="infotxtip" name="infotxtip" value="" class="infotxt WORLD" ></SPAN></DIV>
 	 <BUTTON ID="infoIPv4v6btn" type="button" class="btn btn-success infoIPv4v6btn WORLD hidetxt" onClick="infoIPv4v6();" >
 	 &nbsp;</BUTTON>
 	 <DIV ID="infoIPv4v6txt" class="infoIPv4v6txt hidetxt" readonly ></DIV>
@@ -241,38 +275,76 @@
   <!-- panel IP example -->
   <DIV class="panel panel-example ipsubnet">
    <DIV class="panel-heading">
-   <i class="fa fa-toggle-on" aria-hidden="true"
+   <i ID="togglecollapse3" class="fa fa-toggle-on" aria-hidden="true"
       onclick="togglePanel(this,collapse3);"></i>
    <SPAN id="panelexample" class="WORLD" >&nbsp;</SPAN>
+   &nbsp;<i class="fa fa-child fa-1x5"></i>&nbsp;<i class="fa fa-lightbulb-o fa-1x5"></i>&nbsp;
    </DIV>
    <DIV id="collapse3" class="panel-collapse">
-   <DIV id="IPexample" class="panel-body">
-     <DIV class="radio">
-       <b>IPv4</b>
-       <LABEL class="radio-inline"><input type="radio" name="chkfctipv4" value="ipv4classa" onclick="change_class(this.value);">class A</LABEL>
-       <LABEL class="radio-inline"><input type="radio" name="chkfctipv4" value="ipv4classb" onclick="change_class(this.value);">class B</LABEL>
-       <LABEL class="radio-inline"><input type="radio" name="chkfctipv4" value="ipv4classb" onclick="change_class(this.value);">class C</LABEL>
-       <LABEL class="radio-inline"><input type="radio" name="chkfctipv4" value="ipv4classd" onclick="change_class(this.value);">Multicast</LABEL>
-     </DIV>
-     <DIV class="radio">
-        <b>IPv6</b>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6reserved' onclick='change_class(this.value);'>reserved</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6loopback' onclick='change_class(this.value);'>loopback</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6_2000' onclick='change_class(this.value);'>internet first addresses</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6_2001' onclick='change_class(this.value);'>internet new official</LABEL>
-     </DIV>
-     <DIV class="radio">
-        <b>IPv6</b>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6_2002' onclick='change_class(this.value);'>internet routing IPv6 to IPV4</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6multi' onclick='change_class(this.value);'>multicast</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6linklocal' onclick='change_class(this.value);'>Link-local unicast</LABEL>
-     </DIV>
-     <DIV class="radio">
-  	  <b>IPv6</b>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6sitelocal' onclick='change_class(this.value);'>Site-local unicast</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6localipv4' onclick='change_class(this.value);'>local IPv4 to IPv6</LABEL>
-        <LABEL class="radio-inline"><input type='radio' name='chkfctipv6' value='ipv6_6bone' onclick='change_class(this.value);'>6bone (for backbone research)</LABEL>
-     </DIV>
+   <DIV id="IPexample" class="panel-body">   
+   <b>IPv4</b>
+   <DIV class="radio">
+   <DIV class="row examples">
+     <LABEL ID="ipv4example_1" class="control-label col-sm-2 radio-inline WORLD">
+     <input type="radio" name="chkfctipv6" value="ipv4example_1" onclick="change_class(this.value);">
+     </LABEL>
+     <LABEL ID="ipv4example_2" class="control-label col-sm-2 radio-inline WORLD">
+     <input type="radio" name="chkfctipv6" value="ipv4example_2" onclick="change_class(this.value);">
+     </LABEL>
+     <LABEL ID="ipv4example_3" class="control-label col-sm-2 radio-inline WORLD">
+     <input type="radio" name="chkfctipv6" value="ipv4example_3" onclick="change_class(this.value);">
+     </LABEL>
+     <LABEL ID="ipv4example_4" class="control-label col-sm-2 radio-inline WORLD">
+     <input type="radio" name="chkfctipv6" value="ipv4example_4" onclick="change_class(this.value);">
+     </LABEL>
+   </DIV>
+   <BR/>
+   <b>IPv6</b>
+   <DIV class="row examples">
+     <LABEL ID="ipv6example_1" class="control-label col-sm-2 radio-inline WORLD">
+	 <input type='radio' name='chkfctipv6' value='ipv6example_1' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_2" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_2' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_12" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_12' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_13" class="control-label col-sm-2 radio-inline WORLD">
+      <input type='radio' name='chkfctipv6' value='ipv6example_13' onclick='change_class(this.value);'>
+     </LABEL>
+     <LABEL ID="ipv6example_3" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_3' onclick='change_class(this.value);'>
+	 </LABEL>
+   </DIV>
+   <DIV class="row examples">
+     <LABEL ID="ipv6example_4" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_4' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_5" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_5' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_6" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_6' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_7" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_7' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_8" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_8' onclick='change_class(this.value);'>
+	 </LABEL>
+   </DIV>
+   <DIV class="row examples">
+     <LABEL ID="ipv6example_9" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_9' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_10" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_10' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_11" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_11' onclick='change_class(this.value);'>
+	 </LABEL>
+   </DIV>
    </DIV>
    <!-- end panel IP Example -->
    </DIV>
@@ -282,15 +354,14 @@
  <DIV class="panel-footer">
     <div class="">
         <a href="#" class="btn btn-primary">re-init</a>
-        <a href="#" class="btn btn-default">show text</a>
-        <a href="#" class="btn btn-default">import text</a>
     </div>
  </DIV>
-</DIV>
+ </DIV>
 </DIV>
 <!-- end main panel -->
 </DIV>
 <!-- end container -->
+</DIV>
 </FORM>
 </BODY>
 </HTML>
