@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<HTML lang="en">
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- GitHub project ipsubnet -->
@@ -79,6 +79,7 @@
           <li><a class="flagmenu" onClick="changelanguage('IT');" ><IMG ID="choiceIT" class="imglanguage" SRC="./images/IT-flg.png" />&nbsp;IT</a></li>
           <li><a class="flagmenu" onClick="changelanguage('US');" ><IMG ID="choiceUS" class="imglanguage" SRC="./images/US-flg.png" />&nbsp;US</a></li>
           <li><a class="flagmenu" onClick="changelanguage('DE');" ><IMG ID="choiceDE" class="imglanguage" SRC="./images/DE-flg.png" />&nbsp;DE</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('WORLD');" ><IMG ID="choiceWORLD" class="imglanguage" SRC="./images/WORLD-flg.png" />&nbsp;default</a></li>
         </ul>
 	   </DIV>
 	  </SPAN>
@@ -111,7 +112,7 @@
    <!-- begin row -->
    <div class="row">
     <div class="form-group">
-      <label class="control-label col-sm-1 labelling" for="IP">IP:</label>
+      <label id="iplabel" class="control-label col-sm-1 labelling WORLD" for="IP"></label>
       <div class="col-sm-3">
 	  <input type="text" class="form-control" id="IP" placeholder="Enter IP"
 	         onChange="calculeIPEnter();" >
@@ -126,17 +127,19 @@
       </div>
       <label class="sr-only" for="ipplusmoins"></label>
       <div class="col-sm-1" id="ipplusmoins" >
-       <a onclick="calculeAddIP('-1');" ><i class="fa fa-minus-square fa-1x" aria-hidden="true"></i> </a>
-       <a onclick="calculeAddIP('+1');" ><i class="fa fa-plus-square fa-1x" aria-hidden="true"></i> </a>
+       <a onclick="calculeAddIP('-1');" ><i class="fa fa-minus-square  fa-xvariable" aria-hidden="true"></i> </a>
+       <a onclick="calculeAddIP('+1');" ><i class="fa fa-plus-square  fa-xvariable" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculIpMinMax('min');" class="fa fa-fast-backward fa-xvariable" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculIpMinMax('max');" class="fa fa-fast-forward fa-xvariable" aria-hidden="true"></i> </a>
       </div>
-      <label class="control-label col-sm-1 col-lg-1 labelling" for="bits">bits:</label>
+      <label id="bitslabel" class="control-label col-sm-1 col-lg-1 labelling WORLD" for="bits"></label>
       <div class="col-sm-1 bits">
       <input class="form-control" id="bits" placeholder="Enter bits" onchange="calculeBits();">
       </div>
       <label class="sr-only" for="bitsplusmoins"></label>
       <div class="col-sm-1" id="bitsplusmoins" >
-       <a onclick="calculeAddBits(-1);"><i class="fa fa-minus-square fa-1x" aria-hidden="true"></i> </a>
-       <a onclick="calculeAddBits(1);"><i class="fa fa-plus-square fa-1x" aria-hidden="true"></i> </a>
+       <a onclick="calculeAddBits(-1);"><i class="fa fa-minus-square  fa-xvariable" aria-hidden="true"></i> </a>
+       <a onclick="calculeAddBits(1);"><i class="fa fa-plus-square  fa-xvariable" aria-hidden="true"></i> </a>
       </div>
       <div class="col-sm-2" id="bitschoose" >
 	   <select id="selecthostsnb" class="input-sm badged" value="256" onchange="calculHostsnbToBits();">
@@ -148,7 +151,7 @@
    <!-- begin row -->
    <div class="row">
      <div class="form-group">
-     <label id="netmasklabel" class="control-label col-sm-1 labelling" for="netmask">netmask:</label>
+     <label id="netmasklabel" class="control-label col-sm-1 labelling WORLD" for="netmask"></label>
      <div class="col-sm-3">
       <input class="form-control" id="netmask" placeholder="Enter netmask" onchange="calculmaskval();">
      </div>
@@ -168,16 +171,16 @@
    <!-- begin row -->
    <div class="row">
      <div class="form-group">
-      <label class="control-label col-sm-1 labelling" for="subnet">subnet:</label>
+      <label id="subnetlabel" class="control-label col-sm-1 labelling WORLD" for="subnet"></label>
       <div class="col-sm-3">
       <input type="subnet" class="form-control" id="subnet" placeholder="Enter subnet" onchange="calculeSubnetval();">
       </div>
       <label class="sr-only" for="subplusmoins"></label>
       <div class="col-sm-1" id="subplusmoins" >
-      <a ><i onclick="calculRange('-1');" class="fa fa-minus-square" aria-hidden="true"></i> </a>
-      <a ><i onclick="calculRange('+1');" class="fa fa-plus-square" aria-hidden="true"></i> </a>
-      <a ><i onclick="calculRange('-1');" class="fa fa-fast-backward" aria-hidden="true"></i> </a>
-      <a ><i onclick="calculRange('+1');" class="fa fa-fast-forward" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculRange('-1');" class="fa fa-minus-square fa-xvariable" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculRange('+1');" class="fa fa-plus-square fa-xvariable" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculRangeMinMax('min');" class="fa fa-fast-backward fa-xvariable" aria-hidden="true"></i> </a>
+      <a ><i onclick="calculRangeMinMax('max');" class="fa fa-fast-forward fa-xvariable" aria-hidden="true"></i> </a>
 	  </div>
 	</div>
    </div>
@@ -211,16 +214,26 @@
    <!-- begin row -->
    <div class="row">
     <div class="form-group">
-     <label class="control-label col-sm-1 labelling" for="hostsnb">Hosts #:</label>
+     <label id="hostnbrlabel" class="control-label col-sm-1 labelling WORLD" for="hostsnb"></label>
      <div class="col-sm-3">
       <input type="hostsnb" class="form-control" id="hostsnb" placeholder="." readonly>
      </div>
 	 <div class="col-sm-1" id="tempcol" >
      </div>
-     <label class="control-label col-sm-1 col-lg-1 labelling" for="ipsnb">IPs #:</label>
+     <label id="ipnbrlabel" class="control-label col-sm-1 col-lg-1 labelling WORLD" for="ipsnb"></label>
      <div class="col-sm-3">
-      <input type="ipsnb" class="form-control" id="ipsnb" placeholder="." disablreadonlyed>
+      <input type="ipsnb" class="form-control" id="ipsnb" placeholder="." readonly>
      </div>
+	</div>
+   </div>
+   <div class="row">
+    <div class="form-group">
+      <label id="historylabel" class="control-label col-sm-1 labelling WORLD" for="history"></label>
+      <div class="col-sm-2" id="historydiv" >
+	   <select id="history" class="input-sm" value="" placeholder="choose history" onchange="setHistoryToIP();">
+	   <option val="" >history empty</option>
+	   </select>
+      </div>
 	</div>
    </div>
    <!-- end   row -->
@@ -241,11 +254,19 @@
    <DIV id="collapse4" class="panel-collapse">
     <DIV class="panel-body">
      <DIV id="textipdiv" class="textipdiv" >
-	 <TEXTAREA ID="textip" name="textip" value="" class="textip" readonly></TEXTAREA>
-	 <BUTTON ID="textipbtn" type="button" class="btn textipbtn WORLD" onClick="textipbtn();" >
-	 <i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-sign-in fa-flip-horizontal" aria-hidden="true"></i>
-	 </BUTTON>
-	 <TEXTAREA ID="textipimport" name="textipimport" value="" class="textipimport" ></TEXTAREA>
+	   <TEXAREA ID="textip" name="textip" value="" class="textip" ></TEXAREA>
+     </DIV>
+	 <DIV id="textipbtndiv" class="textipbtndiv" >
+       <BUTTON ID="textipbtn" type="button" class="btn textipbtn WORLD" onClick="loadTextIPbtn();" >
+	   <i class="fa fa-sign-in fa-flip-horizontal" aria-hidden="true"></i>&nbsp;<i class="fa fa-map-o" aria-hidden="true"></i>
+	   </BUTTON>
+	 </DIV>
+     <DIV id="textipimportdiv" class="textipimportdiv" >
+	   <TEXTAREA type="textarea" ID="textipimport" name="textipimport" value="" class="textipimport" onscroll="textipimportdivOnscroll();" ></TEXTAREA>
+	 </DIV>
+     <DIV id="textvaliddiv" class="textvaliddiv" onscroll="textvaliddivOnscroll();" >
+	   <SPAN id="textvalid" class="textvalid" >
+	 </SPAN>
 	 </DIV>
     </DIV>
    </DIV>
@@ -344,6 +365,29 @@
      <LABEL ID="ipv6example_11" class="control-label col-sm-2 radio-inline WORLD">
 		<input type='radio' name='chkfctipv6' value='ipv6example_11' onclick='change_class(this.value);'>
 	 </LABEL>
+     <LABEL ID="ipv6example_12" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_12' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_13" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_13' onclick='change_class(this.value);'>
+	 </LABEL>
+   </DIV>
+   <DIV class="row examples">
+     <LABEL ID="ipv6example_14" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_14' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_15" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_15' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_16" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_16' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_17" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_17' onclick='change_class(this.value);'>
+	 </LABEL>
+     <LABEL ID="ipv6example_18" class="control-label col-sm-2 radio-inline WORLD">
+		<input type='radio' name='chkfctipv6' value='ipv6example_18' onclick='change_class(this.value);'>
+	 </LABEL>
    </DIV>
    </DIV>
    <!-- end panel IP Example -->
@@ -351,7 +395,7 @@
   </DIV>
  <!-- end panel group -->
  </DIV>
- <DIV class="panel-footer">
+<DIV class="panel-footer">
     <div class="">
         <a href="#" class="btn btn-primary">re-init</a>
     </div>
