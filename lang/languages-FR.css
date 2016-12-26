@@ -1,23 +1,18 @@
 a.FR[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
-
 a.FR[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-
 a.FR[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 condens\E9';
 }
-
 a.FR[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternative';
 }
-
 div.FR[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet calculatrice';
 }
-
 div.FR[id|=panelformat]:before{
 content: 'Options IP';
 }
@@ -25,18 +20,36 @@ content: 'Options IP';
 span.FR[id|=panelcalculationtxt]:before{
 content: 'calculatrice';
 }
+label.FR[id|=iplabel]:before{
+content: 'IP';
+}
+label.FR[id|=netmasklabel]:before{
+content: 'masque';
+}
+label.FR[id|=subnetlabel]:before{
+content: 'r\E9seau';
+}
+label.FR[id|=bitslabel]:before{
+content: 'bits';
+}
+label.FR[id|=hostnbrlabel]:before{
+content: 'appareils #';
+}
+label.FR[id|=ipnbrlabel]:before{
+content: 'IP #';
+}
 label.FR[id|=broadcastlabel]:before{
-content: 'broadcast:';
+content: 'broadcast';
 }
-
 label.FR[id|=hostfromlabel]:before{
-content: 'premier host:';
+content: 'premier host';
 }
-
 label.FR[id|=hosttolabel]:before{
-content: 'dernier host:';
+content: 'dernier host';
 }
-
+label.FR[id|=historylabel]:before{
+content: 'chronique';
+}
 span.FR[id|=paneltext]:after{
 content: 'version textuelle';
 }
@@ -112,7 +125,17 @@ content: 'broadcast r\E9seau';
 label.FR[id|=ipv6example_13]:after{
 content: 'broadcast routeurs';
 }
-
+label.FR[id|=ipv6example_14]:after{
+content: 'IP ind\E9finie';
+}label.FR[id|=ipv6example_15]:after{
+content: 'IPv6';
+}label.FR[id|=ipv6example_16]:after{
+content: 'IPv6';
+}label.FR[id|=ipv6example_17]:after{
+content: 'IPv6';
+}label.FR[id|=ipv6example_18]:after{
+content: 'IPv6';
+}
 span.FR[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd sont des chiffres entre 0 et 255.';
 }
@@ -161,7 +184,6 @@ content: "'2000::/3' IPv6 allou\E9s pour l'internet. "2000::/16" avant l'ann\E9 
 }
 span.FR[class~=infoIP6_05]:before{
 content: "Multicast. FF00::/8 (de FF00:: \E0  FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF).";
-.';
 }
 span.FR[class~=infoIP6_06]:before{
 content: "r\E9seau Unique Local Unicast. Les adresses Unique Local (ULA) sont des adresses internes. FC00::/7. Par example pour l'interconnection entre clients ou des liaisons tunnel.";
@@ -180,4 +202,7 @@ content: 'FF01::1, FF02::1 IPv6 broadcast. Tous les appareils doivent r\E9pondre
 }
 span.FR[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  Tous les routeurs doivent r\E9pondre. FF01::/8 sont des adresses Node-Local Scope Multicast. FF02::/8 sont des adresses Link-Local Scope Multicast.';
+}
+span.FR[class~=infoIP6_12]:before{
+content: "::/128 est l'IPv6 ind\E9 finie. Utilis\E9 quand l'IP manque ou un probl\E8 me.";
 }

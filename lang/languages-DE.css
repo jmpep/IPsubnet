@@ -5,43 +5,51 @@ a.DE[id|=IPv4menutxt]:after {
 a.DE[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-
 a.DE[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 dicht';
 }
-
 a.DE[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
-
 div.DE[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet Rechner';
 }
-
 div.DE[id|=panelformat]:before{
 content: 'IP Optionen';
 }
-
 span.DE[id|=panelcalculationtxt]:before{
 content: 'Rechner';
 }
-label.DE[id|=broadcastlabel]:before{
-content: 'broadcast:';
+label.DE[id|=iplabel]:before{
+content: 'IP';
+}
+label.DE[id|=netmasklabel]:before{
+content: 'netmask';
+}
+label.DE[id|=subnetlabel]:before{
+content: 'Netzwerk';
+}
+label.DE[id|=bitslabel]:before{
+content: 'bits';
+}
+label.DE[id|=hostnbrlabel]:before{
+content: 'Anzahl Apparate';
+}
+label.DE[id|=ipnbrlabel]:before{
+content: 'Anzahl IP';
 }
 label.DE[id|=broadcastlabel]:before{
-content: 'broadcast:';
-}
-label.DE[id|=broadcastlabel]:before{
-content: 'multicast all hosts:';
+content: 'multicast all hosts';
 }
 label.DE[id|=hostfromlabel]:before{
-content: 'erster Host:';
+content: 'erster Host';
 }
-
 label.DE[id|=hosttolabel]:before{
-content: 'lezter Host:';
+content: 'lezter Host';
 }
-
+label.DE[id|=historylabel]:before{
+content: 'vorherige IPs';
+}
 span.DE[id|=paneltext]:after{
 content: 'Text umwandlung';
 }
@@ -54,7 +62,7 @@ span.DE[id|=panelexample]:after{
 content: 'Beispiel';
 }
 label.DE[id|=reversenetmasklabel]:before{
-content: 'umgekehrte:';
+content: 'umgekehrte';
 }
 
 #textipbtn[class~=DE]:after {
@@ -116,6 +124,17 @@ content: 'broadcast Subnet';
 }
 label.DE[id|=ipv6example_13]:after{
 content: 'broadcast Routers';
+}
+label.DE[id|=ipv6example_14]:after{
+content: 'unbestimmte IP';
+}label.DE[id|=ipv6example_15]:after{
+content: 'IPv6';
+}label.DE[id|=ipv6example_16]:after{
+content: 'IPv6';
+}label.DE[id|=ipv6example_17]:after{
+content: 'IPv6';
+}label.DE[id|=ipv6example_18]:after{
+content: 'IPv6';
 }
 span.DE[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';
@@ -183,4 +202,7 @@ content: 'FF01::1, FF02::1 IPv6 broadcast. Alle Apparaten sollten beantworten. F
 }
 span.DE[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  Alle Router sollten beantworten. FF01::/8 sind Node-Local Scope Multicast Adressen. FF02::/8 sind Link-Local Scope Multicast Adressen.';
+}
+span.DE[class~=infoIP6_12]:before{
+content: '::/128 ist die unbestimmte IPv6. Benutzt wenn die IPv6 ist nicht vorhande oder fehlerhaft.';
 }

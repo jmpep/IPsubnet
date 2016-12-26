@@ -1,42 +1,54 @@
 a.IT[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
-
 a.IT[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-
 a.IT[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 stretto';
 }
-
 a.IT[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativo';
 }
-
 div.IT[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet calcolatrice';
 }
-
 div.IT[id|=panelformat]:before{
 content: 'opzioni di IP';
 }
-
 span.IT[id|=panelcalculationtxt]:before{
 content: 'calcolatrice';
 }
+label.IT[id|=iplabel]:before{
+content: 'IP';
+}
+label.IT[id|=netmasklabel]:before{
+content: 'maschera';
+}
+label.IT[id|=subnetlabel]:before{
+content: 'rete';
+}
+label.IT[id|=bitslabel]:before{
+content: 'bits';
+}
+label.IT[id|=hostnbrlabel]:before{
+content: 'hosts #';
+}
+label.IT[id|=ipnbrlabel]:before{
+content: 'IP #';
+}
 label.IT[id|=broadcastlabel]:before{
-content: 'broadcast:';
+content: 'broadcast';
 }
-
 label.IT[id|=hostfromlabel]:before{
-content: 'primo Host:';
+content: 'primo Host';
 }
-
 label.IT[id|=hosttolabel]:before{
-content: 'ultimo Host:';
+content: 'ultimo Host';
 }
-
+label.IT[id|=historylabel]:before{
+content: 'cronistoria';
+}
 span.IT[id|=paneltext]:after{
 content: 'Testo';
 }
@@ -111,7 +123,17 @@ content: 'broadcast di rete';
 label.IT[id|=ipv6example_13]:after{
 content: 'broadcast de routers';
 }
-
+label.IT[id|=ipv6example_14]:after{
+content: 'indefinita IP';
+}label.IT[id|=ipv6example_15]:after{
+content: 'IPv6';
+}label.IT[id|=ipv6example_16]:after{
+content: 'IPv6';
+}label.IT[id|=ipv6example_17]:after{
+content: 'IPv6';
+}label.IT[id|=ipv6example_18]:after{
+content: 'IPv6';
+}
 span.IT[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd dove aaa, bbb, ccc, ddd sono numeri tra 0 e 255.';
 }
@@ -179,4 +201,6 @@ content: 'FF01::1, FF02::1 IPv6 broadcast. Tutti i disposiviti devono rispondere
 span.IT[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  Tutti i routers devono rispondere. FF01::/8 asono Node-Local Scope Multicast Addresses. FF02::/8 sono Link-Local Scope Multicast Addresses.';
 }
-
+span.IT[class~=infoIP6_12]:before{
+content: "::/128 \E8 IPv6 indefinita. Se l'IPv6 manca o un problemo con l'IP.";
+}

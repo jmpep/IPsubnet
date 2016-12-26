@@ -1,16 +1,24 @@
 <HTML>
+<HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</HEAD>
 <BODY>
 <p id="p1">
  <h1> IPv6 EN</h1>
   <A href="https://tools.ietf.org/html/rfc4291#page-2">RFC 4291</A>
  <h2>Summary:</h2>
  <SPAN id="infoipv6txt" onload="this.innerHTML=this.innerHTML.replace(/\s/gi,'&nbsp;');">
- The biggest allocation size is /32 which is reserved for internet provider.<BR/>
- Typically a big customer get /48, but could be bigger when requested with good reasons.<BR/>
- Above /48 it needs a registration by RIR (example for Europa RIPE NCC) with implementation plan.<BR/>
- IPv6 does not care like IPv4 about the number of devices. The standard subnet is /64 because the interface ID is 64 bits.<BR/>
- Exception on routers (/127). [https://tools.ietf.org/html/rfc6177]<BR/>
- /48 = 65536 subnets of /64.<BR/>
+ <LI>The biggest allocation size is /32 which is reserved for internet provider.</LI>
+ <LI>Typically a big customer get /48, but could be bigger when requested with good reasons.</LI>
+ <LI>Above /48 it needs a registration by RIR (example for Europa RIPE NCC) with implementation plan.</LI>
+ <LI>IPv6 does not care like IPv4 about the number of devices. The standard subnet is /64 because the interface ID is 64 bits.</LI>
+ <LI>Exception on routers (/127). [https://tools.ietf.org/html/rfc6177]</LI>
+ <LI>/48 = 65536 subnets of /64.</LI>
+ <LI>::1/128 is the loopback address</LI>
+ <LI>::/128 is the undefined IP, for example when cannot be allocated.</LI>
+ <LI>LLA = Link-Local-Adresses. fe80::/10. link between routers, switchs.</LI>
+ <LI>ULA fc00::/7 (fc00… - fdff…) uses for internal customer communication (like before 192.168.x.x). Example internal link between to customers or tunnel.</LI>
+ <BR/>
 <SPAN style="font-family:courier;">
 &nbsp;&nbsp;2&nbsp;0&nbsp;0&nbsp;1&nbsp;&nbsp;:&nbsp;&nbsp;x&nbsp;x&nbsp;x&nbsp;x&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;:&nbsp;&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;&nbsp;<BR/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
@@ -23,42 +31,25 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smallest&nbsp;subnet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
 </SPAN>
- <h4>Tips:</h4>
+ <h2>Tips:</h2>
+ <LI>https or http with IPv6. https://[IPv6]/.... example http://[2001:db8:4003:c00::6a] (IP beginning with '2001:db8:' are reserved for documentation)</LI>
+ <LI>https or http with IPv6 and port. https://[IPv6]:port/.... example http://[2001:db8:4003:c00::6a]:8080</LI>
  <BR/>
- <h4>Some Terms:</h4><BR/>
- IANA = responsible for global coordination of the Internet Protocol addressing systems<BR/>
- RIR = Regional Internet Registry. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)<BR/>
- LIR = Local Internet Registry. In fact the direct provider of your compagny or as end user.<BR/>
- PI = Provider Independent Assignments<BR/>
- <h4>Detail:</h4>
+ <h2>Some Terms:</h2>
+ <LI>IANA = responsible for global coordination of the Internet Protocol addressing systems</LI>
+ <LI>RIR = Regional Internet Registry. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)</LI>
+ <LI>LIR = Local Internet Registry. In fact the direct provider of your compagny or as end user.</LI>
+ <LI>PI = Provider Independent Assignments</LI>
+ <LI>LLA = Link-Local-Adresses fe80::/10</LI>
+ <LI>ULA = Unique Local Addresses = fc00::/7 (fc00… - fdff…) uses for internal customer communication.</LI>
+ <h2>Detail:</h2>
   IPv6 assignation IANA->RIR->LIR->customer<BR/>
  <h2>Multicast:</h2>
- <h3>Format:</h3>
- Prefix FF00::/8. A IPng multicast address is an identifier for a group of interfaces.<BR/>
- A interface may belong to any number of multicast groups. Multicast addresses have the following format:<BR/>
-<SPAN style="font-family:courier;">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;4&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;112&nbsp;bits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+------&nbsp;-+----+----+---------------------------------------------+<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|11111111|FLGS|SCOP|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--------+----+----+---------------------------------------------+<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefix<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11111111&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;address&nbsp;identifies&nbsp;the&nbsp;address&nbsp;as&nbsp;being&nbsp;a&nbsp;multicast&nbsp;address.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FLGS<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;is&nbsp;a&nbsp;set&nbsp;of&nbsp;4&nbsp;flags:&nbsp;|0|0|0|T|&nbsp;+-+-+-+-+<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The high-order 3 flags are reserved, and must be initialized to 0.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=0 indicates a permanently assigned (well-known) multicast address, assigned by the global internet numbering authority.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=1 indicates a non-permanently assigned (transient) multicast address.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCOP<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCOP is a 4-bit multicast scope value used to limit the scope of the multicast group. The values are:<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 Reserved 8 Organization-local scope 1 Node-local scope 9 (unassigned) 2 Link-local scope A (unassigned)<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 (unassigned) B (unassigned) 4 (unassigned) C (unassigned) 5 Site-local scope D (unassigned) 6 (unassigned) E Global scope<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 (unassigned) F Reserved.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GROUP ID identifies the multicast group, either permanent or transient, within the given scope.<BR/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR/>
-</SPAN>
- RFC4192<BR/>
- </SPAN>
+ <LI>FF00::/8</LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#ipv6-scope" >IPv6 Multicast Address Scopes.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#node-local" >Node-Local Scope Multicast Addresses.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#link-local" >Link-Local Scope Multicast Addresses.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#site-local" >Site-Local Scope Multicast Addresses.</A></LI>
  </p>
  <p ID="iframeinfoIPfield" style="display:none">
  text for IP text !!!!!!!!!

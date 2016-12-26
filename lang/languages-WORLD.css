@@ -1,42 +1,54 @@
 a.WORLD[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
-
 a.WORLD[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-
 a.WORLD[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 condensed';
 }
-
 a.WORLD[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
-
 div.WORLD[id|=maintitle]:after {
 	content: 'IP subnet calculator IPv4 & IPng (IPv6)';
 }
-
 div.WORLD[id|=panelformat]:before{
 content: 'IP options default';
 }
-
 span.WORLD[id|=panelcalculationtxt]:before{
 content: 'calculator';
 }
+label.WORLD[id|=iplabel]:before{
+content: 'IP';
+}
+label.WORLD[id|=netmasklabel]:before{
+content: 'netmask';
+}
+label.WORLD[id|=subnetlabel]:before{
+content: 'subnet';
+}
+label.WORLD[id|=bitslabel]:before{
+content: 'bits';
+}
+label.WORLD[id|=hostnbrlabel]:before{
+content: 'hosts #';
+}
+label.WORLD[id|=ipnbrlabel]:before{
+content: 'IP #';
+}
 label.WORLD[id|=broadcastlabel]:before{
-content: 'broadcast:';
+content: 'broadcast';
 }
-
 label.WORLD[id|=hostfromlabel]:before{
-content: 'Host from:';
+content: 'Host from';
 }
-
 label.WORLD[id|=hosttolabel]:before{
-content: 'Host to:';
+content: 'Host to';
 }
-
+label.WORLD[id|=historylabel]:before{
+content: 'history';
+}
 span.WORLD[id|=paneltext]:after{
 content: 'Text format';
 }
@@ -112,7 +124,17 @@ content: 'broadcast subnet';
 label.WORLD[id|=ipv6example_13]:after{
 content: 'broadcast routers';
 }
-
+label.WORLD[id|=ipv6example_14]:after{
+content: 'undefined IP';
+}label.WORLD[id|=ipv6example_15]:after{
+content: 'IPv6';
+}label.WORLD[id|=ipv6example_16]:after{
+content: 'IPv6';
+}label.WORLD[id|=ipv6example_17]:after{
+content: 'IPv6';
+}label.WORLD[id|=ipv6example_18]:after{
+content: 'IPv6';
+}
 span.WORLD[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';
 }
@@ -180,5 +202,7 @@ content: 'FF01::1, FF02::1 IPv6 broadcast. All devices should answer. FF01::/8 a
 span.WORLD[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  all routers IPs should answer. FF01::/8 are Node-Local Scope Multicast Addresses. FF02::/8 Link-Local Scope Multicast Addresses.';
 }
-
+span.WORLD[class~=infoIP6_12]:before{
+content: '::/128 is the undefined IPv6. Used when IPv6 does not exist or showing an issue.';
+}
 	
