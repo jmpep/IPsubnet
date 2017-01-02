@@ -1,7 +1,7 @@
 // GitHub project ipsubnet
 // Licensed under https://github.com/jmpep/ipsubnet/blob/master/LICENSE-MIT
 
-var localstorage;
+var localstore;
 
 function onEnter(obj,e,check){
        var keycode =(window.event) ? event.keyCode : e.keyCode;
@@ -161,6 +161,7 @@ function initializeValues(iptype,condense,ipval,nbrbits,mask,subnetval,broadcast
   var ipsnb = document.getElementById("ipsnb");
   var IPv6cchk = document.getElementById("IPv6cchk");
   var sectionbroadcast = document.getElementById("sectionbroadcast");
+  var selecthostsnb = document.getElementById("selecthostsnb");
   /* the DOM variable above are for compatibility wit IE */
   if (condense==1) {  IPv6cchk.checked = true; }
   if (condense==0) {  IPv6cchk.checked = false; }
@@ -200,6 +201,19 @@ function initializeValues(iptype,condense,ipval,nbrbits,mask,subnetval,broadcast
 
 
 function initializeFunctions() {
+  var IP = document.getElementById("IP");
+  var bits = document.getElementById("bits");
+  var subnet = document.getElementById("subnet");
+  var broadcast = document.getElementById("broadcast");
+  var hostfrom = document.getElementById("hostfrom");
+  var hostto = document.getElementById("hostto");
+  var btIPv4 = document.getElementById("btIPv4");
+  var btIPv6 = document.getElementById("btIPv6");
+  var btIPv6a = document.getElementById("btIPv6a");
+  var netmask = document.getElementById("netmask");
+  var hostsnb = document.getElementById("hostsnb");
+  var ipsnb = document.getElementById("ipsnb");
+  /* the DOM variable above are for compatibility wit IE */
   // correction Bug all IE
   IP.onkeydown = function(e) {onEnter(IP,e,'');}
   IP.onkeyup   = function(e) {checkIP(IP,IP.value);}
@@ -218,19 +232,30 @@ function initializeFunctions() {
 function initializeIPsubnet() {
   initializeValues('IPv4',-1,'192.168.0.10',24,'255.255.255.0','192.168.0.0','192.168.0.255','192.168.0.1','192.168.0.254',253,255)
   initializeFunctions();
-//2001:0db8:85a3:08d3:1319:8a2e:0370:7344;
-//2001:0db8:85a3:08d3:1319:8a2e:127.98.76.154;
-  localstorage= (typeof(Storage) !== "undefined");
+  localstore= (typeof(Storage) !== "undefined");
 
-  if (localstorage) {
+  if (localstore) {
     temp = localStorage.getItem('lang');
     if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='')) storeAllStorage();
     else getAllStorage();
   }
-//  calculwithIPv6condensed(0);
-//  calculwithIPv6alternative(0);
   changeInfo();
   calculreversenetmaskval();
+  getHistory();
+}
+
+function reinitip() {
+  var IPv6cchk = document.getElementById("IPv6cchk");
+  IPv6cchk.checked = true;
+  setlanguageObjects('WORLD');
+  setCIDRIP('192.168.0.10/24');
+  initializeFunctions();
+  localstorage= (typeof(Storage) !== "undefined");
+  if (localstorage) {
+    storeAllStorage();
+    getAllStorage();
+  }
+  changeInfo();
   getHistory();
 }
 
@@ -253,7 +278,7 @@ function storeAllStorage() {
   /* the DOM variable above are for compatibility wit IE */
   var xi;
   var lang;
-  if (localstorage) {
+  if (localstore) {
    var days = 60;
    if (btIPv4.className.indexOf('active')>=0) {
      localStorage.setItem('IPv4v6','IPv4');
@@ -333,7 +358,7 @@ function getAllStorage() {
   var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
   var ipid,ipidlist; 
-  if (localstorage) {
+  if (localstore) {
     IP.value = localStorage.getItem('IP');
 	ipid=localStorage.getItem('IPv4v6');
 	btIPv4.className = btIPv4.className.replace('active','');
@@ -345,7 +370,15 @@ function getAllStorage() {
 		case 'IPv6a': btIPv6a.className = 'active '+btIPv6a.className; break;
 		default:  btIPv4.className = 'active '+btIPv4.className;
 	}
-    IP.value= localStorage.getItem('IP');
+    if (ipid=='IPv4') {
+	  sectionbroadcast.style.display='inline';
+	  netmask.style.visibility ='visible';
+	  netmasklabel.style.visibility ='visible';	  
+    } else {
+	  sectionbroadcast.style.display='none';
+	  netmask.style.visibility ='hidden';
+	  netmasklabel.style.visibility ='hidden';	  
+    }
     bits.value= localStorage.getItem('bits');
     netmask.value= localStorage.getItem('netmask');
     subnet.value= localStorage.getItem('subnet');
@@ -366,10 +399,13 @@ function getAllStorage() {
     lang= localStorage.getItem('lang');
 	if (lang===null) lang="WORLD";
 	setlanguageObjects(lang);
-    vals=localStorage.getItem('textipimport').replace(/<BR>/g,"\n");
-	vals=vals.replace(/#/g,'=');
-	$('#textipimport').val(vals);
+    vals=localStorage.getItem('textipimport');
+	if (vals!==null) {
+      vals=vals.replace(/<BR>/g,"\n");
+  	  vals=vals.replace(/#/g,'=');		
+	  $('#textipimport').val(vals);
 	}
+  }
 }
 function setCookie(cname, cvalue, days) {
     var exp,expiration = new Date();
@@ -1819,7 +1855,8 @@ function change_class(theclass)
 	  initializeValues('IPv6',1,'2002::123.45.67.89',48,'','2002::123.45.67.64','FF00:4A2B::1FFF','2002:4A2B::1f01','2002:4A2B::1FFE',62,64)
       break;
     case 'ipv6example_6': //'ipv6multi subnet':
-	  initializeValues('IPv6',1,'FF00::',8,'','FF00::','FF00::','FF00::1','FF00:FFFF:FFFF:FFFF',1.32922799578492E+036,1.32922799578492E+036)
+	  setCIDRIP('FF01::FB/128');
+	  //initializeValues('IPv6',1,'FF01::FB',8,'','FF01::','FF00::','FF00::1','FF00:FFFF:FFFF:FFFF',1.32922799578492E+036,1.32922799578492E+036)
       break;
     case 'ipv6example_7': //'ipv6multi':
 	  initializeValues('IPv6',1,'FF00:4A2B::1F3F',48,'','FF00:4A2B::1F00','FF00:4A2B::1FFF','FF00:4A2B::1f01','FF00:4A2B::1FFE',254,256)
@@ -1836,10 +1873,10 @@ function change_class(theclass)
     case 'ipv6example_11': //'ipv6_6bone':
 	  initializeValues('IPv6',1,'3FFE:4A2B::1F3F',120,'','3FFE:4A2B::1F00','FF00:4A2B::1FFF','3FFE:4A2B::1F01','3FFE:4A2B::1FFE',254,256);
       break;
-    case 'ipv6example_12': //'Broadcast subnet':
+    case 'ipv6example_12': //'multicast subnet':
 	  initializeValues('IPv6',1,'FF01::1',128,'255.0.0.0','FF01::1','FF01::1','FF01::1','FF01::1',1,1)
       break;
-    case 'ipv6example_13': //'broadcast router':
+    case 'ipv6example_13': //'multicast router':
 	  initializeValues('IPv6',1,'FF02::2',128,'255.0.0.0','FF02::2','FF02::2','FF02::2','FF02::2',1,1)
       break;
     case 'ipv6example_14': //'IPv6':
