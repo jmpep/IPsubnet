@@ -16,6 +16,9 @@ div.IT[id|=maintitle]:after {
 div.IT[id|=panelformat]:before{
 content: 'opzioni di IP';
 }
+#reinit[class~=IT]:after {
+content:'init ';
+}
 span.IT[id|=panelcalculationtxt]:before{
 content: 'calcolatrice';
 }
@@ -100,7 +103,7 @@ label.IT[id|=ipv6example_5]:after{
 content: 'internet traffico da IPv6 alle IPV4';
 }
 label.IT[id|=ipv6example_6]:after{
-content: 'rete multicast';
+content: 'multicast mDNSv6';
 }
 label.IT[id|=ipv6example_7]:after{
 content: 'multicast';
@@ -118,10 +121,10 @@ label.IT[id|=ipv6example_11]:after{
 content: '6bone (per la ricerca sul backbone';
 }
 label.IT[id|=ipv6example_12]:after{
-content: 'broadcast di rete';
+content: 'multicast di rete';
 }
 label.IT[id|=ipv6example_13]:after{
-content: 'broadcast de routers';
+content: 'multicast de routers';
 }
 label.IT[id|=ipv6example_14]:after{
 content: 'indefinita IP';

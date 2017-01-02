@@ -17,6 +17,9 @@ div.DE[id|=maintitle]:after {
 div.DE[id|=panelformat]:before{
 content: 'IP Optionen';
 }
+#reinit[class~=DE]:after {
+content:'Wiedererstellung ';
+}
 span.DE[id|=panelcalculationtxt]:before{
 content: 'Rechner';
 }
@@ -102,7 +105,7 @@ label.DE[id|=ipv6example_5]:after{
 content: 'internet routing IPv6 to IPV4';
 }
 label.DE[id|=ipv6example_6]:after{
-content: 'multicast Subnet';
+content: 'multicast mDNSv6';
 }
 label.DE[id|=ipv6example_7]:after{
 content: 'multicast';
@@ -120,10 +123,10 @@ label.DE[id|=ipv6example_11]:after{
 content: '6bone (für die Forschung in der Backbone';
 }
 label.DE[id|=ipv6example_12]:after{
-content: 'broadcast Subnet';
+content: 'multicast Subnet';
 }
 label.DE[id|=ipv6example_13]:after{
-content: 'broadcast Routers';
+content: 'multicast Routers';
 }
 label.DE[id|=ipv6example_14]:after{
 content: 'unbestimmte IP';

@@ -16,7 +16,9 @@ div.FR[id|=maintitle]:after {
 div.FR[id|=panelformat]:before{
 content: 'Options IP';
 }
-
+#reinit[class~=FR]:after {
+content:'re-initialisation ';
+}
 span.FR[id|=panelcalculationtxt]:before{
 content: 'calculatrice';
 }
@@ -102,7 +104,7 @@ label.FR[id|=ipv6example_5]:after{
 content: "routing internet d'IPv6 vers IPV4";
 }
 label.FR[id|=ipv6example_6]:after{
-content: 'subnet multicast';
+content: 'multicast mDNSv6';
 }
 label.FR[id|=ipv6example_7]:after{
 content: 'multicast';
@@ -120,10 +122,10 @@ label.FR[id|=ipv6example_11]:after{
 content: '6bone (pour la recherche sur le backbone)';
 }
 label.FR[id|=ipv6example_12]:after{
-content: 'broadcast r\E9seau';
+content: 'multicast r\E9seau';
 }
 label.FR[id|=ipv6example_13]:after{
-content: 'broadcast routeurs';
+content: 'multicast routeurs';
 }
 label.FR[id|=ipv6example_14]:after{
 content: 'IP ind\E9finie';

@@ -19,6 +19,9 @@ content: 'IP options default';
 span.WORLD[id|=panelcalculationtxt]:before{
 content: 'calculator';
 }
+#reinit[class~=WORLD]:after {
+content:'re-init ';
+}
 label.WORLD[id|=iplabel]:before{
 content: 'IP';
 }
@@ -101,7 +104,7 @@ label.WORLD[id|=ipv6example_5]:after{
 content: 'internet routing IPv6 to IPV4';
 }
 label.WORLD[id|=ipv6example_6]:after{
-content: 'multicast subnet';
+content: 'multicast mDNSv6';
 }
 label.WORLD[id|=ipv6example_7]:after{
 content: 'multicast';
@@ -119,10 +122,10 @@ label.WORLD[id|=ipv6example_11]:after{
 content: '6bone (for backbone research)';
 }
 label.WORLD[id|=ipv6example_12]:after{
-content: 'broadcast subnet';
+content: 'multicast subnet';
 }
 label.WORLD[id|=ipv6example_13]:after{
-content: 'broadcast routers';
+content: 'multicast routers';
 }
 label.WORLD[id|=ipv6example_14]:after{
 content: 'undefined IP';
