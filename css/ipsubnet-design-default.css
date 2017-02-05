@@ -1,0 +1,402 @@
+/* ************************** */
+/* CSS design related to size */
+/* ************************** */
+
+.fa-1x5{
+font-size:1.5em;
+}
+
+.fa-xvariable{
+font-size:1.5em;
+}
+
+.container{
+  font-size:12px;
+}
+div {
+  font-size:12px;
+}
+input {
+  font-size:12px;
+}
+span {
+  font-size:12px;
+}
+.form-control {
+  font-size:12px;
+}
+
+.imglanguage{
+  width:30px;
+  height:20px;
+}
+
+@media (min-width:600px){
+ .container{
+  font-size:11px;
+  width:auto;
+ }
+ div{
+  font-size:11px;
+ }
+}
+@media (max-width:1090px){
+.fa-xvariable{
+ font-size:1em;
+ }
+}
+
+@media (min-width:700px){
+ .container{
+  font-size:11px;
+  width:auto
+ }
+ div{
+  font-size:11px;
+ }
+ input {
+  font-size:11px;
+ }
+ .form-control {
+  font-size:11px;
+ }
+}
+@media (min-width:800px){
+ .container{
+  font-size:11px;
+  width:auto
+ }
+ div{
+  font-size:11px;
+ }
+ input {
+   font-size:11px;
+ }
+ .form-control {
+   font-size:11px;
+ }
+}
+@media (min-width:900px){
+ .container{
+  font-size:11px;
+  width:auto
+ }
+ div{
+  font-size:11px;
+ }
+ input {
+   font-size:11px;
+ }
+ .form-control {
+   font-size:11px;
+ }
+}
+@media (min-width:1000px){
+ .container{
+  font-size:12px;
+ }
+ div{
+  font-size:12px;
+ }
+ input {
+   font-size:12px;
+ }
+ .form-control {
+   font-size:12px;
+ }
+}
+@media (min-width:1200px){
+ .container{
+  font-size:12px;
+ }
+ div{
+  font-size:12px;
+ }
+ input {
+   font-size:12px;
+ }
+ .form-control {
+   font-size:12px;
+ }
+}
+
+@media (max-width:2000px){
+}
+ .form-control{
+ height:auto;
+ padding:2px 4px;
+ }
+ .panel-group{
+ margin-bottom:2px
+ }
+ .panel-group .panel{
+ margin-bottom:0;
+ }
+ .panel-group .panel+.panel{
+ margin-top:2px;
+ margin-bottom:2px;
+ }
+ .panel-group .panel-footer{
+ margin-top:0px;
+ margin-bottom:0px;
+ padding-top:2px;
+ padding-bottom:2px;
+ }
+ .panel-main>.panel-body,.panel-format>.panel-body,.panel-calculation>.panel-body {
+ padding-top:2px;
+ padding-bottom:2px;
+ padding-left:5px;
+ padding-right:5px;
+ }
+ .navbar.y-xsm{
+ margin-bottom:2px;
+ }
+ .pager {
+ margin: 5px 5px;
+ }
+ .row {
+ vertical-align:middle;
+ }
+ .col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9 .labbeling {
+ margin-bottom:1px;
+ padding:1px 10px;
+ }
+ .col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9{
+  padding-right:5px;padding-left:5px;
+ }
+ select.input-sm.badged{
+ height:auto;
+ padding:0px 7px;
+ min-width:10px;
+ width:100%;
+ font-size:90%;
+ border-radius:10px;
+ }
+ select.input-sm.badged.ipv6{
+ }
+
+.flagmenu {
+ font-size:90%;
+}
+
+/* *********************** */
+/* CSS not related to size */
+/* *********************** */
+
+.navbar-default{
+background-color:#00438c;border-color:#grey;
+color:lavender;
+font-weight:bold;
+}
+.navbar-default .navbar-brand{
+color:white;
+}
+.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{
+color:White;background-color:transparent
+}
+.navbar-default .navbar-text{
+color:white;
+}
+.navbar-default .navbar-nav>li>a{
+color:lavender;
+font-weight:bold;
+}
+.navbar-default .navbar-nav>li>a:focus,.navbar-default .navbar-nav>li>a:hover{
+color:white;background-color:#0056b3;
+}
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.active>a:hover{
+color:black;background-color:#6d88ad;
+}
+.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:focus,.navbar-default .navbar-nav>.disabled>a:hover{
+color:white;background-color:#0056b3;
+}
+.navbar-default .navbar-toggle{
+border-color:#ddd
+}
+.navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover{
+background-color:#ddd
+}
+.navbar-default .navbar-toggle .icon-bar{
+background-color:#888
+}
+.navbar-default .navbar-collapse,.navbar-default .navbar-form{
+border-color:#e7e7e7
+}
+.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:focus,.navbar-default .navbar-nav>.open>a:hover{
+color:#555;background-color:#e7e7e7
+}	
+.dropdown-menu{
+background-color:#b3d7ff;
+}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+color:#777;
+}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
+color:#333;background-color:transparent
+}
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+color:#555;background-color:#e7e7e7
+}
+.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover{
+color:#ccc;background-color:transparent
+}
+.navbar-default .navbar-link{
+color:#777
+}
+.navbar-default .navbar-link:hover{
+color:#333
+}
+.navbar-default .btn-link{
+color:#777
+}
+.navbar-default .btn-link:focus,.navbar-default .btn-link:hover{
+color:#333
+}
+.navbar-default .btn-link[disabled]:focus,.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:focus,fieldset[disabled] .navbar-default .btn-link:hover{
+color:#ccc
+}
+ 
+.ipsubnet>.panel-heading label{
+color:red;
+}
+.checkboxnav a{
+font-weight:bold;
+}
+
+.btnlanguage {
+background: transparent;
+color:black;
+border-color:#00438c;
+}
+button.btnlanguage:hover {
+background-color: #6d88ad;
+border-color:#00438c;
+}
+button.btnlanguage:focus {
+background-color: #00438c;
+border-color:#00438c;
+}
+.open>.dropdown-toggle.btnlanguage:focus {
+border-color:#00438c;
+}
+
+.flagmenu {
+ color: black;
+}
+.fa-toggle-on{
+	color:blue;
+}
+.fa-toggle-off{
+	color:gray;
+}
+
+select.input-sm.badged{
+color:white;
+background:Gray;
+}
+
+.panel-main{
+border-color:#337ab7
+}
+.panel-main>.panel-heading{
+color:White;background-color:darkBlue;border-color:#337ab7
+}
+.panel-main>.panel-heading+.panel-collapse>.panel-body{
+border-top-color:#337ab7
+}
+.panel-main>.panel-heading .badge{
+color:#337ab7;background-color:#fff
+}
+.panel-main>.panel-footer+.panel-collapse>.panel-body{
+border-bottom-color:#337ab7
+}
+
+.panel-main>.panel-heading.maintitle{
+color:white;
+}
+.panel-calculation{
+border-color:#ddd;
+}
+.panel-calculation>.panel-heading{
+color:black;
+background-color:LightSteelBlue;
+border-color:#ddd;
+}
+.panel-calculation>.panel-heading+.panel-collapse>.panel-body{
+border-top-color:#ddd
+}
+.panel-calculation>.panel-heading .badge{
+color:#f5f5f5;background-color:#333
+}
+.panel-calculation>.panel-footer+.panel-collapse>.panel-body{
+border-bottom-color:#ddd
+}
+
+.panel-text{
+border-color:#ddd
+}
+.panel-text>.panel-heading{
+color:#333;background-color:lightBlue;border-color:#ddd
+}
+.panel-text>.panel-heading+.panel-collapse>.panel-body{
+border-top-color:#ddd
+}
+.panel-text>.panel-heading .badge{
+color:#f5f5f5;background-color:#333
+}
+.panel-text>.panel-footer+.panel-collapse>.panel-body{
+border-bottom-color:#ddd
+}
+
+.panel-info{
+border-color:#ddd
+}
+.panel-info>.panel-heading{
+color:#333;background-color:lightgreen;border-color:#ddd
+}
+.panel-info>.panel-heading+.panel-collapse>.panel-body{
+border-top-color:#ddd
+}
+.panel-info>.panel-heading .badge{
+color:#f5f5f5;background-color:#333
+}
+.panel-info>.panel-footer+.panel-collapse>.panel-body{
+border-bottom-color:#ddd
+}
+
+.panel-example{
+border-color:#ddd
+}
+.panel-example>.panel-heading{
+color:#333;background-color:lime;border-color:#ddd
+}
+.panel-example>.panel-heading+.panel-collapse>.panel-body{
+border-top-color:#ddd
+}
+.panel-example>.panel-heading .badge{
+color:#f5f5f5;background-color:#333
+}
+.panel-example>.panel-footer+.panel-collapse>.panel-body{
+border-bottom-color:#ddd
+}
+
+.textip {
+	color: black;
+}
+.textipimport {
+	color: black;
+}
+
+.infotxt {
+	color: black;
+}
+
+div.infotxt {
+	border-color: darkgray;
+}
+.textvalid {
+	color:green;
+}
+.infoIPv4v6txt {
+color:gray;
+}
