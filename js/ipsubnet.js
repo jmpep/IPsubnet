@@ -340,7 +340,31 @@ function storeAllStorage() {
    localStorage.setItem('textipimport',vals);
   }
 }
-
+function setIPtype(iptype,condense) {
+	$('#btIPv4').removeClass('active');
+	$('#btIPv6').removeClass('active');
+	$('#btIPv6a').removeClass('active');
+	switch (iptype) {
+		case 'IPv4' : $('#btIPv4').addClass('active'); break;
+		case 'IPv6' : $('#btIPv6').addClass('active'); break;
+		case 'IPv6a': $('#btIPv6a').addClass('active'); break;
+		default:  $('#btIPv4').addClass('active');
+	}
+    if ((iptype=='IPv6')||(iptype=='IPv6a')) {
+	  $('#sectionbroadcast').attr('display','none');
+	  $('#netmask').attr('visibility','hidden');
+	  $('#netmasklabel').attr('visibility','hidden');
+      if (condense==1) {
+	    $('#IPv6cchk').prop('checked',true);
+      } else {
+        $('#IPv6cchk').prop('checked',false);
+      }
+    } else {
+	  $('#sectionbroadcast').attr('display','inline');
+	  $('#netmask').attr('visibility','visible');
+	  $('#netmasklabel').attr('visibility','visible');	  
+    }
+}
 function getAllStorage() {
   var IP = document.getElementById("IP");
   var bits = document.getElementById("bits");
@@ -361,6 +385,7 @@ function getAllStorage() {
   if (localstore) {
     IP.value = localStorage.getItem('IP');
 	ipid=localStorage.getItem('IPv4v6');
+
 	btIPv4.className = btIPv4.className.replace('active','');
 	btIPv6.className = btIPv6.className.replace('active','');
 	btIPv6a.className = btIPv6a.className.replace('active','');
@@ -1883,16 +1908,20 @@ function change_class(theclass)
 	  setCIDRIP('::/128');
       break;
     case 'ipv6example_15': //'IPv6':
+	  setIPtype('IPv6',1);
 	  setCIDRIP('2001:0002:4A2B::1F3F/48');
       break;
     case 'ipv6example_16': //'IPv6':
-	  setCIDRIP('2001:DB8:123.45.67.89/48');
+	  setIPtype('IPv6a',1);
+	  setCIDRIP('2001:DB8::123.45.67.89/48');
       break;
     case 'ipv6example_17': //'IPv6':
+	  setIPtype('IPv6',1);
 	  setCIDRIP('2002:0002:101::42/40');
       break;
     case 'ipv6example_18': //'IPv6':
-	  setCIDRIP('2001:DB8:abcd:abcd:abcd:abce:abcd/48');
+	  setIPtype('IPv6',0);
+	  setCIDRIP('2001:DB8:abcd:0000:0000:abce:abcd:0001/48');
       break;
     default:
       alert("error example "+theclass);
@@ -2270,89 +2299,70 @@ function openhelp3() {
   }
 }
 
-function changeDivLanguageText(object,lang){
-	a=object.className;
-	a= a.replace('WORLD','');
-	a= a.replace('UK','');
-	a= a.replace('FR','');
-	a= a.replace('US','');
-	a= a.replace('DE','');
-	a= a.replace('IT','');
-	a= a.trim();
-	if (a=='') { object.className = lang.toUpperCase(); }
-	else {object.className = a+' '+lang.toUpperCase();}
-}
 
+function changeDivLanguageTextByName(objectname,lg){
+  if (lg!=='') {
+	$('#'+objectname).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
+	$('#'+objectname).removeClass('ZH-HANS')
+	$('#'+objectname).addClass(lg);
+  }
+}
+function changeDivLanguageTextById(objectid,lg){
+  if (lg!=='') {
+	$(objectid).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
+	$(objectid).removeClass('ZH-HANS');
+	$(objectid).addClass(lg);
+  }
+}
 function setlanguageObjects(lang) {
-  var maintitle = document.getElementById("maintitle");
-  var imglanguage = document.getElementById("imglanguage");
-  var panelformat = document.getElementById("panelformat");
-  var panelcalculationtxt = document.getElementById("panelcalculationtxt");
-  var infoIPv4v6btn = document.getElementById("infoIPv4v6btn");
-  var iframeinfo = document.getElementById("iframeinfo");
-  var hostfromlabel = document.getElementById("hostfromlabel");
-  var hosttolabel = document.getElementById("hosttolabel");
-  var IPv4menutxt = document.getElementById("IPv4menutxt");
-  var IPv6menutxt = document.getElementById("IPv6menutxt");
-  var IPv6cmenutxt = document.getElementById("IPv6cmenutxt");
-  var IPv6amenutxt = document.getElementById("IPv6amenutxt");
-  var panelinfo = document.getElementById("panelinfo");
-  var panelexample = document.getElementById("panelexample");
-  var reversenetmasklabel = document.getElementById("reversenetmasklabel");
-  var infotxtip = document.getElementById("infotxtip");
-  var textipbtn = document.getElementById("textipbtn");
-  var historylabel = document.getElementById("historylabel");
-  var iplabel = document.getElementById("iplabel");
-  var netmasklabel = document.getElementById("netmasklabel");
-  var subnetlabel = document.getElementById("subnetlabel");
-  var bitslabel = document.getElementById("bitslabel");
-  var hostnbrlabel = document.getElementById("hostnbrlabel");
-  var ipnbrlabel = document.getElementById("ipnbrlabel");
   /* the DOM variable above are for compatibility wit IE */
   var theexamples;
-	imglanguage.className='imglanguage '+lang;
-	imglanguage.src='./images/'+lang+'-flg.png';
-	changeDivLanguageText(maintitle,lang);
-	changeDivLanguageText(panelformat,lang);
-	changeDivLanguageText(hostfromlabel,lang);
-	changeDivLanguageText(broadcastlabel,lang);
-	changeDivLanguageText(hosttolabel,lang);
-	changeDivLanguageText(IPv4menutxt,lang);
-	changeDivLanguageText(IPv6menutxt,lang);
-	changeDivLanguageText(IPv6cmenutxt,lang);
-	changeDivLanguageText(IPv6amenutxt,lang);
-	changeDivLanguageText(panelcalculationtxt,lang);
-	changeDivLanguageText(panelinfo,lang);
-	changeDivLanguageText(panelexample,lang);
-	changeDivLanguageText(infoIPv4v6btn,lang);
-	changeDivLanguageText(iframeinfo,lang);
-	changeDivLanguageText(reversenetmasklabel,lang);
-	changeDivLanguageText(historylabel,lang);
-	changeDivLanguageText(infotxtip,lang);
-	changeDivLanguageText(textipbtn,lang);
-	changeDivLanguageText(iplabel,lang);
-	changeDivLanguageText(netmasklabel,lang);
-	changeDivLanguageText(subnetlabel,lang);
-	changeDivLanguageText(bitslabel,lang);
-	changeDivLanguageText(hostnbrlabel,lang);
-	changeDivLanguageText(ipnbrlabel,lang);
+    lg= lang.trim().toUpperCase();
+	$('#imglanguage').attr('class','imglanguage '+lg);
+	$('#imglanguage').attr('src','./images/'+lg+'-flg.png');
+	changeDivLanguageTextByName('maintitle',lang);
+	changeDivLanguageTextByName('theoptions',lang);
+	changeDivLanguageTextByName('hostfromlabel',lang);
+	changeDivLanguageTextByName('broadcastlabel',lang);
+	changeDivLanguageTextByName('hosttolabel',lang);
+	changeDivLanguageTextByName('IPv4menutxt',lang);
+	changeDivLanguageTextByName('IPv6menutxt',lang);
+	changeDivLanguageTextByName('IPv6cmenutxt',lang);
+	changeDivLanguageTextByName('IPv6amenutxt',lang);
+	changeDivLanguageTextByName('panelcalculationtxt',lang);
+	changeDivLanguageTextByName('panelinfo',lang);
+	changeDivLanguageTextByName('panelexample',lang);
+	changeDivLanguageTextByName('infoIPv4v6btn',lang);
+	changeDivLanguageTextByName('iframeinfo',lang);
+	changeDivLanguageTextByName('reversenetmasklabel',lang);
+	changeDivLanguageTextByName('historylabel',lang);
+	changeDivLanguageTextByName('infotxtip',lang);
+	changeDivLanguageTextByName('textipbtn',lang);
+	changeDivLanguageTextByName('iplabel',lang);
+	changeDivLanguageTextByName('netmasklabel',lang);
+	changeDivLanguageTextByName('subnetlabel',lang);
+	changeDivLanguageTextByName('bitslabel',lang);
+	changeDivLanguageTextByName('hostnbrlabel',lang);
+	changeDivLanguageTextByName('ipnbrlabel',lang);
     theexamples = $('*[id^="ipv4example_"]');
 	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageText(theexamples[i],lang);
+	   changeDivLanguageTextById(theexamples[i],lang);
 	}
     theexamples = $('*[id^="ipv6example_"]');
     //theexamples = document.getElementsByTagName('ipv6example_*');
 	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageText(theexamples[i],lang);
+	   changeDivLanguageTextById(theexamples[i],lang);
 	}
 	if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
-    iframeinfo.src ="./lang/infoIPv4v6-"+lang+".html"; // #p1";
+    $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+lang+".html");
     //iframeinfo.contentDocument.location.reload(true);
 	if (infoIPv4v6btn.className.indexOf('hidetxt')<0){
-	  iframeinfo.style.display='inline';
+	  $('#iframeinfo').css('display','inline');
 	} else {
-	  iframeinfo.style.display='none';		
+	  $('#iframeinfo').css('display','none');		
 	}
+	lg2= lang.trim().toLowerCase();
+	$('body').attr('lang',lg2);
 	readselectbits(lang);
 }
 
@@ -2568,45 +2578,45 @@ function getBitsHumanformat(version,lang) {
      ,'3.40282366920938E+038'
 	 ];
   large_numbers = [
-[0,'US','UK','EU'],
-[1,'','',''],
-[2,'','',''],
-[3,'','',''],
-[4,'','',''],
-[5,'','',''],
-[6,'Million','Million','Million'],
-[6,'Million','Million','Million'],
-[6,'Million','Million','Million'],
-[9,'Billion','Thousand million','Milliard'],
-[9,'Billion','Thousand million','Milliard'],
-[9,'Billion','Thousand million','Milliard'],
-[12,'Trillion','Billion','Billion'],
-[12,'Trillion','Billion','Billion'],
-[12,'Trillion','Billion','Billion'],
-[15,'Quadrillion','Thousand billion','Billiard'],
-[15,'Quadrillion','Thousand billion','Billiard'],
-[15,'Quadrillion','Thousand billion','Billiard'],
-[18,'Quintillion','Trillion','Trillion'],
-[18,'Quintillion','Trillion','Trillion'],
-[18,'Quintillion','Trillion','Trillion'],
-[21,'Sextillion','Thousand trillion','Trilliard'],
-[21,'Sextillion','Thousand trillion','Trilliard'],
-[21,'Sextillion','Thousand trillion','Trilliard'],
-[24,'Septillion','Quadrillion','Quadrillion'],
-[24,'Septillion','Quadrillion','Quadrillion'],
-[24,'Septillion','Quadrillion','Quadrillion'],
-[27,'Octillion','Thousand quadrillion','Quadrilliard'],
-[27,'Octillion','Thousand quadrillion','Quadrilliard'],
-[27,'Octillion','Thousand quadrillion','Quadrilliard'],
-[30,'Nonillion','Quintillion','Quintillion'],
-[30,'Nonillion','Quintillion','Quintillion'],
-[30,'Nonillion','Quintillion','Quintillion'],
-[33,'Decillion','Thousand quintillion','Quintilliard'],
-[33,'Decillion','Thousand quintillion','Quintilliard'],
-[33,'Decillion','Thousand quintillion','Quintilliard'],
-[36,'Undecillion','Sextillion','Sextillion'],
-[36,'Undecillion','Sextillion','Sextillion'],
-[36,'Undecillion','Sextillion','Sextillion']
+[0,'US','UK','EU','CN'],
+[1,'','','',''],
+[2,'','','',''],
+[3,'','','',''],
+[4,'','','',''],
+[5,'','','',''],
+[6,'Million','Million','Million','百万'],
+[6,'Million','Million','Million','百万'],
+[6,'Million','Million','Million','百万'],
+[9,'Billion','Thousand million','Milliard','十亿'],
+[9,'Billion','Thousand million','Milliard','十亿'],
+[9,'Billion','Thousand million','Milliard','十亿'],
+[12,'Trillion','Billion','Billion',''],
+[12,'Trillion','Billion','Billion',''],
+[12,'Trillion','Billion','Billion',''],
+[15,'Quadrillion','Thousand billion','Billiard',''],
+[15,'Quadrillion','Thousand billion','Billiard',''],
+[15,'Quadrillion','Thousand billion','Billiard',''],
+[18,'Quintillion','Trillion','Trillion',''],
+[18,'Quintillion','Trillion','Trillion',''],
+[18,'Quintillion','Trillion','Trillion',''],
+[21,'Sextillion','Thousand trillion','Trilliard',''],
+[21,'Sextillion','Thousand trillion','Trilliard',''],
+[21,'Sextillion','Thousand trillion','Trilliard',''],
+[24,'Septillion','Quadrillion','Quadrillion',''],
+[24,'Septillion','Quadrillion','Quadrillion',''],
+[24,'Septillion','Quadrillion','Quadrillion',''],
+[27,'Octillion','Thousand quadrillion','Quadrilliard',''],
+[27,'Octillion','Thousand quadrillion','Quadrilliard',''],
+[27,'Octillion','Thousand quadrillion','Quadrilliard',''],
+[30,'Nonillion','Quintillion','Quintillion',''],
+[30,'Nonillion','Quintillion','Quintillion',''],
+[30,'Nonillion','Quintillion','Quintillion',''],
+[33,'Decillion','Thousand quintillion','Quintilliard',''],
+[33,'Decillion','Thousand quintillion','Quintilliard',''],
+[33,'Decillion','Thousand quintillion','Quintilliard',''],
+[36,'Undecillion','Sextillion','Sextillion',''],
+[36,'Undecillion','Sextillion','Sextillion',''],
+[36,'Undecillion','Sextillion','Sextillion','']
   ];
   /* the DOM variable above are for compatibility wit IE */
    switch (lang.toUpperCase()) {
@@ -2615,6 +2625,7 @@ function getBitsHumanformat(version,lang) {
 	  case 'IT': fi = 3; break;
 	  case 'UK': fi = 2; break;
 	  case 'DE': fi = 3; break;
+	  case 'CN': fi = 3; break;
 	default:
       fi = 1;
   }
