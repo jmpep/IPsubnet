@@ -10,18 +10,26 @@ a.IT[id|=IPv6cmenutxt]:after {
 a.IT[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativo';
 }
+/*
 div.IT[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet calcolatrice';
 }
+*/
 div.IT[id|=panelformat]:before{
 content: 'opzioni di IP';
 }
 #reinit[class~=IT]:after {
 content:'init ';
 }
+/*
 span.IT[id|=panelcalculationtxt]:before{
 content: 'calcolatrice';
 }
+
+div.IT[id|=theoptions]:before{
+content: '';
+}
+*/
 label.IT[id|=iplabel]:before{
 content: 'IP';
 }
@@ -64,7 +72,7 @@ span.IT[id|=panelexample]:after{
 content: 'Esempi';
 }
 label.IT[id|=reversenetmasklabel]:before{
-content: 'inverso:';
+content: 'inverso';
 }
 #textipbtn[class~=IT]:after {
 content:'importazione del testo';
@@ -129,13 +137,13 @@ content: 'multicast de routers';
 label.IT[id|=ipv6example_14]:after{
 content: 'indefinita IP';
 }label.IT[id|=ipv6example_15]:after{
-content: 'IPv6';
+content: 'IPv6 corta';
 }label.IT[id|=ipv6example_16]:after{
-content: 'IPv6';
+content: 'IPv6 alternativa';
 }label.IT[id|=ipv6example_17]:after{
-content: 'IPv6';
+content: 'IPv6 corta per Aziende';
 }label.IT[id|=ipv6example_18]:after{
-content: 'IPv6';
+content: 'IPv6 larga';
 }
 span.IT[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd dove aaa, bbb, ccc, ddd sono numeri tra 0 e 255.';

@@ -10,14 +10,16 @@ a.UK[id|=IPv6cmenutxt]:after {
 a.UK[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
+/*
 div.UK[id|=maintitle]:after {
 	content: 'IP subnet calculator IPv4 & IPv6';
 }
-div.UK[id|=panelformat]:before{
-content: 'IP options';
-}
 span.UK[id|=panelcalculationtxt]:before{
 content: 'calculation';
+}
+*/
+div.UK[id|=theoptions]:before{
+content: '';
 }
 #reinit[class~=UK]:after {
 content:'re-init ';
@@ -64,7 +66,7 @@ span.UK[id|=panelexample]:after{
 content: 'Example';
 }
 label.UK[id|=reversenetmasklabel]:before{
-content: 'inversed:';
+content: 'inversed';
 }
 #textipbtn[class~=UK]:after {
 content:'import text';
@@ -129,13 +131,13 @@ content: 'multicast routers';
 label.UK[id|=ipv6example_14]:after{
 content: 'undefined IP';
 }label.UK[id|=ipv6example_15]:after{
-content: 'IPv6';
+content: 'IPv6 condensed';
 }label.UK[id|=ipv6example_16]:after{
-content: 'IPv6';
+content: 'IPv6 alternative';
 }label.UK[id|=ipv6example_17]:after{
-content: 'IPv6';
+content: 'IPv6 condensed per company';
 }label.UK[id|=ipv6example_18]:after{
-content: 'IPv6';
+content: 'IPv6 not condensed';
 }
 span.UK[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';

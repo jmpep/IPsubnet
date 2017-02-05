@@ -1,3 +1,7 @@
+img.WORLD[id|=imglanguage] {
+width:31px;
+height:33px;
+}
 a.WORLD[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
@@ -10,15 +14,17 @@ a.WORLD[id|=IPv6cmenutxt]:after {
 a.WORLD[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
+/*
 div.WORLD[id|=maintitle]:after {
 	content: 'IP subnet calculator IPv4 & IPng (IPv6)';
 }
-div.WORLD[id|=panelformat]:before{
-content: 'IP options default';
+div.WORLD[id|=theoptions]:before{
+content: '';
 }
 span.WORLD[id|=panelcalculationtxt]:before{
 content: 'calculator';
 }
+*/
 #reinit[class~=WORLD]:after {
 content:'re-init ';
 }
@@ -64,7 +70,7 @@ span.WORLD[id|=panelexample]:after{
 content: 'Example';
 }
 label.WORLD[id|=reversenetmasklabel]:before{
-content: 'inversed:';
+content: 'inversed';
 }
 #textipbtn[class~=WORLD]:after {
 content:'import text';
@@ -129,14 +135,15 @@ content: 'multicast routers';
 }
 label.WORLD[id|=ipv6example_14]:after{
 content: 'undefined IP';
-}label.WORLD[id|=ipv6example_15]:after{
-content: 'IPv6';
+}
+label.WORLD[id|=ipv6example_15]:after{
+content: 'IPv6 condensed';
 }label.WORLD[id|=ipv6example_16]:after{
-content: 'IPv6';
+content: 'IPv6 alternative';
 }label.WORLD[id|=ipv6example_17]:after{
-content: 'IPv6';
+content: 'IPv6 condensed per company';
 }label.WORLD[id|=ipv6example_18]:after{
-content: 'IPv6';
+content: 'IPv6 not condensed';
 }
 span.WORLD[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';

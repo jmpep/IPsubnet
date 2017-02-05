@@ -10,18 +10,23 @@ a.FR[id|=IPv6cmenutxt]:after {
 a.FR[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternative';
 }
+/*
 div.FR[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet calculatrice';
 }
-div.FR[id|=panelformat]:before{
-content: 'Options IP';
-}
+*/
+
 #reinit[class~=FR]:after {
 content:'re-initialisation ';
 }
+/*
 span.FR[id|=panelcalculationtxt]:before{
 content: 'calculatrice';
 }
+div.FR[id|=theoptions]:before{
+content: '';
+}
+*/
 label.FR[id|=iplabel]:before{
 content: 'IP';
 }
@@ -76,7 +81,8 @@ content:"plus d'information sur IPv6";
 #infoIPv4v6btn.showtxt[class~=FR]:after {
 content:'cache les informations sur IPv6';
 }
-label.FR[id|=ipv4example_1]:after{
+
+label.FR[id|=ipv4example_1]:after {
 content: 'Classe A';
 }
 label.FR[id|=ipv4example_2]:after{
@@ -130,13 +136,13 @@ content: 'multicast routeurs';
 label.FR[id|=ipv6example_14]:after{
 content: 'IP ind\E9finie';
 }label.FR[id|=ipv6example_15]:after{
-content: 'IPv6';
+content: 'IPv6 condensé';
 }label.FR[id|=ipv6example_16]:after{
-content: 'IPv6';
+content: 'IPv6 alternatif';
 }label.FR[id|=ipv6example_17]:after{
-content: 'IPv6';
+content: 'IPv6 condensé pour entreprise';
 }label.FR[id|=ipv6example_18]:after{
-content: 'IPv6';
+content: 'IPv6 non condensé';
 }
 span.FR[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd sont des chiffres entre 0 et 255.';

@@ -11,18 +11,23 @@ a.DE[id|=IPv6cmenutxt]:after {
 a.DE[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
+/*
 div.DE[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet Rechner';
 }
-div.DE[id|=panelformat]:before{
-content: 'IP Optionen';
-}
+*/
+
 #reinit[class~=DE]:after {
 content:'Wiedererstellung ';
 }
+/*
 span.DE[id|=panelcalculationtxt]:before{
 content: 'Rechner';
 }
+div.DE[id|=theoptions]:before{
+content: '';
+}
+*/
 label.DE[id|=iplabel]:before{
 content: 'IP';
 }
@@ -131,13 +136,13 @@ content: 'multicast Routers';
 label.DE[id|=ipv6example_14]:after{
 content: 'unbestimmte IP';
 }label.DE[id|=ipv6example_15]:after{
-content: 'IPv6';
+content: 'IPv6 dicht';
 }label.DE[id|=ipv6example_16]:after{
-content: 'IPv6';
+content: 'IPv6 alternativ';
 }label.DE[id|=ipv6example_17]:after{
-content: 'IPv6';
+content: 'IPv6 dicht für Unternehmen';
 }label.DE[id|=ipv6example_18]:after{
-content: 'IPv6';
+content: 'IPv6 breit';
 }
 span.DE[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';
