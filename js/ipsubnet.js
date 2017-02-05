@@ -2361,9 +2361,10 @@ function setlanguageObjects(lang) {
 	} else {
 	  $('#iframeinfo').css('display','none');		
 	}
+	readselectbits(lang);
+	if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
 	lg2= lang.trim().toLowerCase();
 	$('body').attr('lang',lg2);
-	readselectbits(lang);
 }
 
 function changelanguage(lang) {
