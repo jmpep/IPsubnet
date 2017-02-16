@@ -2,6 +2,10 @@
 // Licensed under https://github.com/jmpep/ipsubnet/blob/master/LICENSE-MIT
 
 var localstore;
+$(document).ready(function() {
+   initializeIPsubnet();
+   readhtmlselectbits();
+});
 
 function onEnter(obj,e,check){
        var keycode =(window.event) ? event.keyCode : e.keyCode;
@@ -147,40 +151,31 @@ function checkIP(obj,txt) {
 }
 
 function initializeValues(iptype,condense,ipval,nbrbits,mask,subnetval,broadcastval,hostfromval,hosttoval,hostsnbval,ipsnbval) {
-  var IP = document.getElementById("IP");
-  var bits = document.getElementById("bits");
-  var subnet = document.getElementById("subnet");
-  var broadcast = document.getElementById("broadcast");
-  var hostfrom = document.getElementById("hostfrom");
-  var hostto = document.getElementById("hostto");
-  var btIPv4 = document.getElementById("btIPv4");
-  var btIPv6 = document.getElementById("btIPv6");
-  var btIPv6a = document.getElementById("btIPv6a");
+  //var btIPv4 = document.getElementById("btIPv4");
+  //var btIPv6 = document.getElementById("btIPv6");
+  //var btIPv6a = document.getElementById("btIPv6a");
   var netmask = document.getElementById("netmask");
-  var hostsnb = document.getElementById("hostsnb");
-  var ipsnb = document.getElementById("ipsnb");
   var IPv6cchk = document.getElementById("IPv6cchk");
   var sectionbroadcast = document.getElementById("sectionbroadcast");
-  var selecthostsnb = document.getElementById("selecthostsnb");
   /* the DOM variable above are for compatibility wit IE */
   if (condense==1) {  IPv6cchk.checked = true; }
   if (condense==0) {  IPv6cchk.checked = false; }
   if (iptype=='IPv4') {
-	if (btIPv4.className.indexOf('active')<0) changeIPv4();
+    if (!$( "#btIPv4" ).hasClass( "active" )) changeIPv4();
   } else {
-      if ((btIPv6.className.indexOf('active')<0) && (btIPv6a.className.indexOf('active')<0)) changeIPv6();
+      if ((!$( "#btIPv6" ).hasClass( "active" )) && (!$( "#btIPv6a" ).hasClass( "active" ))) changeIPv6();
   }
   if (iptype=='IPv4') {
     netmask.value=mask;
   } else {
     netmask.value=nbrbits;
   }
-  IP.value =ipval.toUpperCase();
-  bits.value=nbrbits;
-  subnet.value=subnetval.toUpperCase();
-  broadcast.value=broadcastval.toUpperCase();
-  hostfrom.value=hostfromval.toUpperCase();
-  hostto.value=hosttoval.toUpperCase();
+  $('#IP').val(ipval.toUpperCase());
+  $('#bits').val(nbrbits);
+  $('#subnet').val(subnetval.toUpperCase());
+  $('#broadcast').val(broadcastval.toUpperCase());
+  $('#hostfrom').val(hostfromval.toUpperCase());
+  $('#hostto').val(hosttoval.toUpperCase());
 
   if (iptype=='IPv4') {
 	  sectionbroadcast.style.display='inline';
@@ -191,14 +186,31 @@ function initializeValues(iptype,condense,ipval,nbrbits,mask,subnetval,broadcast
 	  netmask.style.visibility ='hidden';
 	  netmasklabel.style.visibility ='hidden';	  
   }
-  hostsnb.value=hostsnbval;
-  ipsnb.value=ipsnbval;
-  selecthostsnb.value=nbrbits;
+  $('#hostsnb').val(hostsnbval);
+  $('#ipsnb').val(ipsnbval);
+  $('#selecthostsnb').val(nbrbits);
   createselectSubnet();
   calculreversenetmaskval();
   fillinfotxtip();
 }
 
+(function($) {
+  $.fn.extend({
+    isChildOf: function( filter_string ) {
+      var parents = $(this).parents().get();
+	  var list='';
+      for ( j = 0; j < parents.length; j++ ) {
+        list= list+$(parents[j]).attr('id');
+      }
+      for ( j = 0; j < parents.length; j++ ) {
+        if ( $(parents[j]).is(filter_string) ) {
+          return true;
+         }
+      }
+      return false;
+    }
+  });
+})(jQuery); 
 
 function initializeFunctions() {
   var IP = document.getElementById("IP");
@@ -227,6 +239,27 @@ function initializeFunctions() {
   netmask.onkeydown = function(e) {onEnter(netmask,e,'');}
   hostsnb.onkeydown = function(e) {onEnter(hostsnb,e,'');}
   ipsnb.onkeydown = function(e) {onEnter(ipsnb,e,'');}
+  $('body').click(function(e) {
+    if ( ($("#language").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#language')) ){
+       $("#language").removeClass('open');
+    }
+  });
+  $('body').click(function(e) {
+    if ( ($("#theoptions").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#theoptions')) ){
+       $("#theoptions").removeClass('open');
+    }
+  });
+}
+
+function openDropDown(theul) {
+   if ($('#'+theul).hasClass('open')) {
+	$('#'+theul).removeClass('open');
+   } else {
+	$('#'+theul).addClass('open');
+   }
+}
+function leaveDropDown(theul) {
+	$('#'+theul).removeClass('open');
 }
 
 function initializeIPsubnet() {
@@ -338,6 +371,10 @@ function storeAllStorage() {
    vals=vals.replace(/\n/g,'<BR>');
    vals=vals.replace(/=/g,'#');
    localStorage.setItem('textipimport',vals);
+   thetheme=localStorage.getItem('theme');	
+   if ((thetheme== 'undefined') || (thetheme=='')) {
+	   localStorage.setItem('theme','default');
+   }
   }
 }
 function setIPtype(iptype,condense) {
@@ -382,6 +419,7 @@ function getAllStorage() {
   var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
   var ipid,ipidlist; 
+  var lasttheme;
   if (localstore) {
     IP.value = localStorage.getItem('IP');
 	ipid=localStorage.getItem('IPv4v6');
@@ -430,6 +468,8 @@ function getAllStorage() {
   	  vals=vals.replace(/#/g,'=');		
 	  $('#textipimport').val(vals);
 	}
+    lasttheme= localStorage.getItem('theme');
+	selectTheme(lasttheme);
   }
 }
 function setCookie(cname, cvalue, days) {
@@ -2369,6 +2409,7 @@ function setlanguageObjects(lang) {
 
 function changelanguage(lang) {
 	setlanguageObjects(lang);
+	$("#language").removeClass('open');
     storeAllStorage();
 }
 
@@ -2842,4 +2883,41 @@ function togglePanel(obj,pannelobj) {
 		obj.className='fa fa-toggle-off';
 		pannelobj.style.display='none';
 	};
+}
+function selectTheme(theme) {
+	var thetheme;
+	if (theme.toLowerCase()=='cacti') {
+		thetheme = 'classic';
+	} else {
+		thetheme = theme;
+	}
+	if ($('#design').attr("href").indexOf('themes')>=0) {
+        val1 = $('#design').attr("href");
+        val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
+        $('#design').attr("href", val ); //+"?id=" + new Date().getMilliseconds());
+	} else {
+        val1 = $('#design').attr("href");
+        val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
+        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
+	}
+    localStorage.setItem('theme',thetheme);	
+}
+
+function selectThemeNew(theme) {
+	var thetheme;
+	if (theme.toLowerCase()=='cacti') {
+		thetheme = 'classic';
+	} else {
+		thetheme = theme;
+	}
+	if ($('#design').attr("href").indexOf('themes')>=0) {
+        val1 = $('#design').attr("href");
+        val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
+        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
+	} else {
+        val1 = $('#design').attr("href");
+        val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
+        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
+	}
+    localStorage.setItem('theme',thetheme);	
 }
