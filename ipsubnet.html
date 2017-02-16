@@ -14,8 +14,8 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
     <![endif]-->
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -25,22 +25,14 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="ajax/libs/jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap core JavaScript
+<!--    
+   <script src="js/bootstrap.min.js"></script>
+ -->
+   <!-- Bootstrap core JavaScript
     ================================================== -->
     <SCRIPT src="js/ipsubnet.js"></SCRIPT>
-	<SCRIPT language="JavaScript">
-    function activePopOver(popovertxt){
-	  $(document).ready(function(){
-        $('[data-toggle='+popovertxt+']').popover();
-      });
-	}
-	activePopOver("infoippopover");
-	activePopOver("infoippopover2");
-	</SCRIPT>
     <!-- application's class -->
     <link href="css/ipsubnet.css" rel="stylesheet" >
-    <link href="css/ipsubnet-design-default.css" rel="stylesheet" >
     <link href="lang/languages-WORLD.css" rel="stylesheet" >
     <link href="lang/languages-UK.css" rel="stylesheet" >
     <link href="lang/languages-US.css" rel="stylesheet" >
@@ -48,8 +40,9 @@
     <link href="lang/languages-DE.css" rel="stylesheet" >
     <link href="lang/languages-IT.css" rel="stylesheet" >
     <link href="lang/languages-ZH-HANS.css" rel="stylesheet" >
+    <link id="design" href="css/design.css" rel="stylesheet" >
 </HEAD>
-<BODY translate="no" dir="auto" onload="initializeIPsubnet();readhtmlselectbits();">
+<BODY translate="no" dir="auto" >
 <FORM class="form" >
 <DIV class="container ipsubnet">
 <!-- main panel -->
@@ -69,12 +62,18 @@
  <NAV class="navbar navbar-default y-xsm">
      <DIV class="navbar-header">
       <SPAN class="navbar-brand" >
-	   <DIV class="dropdown " id="language" >
+	   <DIV class="dropdown" id="language" >
+<!-- 
 	   <BUTTON type="button" ID="selectlanguage" class="btn btn-primary dropdown-toggle btnlanguage" data-toggle="dropdown" >
+ -->
+       <BUTTON type="button" ID="selectlanguage" class="btn btn-primary btnlanguage" onClick="openDropDown('language');" >
 	   <IMG ID="imglanguage" class="WORLD" SRC="./images/WORLD-flg.png" />
 	   &nbsp;<SPAN class="fa fa-caret-down"></SPAN>&nbsp;
 	   </BUTTON>
-        <ul class="dropdown-menu languages">
+<!-- 
+        <ul id="selectlanguageul" class="languages" >
+ -->
+        <ul id="selectlanguageul" class="dropdown-menu languages" >
           <li><a class="flagmenu" onClick="changelanguage('UK');" ><IMG ID="choiceUK" class="imglanguage" SRC="./images/UK-flg.png" />&nbsp;UK</a></li>
           <li><a class="flagmenu" onClick="changelanguage('FR');" ><IMG ID="choiceFR" class="imglanguage" SRC="./images/FR-flg.png" />&nbsp;FR</a></li>
           <li><a class="flagmenu" onClick="changelanguage('IT');" ><IMG ID="choiceIT" class="imglanguage" SRC="./images/IT-flg.png" />&nbsp;IT</a></li>
@@ -101,23 +100,36 @@
       </DIV>
       </DIV>
 	   <DIV ID="theoptions" class="dropdown theoptions WORLD" >
-	   <BUTTON type="button" ID="btntheoptions" class="btn dropdown-toggle btntheoptions" data-toggle="dropdown" >
+<!--
+	   <BUTTON type="button" ID="btntheoptions" class="btn dropdown-toggle btntheoptions" data-toggle="dropdown" onClick="openDropDown('language');" >
+ -->
+       <BUTTON type="button" ID="btntheoptions" class="btn btntheoptions" onClick="openDropDown('theoptions');" >
 	   &nbsp;<i class="fa fa-cog  fa-1x5"></i>&nbsp;<i class="fa fa-caret-down"></i>
 	   </BUTTON>
-        <ul class="dropdown-menu theoptions">
-		 <li><a class="theoptions-menu" onClick="alert('default');" >
+        <ul id="theoptionsul" class="dropdown-menu theoptions">
+		 <li><a class="theoptions-menu" onClick="selectTheme('default');" >
 <SPAN lang="en">design modern </SPAN>
 <SPAN lang="de">modern Design</SPAN>
-<SPAN lang="fr">moderne design </SPAN>
+<SPAN lang="fr">motif moderne</SPAN>
 <SPAN lang="it">design moderno </SPAN>
 <SPAN lang="zh-hans">现代设计</SPAN>
 		 </a></li>
-         <li><a class="theoptions-menu" onClick="alert('WORLD');" >
+         <li><a class="theoptions-menu" onClick="selectTheme('classic');" >
 <SPAN lang="en">design cacti monitoring </SPAN>
 <SPAN lang="de">Cacti Monitoring Design</SPAN>
-<SPAN lang="fr">design cacti monitoring</SPAN>
-<SPAN lang="it">design cacti monitoring </SPAN>
+<SPAN lang="fr">motif cacti monitoring</SPAN>
+<SPAN lang="it">motivo cacti monitoring </SPAN>
 <SPAN lang="zh-hans">设计 cacti 监控工具</SPAN>
+		 </a></li>
+         <li><a class="theoptions-menu" onClick="selectTheme('dark');" >
+<SPAN lang="en">design dark </SPAN>
+<SPAN lang="de">dunkel Design</SPAN>
+<SPAN lang="fr">motif sombre</SPAN>
+<SPAN lang="it">design buio</SPAN>
+<SPAN lang="zh-hans">黑暗的设计</SPAN>
+		 </a></li>
+         <li><a class="theoptions-menu" onClick="selectThemeNew('grey');" >
+<SPAN id="themegrey" >design grey</SPAN>
 		 </a></li>
         </ul>
 	   </DIV>
@@ -134,6 +146,7 @@
 <SPAN lang="fr">calculatrice</SPAN>
 <SPAN lang="it">calcolatrice</SPAN>
 <SPAN lang="zh-hans">计算</SPAN>
+
    &nbsp;<i class="fa fa-calculator fa-1x5"></i>&nbsp;
    </DIV>
    <DIV id="collapse1" class="panel-collapse in">
@@ -148,10 +161,9 @@
 	   <span class="form-control-feedback">
 	     <i class="fa fa-check-square-o" aria-hidden="true"></i>
 	   </span>
-       <a href="#" class="form-control-after fa fa-info" 
-          data-toggle="infoippopover2" title="Info IP" data-trigger="hover"
-     	 data-placement="auto top" 
-     	 data-content="Some content inside the popover" >
+<!-- 
+       <a href="#" class="form-control-after fa fa-info" id="InfoIP" >
+ -->
        </a>
       </div>
       <label class="sr-only" for="ipplusmoins"></label>
