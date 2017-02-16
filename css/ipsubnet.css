@@ -115,9 +115,6 @@ label.checkboxnav {
   margin:0;
   padding:10px 5px 0px 5px;
 }
-.checkboxnav a{
-color:lavender;
-}
 
 .fa-toggle-on{
 	cursor:pointer;
@@ -225,6 +222,11 @@ i.statusicons[class~=warningbg]{
 }
 .infotxt {
 	width:50%;
+}
+
+.navbar-brand{
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 .panel-calculation>.panel-heading{
