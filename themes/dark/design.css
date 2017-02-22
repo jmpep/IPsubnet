@@ -4,17 +4,22 @@
 /* theme: dark */
 
 .container {
-background-color:#000000;
+background-color:#161616;
 color:#ffffff;
+}
+a, a:focus, a:hover {
+color:#a6a6a6;
 }
 
 .panel-body {
-background-color:#000000;
+background-color:#161616;
 }
 .navbar-default{
-background-color:#777777;border-color:#4D4D4D;
+background-color:#1a1a1a;
+border-color:#4D4D4D;
 color:#ffffff;
 font-weight:bold;
+background: linear-gradient(to bottom, #252426 0%, #0C0D0D 100%);
 }
 .navbar-default .navbar-brand{
 color:#ffffff;
@@ -85,7 +90,7 @@ color:#ccc
 }
  
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#ffffff;
@@ -122,6 +127,21 @@ button.btnlanguage:focus {
 background-color: #4D4D4D;
 border-color:#4D4D4D;
 }
+button.btntheoptions {
+background: transparent;
+color:white;
+border-color:#4D4D4D;
+}
+button.btntheoptions:hover {
+background-color: #8c8c8c;
+border-color:#4D4D4D;
+}
+button.btntheoptions:focus {
+background-color: #8c8c8c;
+border-color:#4D4D4D;
+}
+
+
 .open>.dropdown-toggle.btnlanguage:focus {
 border-color:#4D4D4D;
 }
@@ -130,10 +150,10 @@ border-color:#4D4D4D;
  color: black;
 }
 .fa-toggle-on{
-	color:#808080;
+	color:snowWhite;
 }
 .fa-toggle-off{
-	color:gray;
+	color:grey;
 }
 
 select.input-sm.badged{
@@ -145,7 +165,9 @@ background:Gray;
 border-color:#737373
 }
 .panel-main>.panel-heading{
-color:#ffffff;background-color:#808080;border-color:#737373
+color:#ffffff;
+border-color:#737373;
+background:linear-gradient(to bottom, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
 }
 .panel-main>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#737373
@@ -164,9 +186,11 @@ color:#ffffff;
 border-color:#d9d9d9;
 }
 .panel-calculation>.panel-heading{
-color:black;
-background-color:#cccccc;
+color:#ffffff;
 border-color:#d9d9d9;
+background-color:#1a1a1a;
+font-weight:bold;
+background: linear-gradient(to bottom, #252426 0%, #0C0D0D 100%);
 }
 .panel-calculation>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#d9d9d9
@@ -182,7 +206,11 @@ border-bottom-color:#d9d9d9
 border-color:#d9d9d9
 }
 .panel-text>.panel-heading{
-color:#ffffff;background-color:#808080;border-color:#d9d9d9
+color:#ffffff;
+background-color:#bfbfbf;
+background-color:#1a1a1a;
+font-weight:bold;
+background: linear-gradient(to bottom, #252426 0%, #0C0D0D 100%);
 }
 .panel-text>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#d9d9d9
@@ -198,7 +226,11 @@ border-bottom-color:#d9d9d9
 border-color:#d9d9d9
 }
 .panel-info>.panel-heading{
-color:#ffffff;background-color:#bfbfbf;border-color:#d9d9d9
+color:#ffffff;
+background-color:#bfbfbf;
+background-color:#1a1a1a;
+font-weight:bold;
+background: linear-gradient(to bottom, #252426 0%, #0C0D0D 100%);
 }
 .panel-info>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#d9d9d9
@@ -216,7 +248,11 @@ background-color:#595959;
 border-color:#d9d9d9
 }
 .panel-example>.panel-heading{
-color:#ffffff;background-color:#bfbfbf;border-color:#d9d9d9
+color:#ffffff;
+background-color:#1a1a1a;
+font-weight:bold;
+background: linear-gradient(to bottom, #252426 0%, #0C0D0D 100%);
+border-color:#d9d9d9;
 }
 .panel-example>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#d9d9d9
