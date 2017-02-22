@@ -245,13 +245,25 @@ function initializeFunctions() {
     }
   });
   $('body').click(function(e) {
-    if ( ($("#theoptions").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#theoptions')) ){
+	if (!$('#'+e.target.id).isChildOf('#theoptions')) {
+      if ( ($("#theoptions").hasClass('open')) ) {
+//alert('for target.id='+e.target.id+' theoptions.removeClass(open)');
        $("#theoptions").removeClass('open');
+	  }
     }
   });
+  $('#choiceUK').attr('src','./images/'+'UK'+'-flg.png');
+  $('#choiceFR').attr('src','./images/'+'FR'+'-flg.png');
+  $('#choiceIT').attr('src','./images/'+'IT'+'-flg.png');
+  $('#choiceUS').attr('src','./images/'+'US'+'-flg.png');
+  $('#choiceDE').attr('src','./images/'+'DE'+'-flg.png');
+  $('#choiceZH-HANS').attr('src','./images/'+'ZH-HANS'+'-flg.png');
+  $('#choiceWORLD').attr('src','./images/'+'WORLD'+'-flg.png');
+  $('#choiceRU').attr('src','./images/'+'RU'+'-flg.png');
 }
 
 function openDropDown(theul) {
+//alert('openDropDown'+' hasClass(open)='+$('#'+theul).hasClass('open'));
    if ($('#'+theul).hasClass('open')) {
 	$('#'+theul).removeClass('open');
    } else {
@@ -361,7 +373,8 @@ function storeAllStorage() {
 	 }
 	 getHistory();
    }
-   var lang= imglanguage.className.replace('imglanguage','').trim();
+   //var lang= imglanguage.className.replace('imglanguage','').trim();
+   var lang= $('body').attr('lang').trim();
    localStorage.setItem('lang',lang);
    if (istoggledPanel('collapse1')==1) {   localStorage.setItem('collapse1',1); } else {   localStorage.setItem('collapse1',0); }
    if (istoggledPanel('collapse2')==1) {   localStorage.setItem('collapse2',1); } else {   localStorage.setItem('collapse2',0); }
@@ -2339,72 +2352,97 @@ function openhelp3() {
   }
 }
 
-
+var langList="WORLD,EN,EN-UK,EN-US,UK,FR,US,DE,IT,ZH-HANS,RU";
 function changeDivLanguageTextByName(objectname,lg){
+  var list;
   if (lg!=='') {
-	$('#'+objectname).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
-	$('#'+objectname).removeClass('ZH-HANS')
-	$('#'+objectname).addClass(lg);
+	list= langList.split(',');
+	for (var i=0;i<list.length;i++) {
+		$('#'+objectname).removeClass(list[i]);
+	}
+    //$('#'+objectname).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
+    //$('#'+objectname).removeClass('ZH-HANS').removeClass('RU');
+    $('#'+objectname).addClass(lg);
   }
 }
 function changeDivLanguageTextById(objectid,lg){
   if (lg!=='') {
-	$(objectid).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
-	$(objectid).removeClass('ZH-HANS');
+	list= langList.split(',');
+	for (var i=0;i<list.length;i++) {
+		$(objectid).removeClass(list[i]);
+	}
+	//$(objectid).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
+	//$(objectid).removeClass('ZH-HANS').removeClass('RU');
 	$(objectid).addClass(lg);
   }
 }
 function setlanguageObjects(lang) {
   /* the DOM variable above are for compatibility wit IE */
-  var theexamples;
-    lg= lang.trim().toUpperCase();
-	$('#imglanguage').attr('class','imglanguage '+lg);
-	$('#imglanguage').attr('src','./images/'+lg+'-flg.png');
-	changeDivLanguageTextByName('maintitle',lang);
-	changeDivLanguageTextByName('theoptions',lang);
-	changeDivLanguageTextByName('hostfromlabel',lang);
-	changeDivLanguageTextByName('broadcastlabel',lang);
-	changeDivLanguageTextByName('hosttolabel',lang);
-	changeDivLanguageTextByName('IPv4menutxt',lang);
-	changeDivLanguageTextByName('IPv6menutxt',lang);
-	changeDivLanguageTextByName('IPv6cmenutxt',lang);
-	changeDivLanguageTextByName('IPv6amenutxt',lang);
-	changeDivLanguageTextByName('panelcalculationtxt',lang);
-	changeDivLanguageTextByName('panelinfo',lang);
-	changeDivLanguageTextByName('panelexample',lang);
-	changeDivLanguageTextByName('infoIPv4v6btn',lang);
-	changeDivLanguageTextByName('iframeinfo',lang);
-	changeDivLanguageTextByName('reversenetmasklabel',lang);
-	changeDivLanguageTextByName('historylabel',lang);
-	changeDivLanguageTextByName('infotxtip',lang);
-	changeDivLanguageTextByName('textipbtn',lang);
-	changeDivLanguageTextByName('iplabel',lang);
-	changeDivLanguageTextByName('netmasklabel',lang);
-	changeDivLanguageTextByName('subnetlabel',lang);
-	changeDivLanguageTextByName('bitslabel',lang);
-	changeDivLanguageTextByName('hostnbrlabel',lang);
-	changeDivLanguageTextByName('ipnbrlabel',lang);
+  var theexamples,thelang,country;
+    thelang=lang.trim().toUpperCase();
+    if ( (thelang=='') || (langList.indexOf(thelang)<0) ) {
+	    thelang='EN';
+		country='WORLD';
+    } else {
+	  /* not China to complex */
+	  if (( thelang!='ZH-HANS') && (thelang.indexOf('-')>=0) ) {
+		var temp;
+		temp=thelang.split('-');
+		thelang = temp[0];
+	    country = temp[1];
+      } else {
+	    country =thelang;
+	  }
+	}
+//console.log('setlanguageObjects('+lang+') -> thelang='+thelang+' country='+country)
+	/* change language */
+    $('#imglanguage').attr('class','imglanguage '+thelang);
+	$('#imglanguage').attr('src','./images/'+country+'-flg.png');
+	changeDivLanguageTextByName('maintitle',thelang);
+	changeDivLanguageTextByName('theoptions',thelang);
+	changeDivLanguageTextByName('hostfromlabel',thelang);
+	changeDivLanguageTextByName('broadcastlabel',thelang);
+	changeDivLanguageTextByName('hosttolabel',thelang);
+	changeDivLanguageTextByName('IPv4menutxt',thelang);
+	changeDivLanguageTextByName('IPv6menutxt',thelang);
+	changeDivLanguageTextByName('IPv6cmenutxt',thelang);
+	changeDivLanguageTextByName('IPv6amenutxt',thelang);
+	changeDivLanguageTextByName('panelcalculationtxt',thelang);
+	changeDivLanguageTextByName('panelinfo',thelang);
+	changeDivLanguageTextByName('panelexample',thelang);
+	changeDivLanguageTextByName('infoIPv4v6btn',thelang);
+	changeDivLanguageTextByName('iframeinfo',thelang);
+	changeDivLanguageTextByName('reversenetmasklabel',thelang);
+	changeDivLanguageTextByName('historylabel',thelang);
+	changeDivLanguageTextByName('infotxtip',thelang);
+	changeDivLanguageTextByName('textipbtn',thelang);
+	changeDivLanguageTextByName('iplabel',thelang);
+	changeDivLanguageTextByName('netmasklabel',thelang);
+	changeDivLanguageTextByName('subnetlabel',thelang);
+	changeDivLanguageTextByName('bitslabel',thelang);
+	changeDivLanguageTextByName('hostnbrlabel',thelang);
+	changeDivLanguageTextByName('ipnbrlabel',thelang);
     theexamples = $('*[id^="ipv4example_"]');
 	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageTextById(theexamples[i],lang);
+	   changeDivLanguageTextById(theexamples[i],thelang);
 	}
     theexamples = $('*[id^="ipv6example_"]');
     //theexamples = document.getElementsByTagName('ipv6example_*');
 	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageTextById(theexamples[i],lang);
+	   changeDivLanguageTextById(theexamples[i],thelang);
 	}
-	if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
-    $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+lang+".html");
-    //iframeinfo.contentDocument.location.reload(true);
+	//if ((thelang=='WORLD') || (thelang=='EN')|| (thelang=='US')|| (thelang=='UK')) filelang='EN';
+    //$('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+filelang+".html");
+    $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thelang+".html");
 	if (infoIPv4v6btn.className.indexOf('hidetxt')<0){
 	  $('#iframeinfo').css('display','inline');
 	} else {
 	  $('#iframeinfo').css('display','none');		
 	}
-	readselectbits(lang);
-	if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
-	lg2= lang.trim().toLowerCase();
-	$('body').attr('lang',lg2);
+	readselectbits(country);
+	//if (thelang=='WORLD') thelang='EN';
+	//if ((thelang=='US')|| (thelang=='UK')) thelang='EN_'+thelang;
+	$('body').attr('lang',lang.toLowerCase());
 }
 
 function changelanguage(lang) {
@@ -2666,8 +2704,10 @@ function getBitsHumanformat(version,lang) {
 	  case 'DE': fi = 3; break;
 	  case 'IT': fi = 3; break;
 	  case 'UK': fi = 2; break;
+	  case 'EN': fi = 2; break;
 	  case 'DE': fi = 3; break;
 	  case 'CN': fi = 3; break;
+	  case 'RU': fi = 3; break;
 	default:
       fi = 1;
   }
@@ -2884,36 +2924,17 @@ function togglePanel(obj,pannelobj) {
 		pannelobj.style.display='none';
 	};
 }
+var themesList="classic,dark,modern,grey,default,paw";
 function selectTheme(theme) {
 	var thetheme;
-	if (theme.toLowerCase()=='cacti') {
-		thetheme = 'classic';
-	} else {
-		thetheme = theme;
+	thetheme = theme;
+	if ( (thetheme=='') || (themesList.indexOf(thetheme) <0)) {
+		thetheme ='default';
 	}
 	if ($('#design').attr("href").indexOf('themes')>=0) {
         val1 = $('#design').attr("href");
         val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
         $('#design').attr("href", val ); //+"?id=" + new Date().getMilliseconds());
-	} else {
-        val1 = $('#design').attr("href");
-        val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
-        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
-	}
-    localStorage.setItem('theme',thetheme);	
-}
-
-function selectThemeNew(theme) {
-	var thetheme;
-	if (theme.toLowerCase()=='cacti') {
-		thetheme = 'classic';
-	} else {
-		thetheme = theme;
-	}
-	if ($('#design').attr("href").indexOf('themes')>=0) {
-        val1 = $('#design').attr("href");
-        val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
-        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
 	} else {
         val1 = $('#design').attr("href");
         val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
