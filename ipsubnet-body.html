@@ -13,16 +13,10 @@
      <DIV class="navbar-header">
       <SPAN class="navbar-brand" >
 	   <DIV class="dropdown" id="language" >
-<!-- 
-	   <BUTTON type="button" ID="selectlanguage" class="btn btn-primary dropdown-toggle btnlanguage" data-toggle="dropdown" >
- -->
        <BUTTON type="button" ID="selectlanguage" class="btn btn-primary btnlanguage" onClick="openDropDown('language');" >
-	   <IMG ID="imglanguage" class="WORLD" SRC="images/WORLD-flg.png" />
+	   <IMG ID="imglanguage" class="WORLD" SRC="" />
 	   &nbsp;<SPAN id="selectlanguagedown" class="fa fa-caret-down"></SPAN>&nbsp;
 	   </BUTTON>
-<!-- 
-        <ul id="selectlanguageul" class="languages" >
- -->
         <ul id="selectlanguageul" class="dropdown-menu languages" >
           <li><a class="flagmenu" onClick="changelanguage('EN-UK');" ><IMG ID="choiceUK" class="imglanguage" SRC="" />&nbsp;UK</a></li>
           <li><a class="flagmenu" onClick="changelanguage('FR');" ><IMG ID="choiceFR" class="imglanguage" SRC="" />&nbsp;FR</a></li>
@@ -47,15 +41,8 @@
 	   </a>
        <input id="IPv6cchk" type="checkbox" class="checkbox-inline" value=" " onClick="setIPv6cCheckbox();" checked>
 	  </LABEL>
-<!--
-      <DIV >
-      </DIV>
--->
       </DIV>
 	   <DIV ID="theoptions" class="dropdown theoptions WORLD" >
-<!--
-	   <BUTTON type="button" ID="btntheoptions" class="btn dropdown-toggle btntheoptions" data-toggle="dropdown" onClick="openDropDown('language');" >
- -->
        <BUTTON type="button" ID="btntheoptions" class="btn btntheoptions" onClick="openDropDown('theoptions');" >
 	   &nbsp;<i id="icotheoptions" class="fa fa-cog"></i>&nbsp;<i id="theoptionscaretdown" class="fa fa-caret-down"></i>
 	   </BUTTON>
@@ -268,10 +255,13 @@
 	 <BUTTON ID="infoIPv4v6btn" type="button" class="btn btn-success infoIPv4v6btn WORLD hidetxt" onClick="infoIPv4v6();" >
 	 &nbsp;</BUTTON>
 	 <DIV ID="infoIPv4v6txt" class="infoIPv4v6txt hidetxt" readonly ></DIV>
+     <iframe id="iframeinfo" type="text/html" src="" class="iframeinfo WORLD" ></iframe>
+<!--
      <iframe id="iframeinfo" type="text/html" src="lang/infoIPv4v6-EN.html" class="iframeinfo WORLD" ></iframe>
 	 <DIV ID="infoIPfieldtxt" type="hidden" readonly ></DIV>
-     <iframe id="iframeinfoIPfield" type="text/html" src="lang/infoIPv4v6-EN.html#iframeinfoIPfield" class="iframeinfo WORLD" ></iframe>
+     <iframe id="iframeinfoIPfield" type="text/html" src="" class="iframeinfo WORLD" ></iframe>
     </DIV>
+-->
    </DIV>
   </DIV>
  <!-- end panel IP Info -->
@@ -392,4 +382,3 @@
 <!-- end container -->
 </DIV>
 </FORM>
-
