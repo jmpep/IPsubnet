@@ -5,10 +5,10 @@ a.RU[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
 a.RU[id|=IPv6cmenutxt]:after {
-	content: 'IPV6 сгущенный';
+	content: 'IPV6 сокращенный';
 }
 a.RU[id|=IPv6amenutxt]:after {
-	content: 'IPV6 заместитель';
+	content: 'IPV6 альтернативный';
 }
 :lang(ru) #maintitle:after {
    content:'IP калькулятор подсети IPv4 & IPng (IPv6)';
@@ -42,28 +42,28 @@ label.RU[id|=iplabel]:before{
 content: 'IP';
 }
 label.RU[id|=netmasklabel]:before{
-content: 'netmask';
+content: 'Сетевая маска';
 }
 label.RU[id|=subnetlabel]:before{
-content: 'subnet';
+content: 'Подсеть';
 }
 label.RU[id|=bitslabel]:before{
 content: 'bits';
 }
 label.RU[id|=hostnbrlabel]:before{
-content: 'хостов #';
+content: 'Всего хостов #';
 }
 label.RU[id|=ipnbrlabel]:before{
 content: 'IP #';
 }
 label.RU[id|=broadcastlabel]:before{
-content: 'broadcast';
+content: 'Broadcast адрес';
 }
 label.RU[id|=hostfromlabel]:before{
-content: 'Хост из';
+content: 'Первый хост';
 }
 label.RU[id|=hosttolabel]:before{
-content: 'Хост к';
+content: 'Последний хост';
 }
 label.RU[id|=historylabel]:before{
 content: 'история';
@@ -77,17 +77,17 @@ content: 'Информация';
 }
 
 span.RU[id|=panelexample]:after{
-content: 'пример';
+content: 'Пример';
 }
 label.RU[id|=reversenetmasklabel]:before{
-content: 'инвертирован';
+content: 'Обратная маска';
 }
 
 #textipbtn[class~=RU]:after {
 content:'импортировать текст';
 }
 #infoIPv4v6btn.hidetxt[class~=RU]:after {
-content:'более подробную информацию о IPv6';
+content:'Подробная информация о IPv6';
 }
 #infoIPv4v6btn.showtxt[class~=RU]:after {
 content:'скрыть информацию о IPv6';
@@ -114,10 +114,10 @@ label.RU[id|=ipv6example_3]:after{
 content: 'Интернет первые адреса';
 }
 label.RU[id|=ipv6example_4]:after{
-content: 'Интернет новый официальный';
+content: 'Первые адреса интернета';
 }
 label.RU[id|=ipv6example_5]:after{
-content: 'интернет-маршрутизации IPv6 to IPV4';
+content: 'Маршрутизация IPv6 в IPV4';
 }
 label.RU[id|=ipv6example_6]:after{
 content: 'multicast mDNSv6';
@@ -135,24 +135,24 @@ label.RU[id|=ipv6example_10]:after{
 content: 'local IPv4 к IPv6';
 }
 label.RU[id|=ipv6example_11]:after{
-content: '6bone (для исследования позвоночника)';
+content: '6bone (для тестирования протоколов)';
 }
 label.RU[id|=ipv6example_12]:after{
 content: 'multicast сети';
 }
 label.RU[id|=ipv6example_13]:after{
-content: 'multicast маршрутизаторы';
+content: 'multicast маршруты';
 }
 label.RU[id|=ipv6example_14]:after{
 content: 'не определено IP';
 }label.RU[id|=ipv6example_15]:after{
-content: 'IPv6 сгущенный';
+content: 'IPv6 сокращенный';
 }label.RU[id|=ipv6example_16]:after{
-content: 'IPv6 заместитель';
+content: 'IPv6 альтернативный';
 }label.RU[id|=ipv6example_17]:after{
-content: 'IPv6 сгущенный per company';
+content: 'IPv6 сокращенный для компании';
 }label.RU[id|=ipv6example_18]:after{
-content: 'IPv6 не конденсируется';
+content: 'IPv6 не сокращающиеся';
 }
 
 span.RU[class~=infoIP4_00]:before{
@@ -199,7 +199,7 @@ span.RU[class~=infoIP6_03]:before{
 content: 'зарезервированный для IPX распределение, Префикс(двоичный)=0000 010 .';
 }
 span.RU[class~=infoIP6_04]:before{
-content: "'2000::/3' фактически выделено IPv6-адрес для Интернета. '2000::/16' до официальной начать 2001. '2001::/16' после 2001. '2002::/16' для маршрутизации IPv6 для IPv4 в Интернете.";
+content: "'2000::/3' фактически выделено IPv6-адрес для Интернета. '2000::/16' до 2001. '2001::/16' после 2001. '2002::/16' для маршрутизации из IPv6 для IPv4 в Интернете.";
 }
 span.RU[class~=infoIP6_05]:before{
 content: 'Multicast. FF00::/8 (FF00:: к FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF).';
@@ -211,7 +211,7 @@ span.RU[class~=infoIP6_07]:before{
 content: 'Link-Local-Adressen. FE80::/10. Между сетевыми устройствами.';
 }
 span.RU[class~=infoIP6_08]:before{
-content: '6bone "3ffe::/16" для исследований в области IPv6 позвоночника.';
+content: '6bone "3ffe::/16" для тестирования протоколов IPv6.';
 }
 span.RU[class~=infoIP6_09]:before{
 content: 'IP зарезервировано для будущего использования.';
