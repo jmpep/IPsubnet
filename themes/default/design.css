@@ -105,14 +105,29 @@ border-color:#00438c;
 }
 button.btnlanguage:hover {
 background-color: #6d88ad;
-border-color:#00438c;
+border-color:transparent;
 }
 button.btnlanguage:focus {
-background-color: #00438c;
-border-color:#00438c;
+background-color: #6d88ad;
+border-color:transparent;
 }
 .open>.dropdown-toggle.btnlanguage:focus {
 border-color:#00438c;
+}
+button.btntheoptions {
+background: transparent;
+color:#e6e6fa;
+border-color:#4D4D4D;
+}
+button.btntheoptions:hover {
+background-color: #6d88ad;
+border-color:transparent;
+color:white;
+}
+button.btntheoptions:focus {
+background-color: #6d88ad;
+border-color:transparent;
+color:white;
 }
 
 .flagmenu {
