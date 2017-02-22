@@ -65,9 +65,11 @@ body:lang(zh-hans) span:lang(it) {
 body:lang(zh-hans) span:lang(de) {
         display: none;
 }
+
 .imglanguage{
   position:relative;display:inline-block;
 }
+
 .btnlanguage {
 position:relative;
 padding: 2px 2px;
@@ -111,11 +113,6 @@ input.has-warning {
   font-weight:bold;
   background-color: red;
 }
-label.checkboxnav {
-  margin:0;
-  padding:10px 5px 0px 5px;
-}
-
 .fa-toggle-on{
 	cursor:pointer;
 }
@@ -135,11 +132,6 @@ cursor:pointer;
 .ipsubnet>.panel-heading label{
 vertical-align:middle;
 }
-div.checkboxnav {
-  text-align:center;
-  float:left;
-  margin-left:5px;
-}
 div.theoptions {
 padding:5px 5px 0px 5px;
 float:right;
@@ -157,7 +149,6 @@ text-align: center;
 font-weight:bold;
 font-size:110%;
 }
-
 .bits {
 /*  width:5em;*/
 }
@@ -224,11 +215,6 @@ i.statusicons[class~=warningbg]{
 	width:50%;
 }
 
-.navbar-brand{
-  padding-top:10px;
-  padding-bottom:10px;
-}
-
 .panel-calculation>.panel-heading{
 text-align: left;
 font-weight:bold;
@@ -289,10 +275,40 @@ i.statusicons[class~=warningbg]{
   color:white;
   background-color:red;
 }
+
 /* ************************** */
 /* CSS design related to size */
 /* ************************** */
-
+.ipsubnet>.panel-heading {
+max-height:4em;
+}
+.navbar {
+min-height: 2em;
+max-height:5em;
+}
+.navbar-brand{
+height:auto;
+max-height:5em;
+padding-top:1px;
+padding-bottom:1px;
+}
+.navbar-nav>li>a {
+line-height: normal;
+padding-top: 10px;
+padding-bottom: 5px;
+}
+label.checkboxnav {
+margin: 0;
+padding: 8px 5px 0px 5px;
+}
+div.checkboxnav {
+text-align:center;
+float:left;
+margin-left:5px;
+}
+.btn {
+padding: 2px 3px;
+}
 .fa-1x5{
 font-size:1.5em;
 }
@@ -318,8 +334,20 @@ span {
 }
 
 .imglanguage{
+/*
   width:30px;
   height:20px;
+*/
+  height: auto;
+  max-width:100%;
+}
+img[id|=imglanguage] {
+/*
+width:31px;
+height:33px;
+*/
+  height: auto;
+  max-width:100%;
 }
 
 @media (min-width:600px){
