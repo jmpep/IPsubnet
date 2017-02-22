@@ -1899,12 +1899,21 @@ function changeIPv4IPv6() {
 
 function change_class(theclass)
 {
-  var btIPv4 = document.getElementById("btIPv4");
-  var btIPv6 = document.getElementById("btIPv6");
-  var btIPv6a = document.getElementById("btIPv6a");
-  var IPv6cchk = document.getElementById("IPv6cchk");
-  /* the DOM variable above are for compatibility wit IE */
-  switch(theclass) {
+  var theexamples;
+    theexamples = $('*[id^="inputipv4example_"]');
+	for (i=0;i<theexamples.length;i++) {
+	  if (theexamples[i]!=('input'+theclass)) {
+	   $(theexamples[i]).prop('checked',false);
+	  }
+	}
+    theexamples = $('*[id^="inputipv6example_"]');
+	for (i=0;i<theexamples.length;i++) {
+	  if (theexamples[i]!=('input'+theclass)) {
+	   $(theexamples[i]).prop('checked',false);
+	  }
+	}
+	$('#input'+theclass).prop('checked',true);
+	switch(theclass) {
     case 'ipv4example_1': // 'ipv4classa':
 	  initializeValues('IPv4',-1,'1.0.0.1',8,'255.0.0.0','1.0.0.0','1.255.255.255','1.0.0.1','1.255.255.254',16777214,16777216);
       break;
@@ -1987,9 +1996,9 @@ function infoIPv4v6(){
   var infoIPv4v6txt = document.getElementById("infoIPv4v6txt");
   var infoIPv4v6btn = document.getElementById("infoIPv4v6btn");
   var iframeinfo = document.getElementById("iframeinfo");
-  var selecthostsnb = document.getElementById("selecthostsnb");
-  var imglanguage = document.getElementById("imglanguage");
+  //var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
+  var thelang;
 	txt=infoIPv4v6txt.className;
 	btn=infoIPv4v6btn.className;
 	iframeinfo.style.display='none';
@@ -2008,10 +2017,13 @@ function infoIPv4v6(){
 	  infoIPv4v6txt.className=txt +' showtxt';
 	  infoIPv4v6btn.className=btn +' showtxt';
 	  iframeinfo.style.display='inline';
-	  //infoIPv4v6txt.innerHTML = explanation;
-	  lang= imglanguage.className.replace('imglanguage','').trim();
-	  if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
-	  iframeinfo.src ="./lang/infoIPv4v6-"+lang+".html"; // #p1";
+
+	  //lang= imglanguage.className.replace('imglanguage','').trim();
+	  //if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
+	  //iframeinfo.src ="./lang/infoIPv4v6-"+lang+".html"; // #p1";
+	  thelang=getLang( $('body').attr('lang').trim() ).toUpperCase();
+	  iframeinfo.src ="./lang/infoIPv4v6-"+thelang+".html"; // #p1";
+
       //iframeinfo.contentDocument.location.reload(true);
 	  iframeinfo.style.display='inline';
 	}
@@ -2376,24 +2388,45 @@ function changeDivLanguageTextById(objectid,lg){
 	$(objectid).addClass(lg);
   }
 }
+function getLang(langfull){
+  var lng='en';
+  langfull= langfull.toUpperCase();
+  if ( (langfull=='') || (langList.indexOf(langfull)<0) ) {
+    lng='en';
+  } else {
+    /* not China to complex */
+    if (( langfull!='zh-hans') && (langfull.indexOf('-')>=0) ) {
+  	  var temp;
+  	  temp=langfull.split('-');
+  	  lng = temp[0];
+    } else {
+  	  lng = langfull;
+    }
+  }
+  return lng;
+}
+function getCountry(langfull){
+  var ctry='us';
+  langfull= langfull.toUpperCase();
+  if ( (langfull=='') || (langList.indexOf(langfull)<0) ) {
+  	ctry='world';
+  } else {
+    /* not China to complex */
+    if (( langfull!='zh-hans') && (langfull.indexOf('-')>=0) ) {
+  	  var temp;
+  	  temp=langfull.split('-');
+      ctry = temp[1];
+    } else {
+      ctry =langfull;
+    }
+  }
+  return ctry;
+}
 function setlanguageObjects(lang) {
   /* the DOM variable above are for compatibility wit IE */
   var theexamples,thelang,country;
-    thelang=lang.trim().toUpperCase();
-    if ( (thelang=='') || (langList.indexOf(thelang)<0) ) {
-	    thelang='EN';
-		country='WORLD';
-    } else {
-	  /* not China to complex */
-	  if (( thelang!='ZH-HANS') && (thelang.indexOf('-')>=0) ) {
-		var temp;
-		temp=thelang.split('-');
-		thelang = temp[0];
-	    country = temp[1];
-      } else {
-	    country =thelang;
-	  }
-	}
+    thelang=getLang(lang.trim()).toUpperCase();
+	country=getCountry(lang.trim()).toUpperCase();
 //console.log('setlanguageObjects('+lang+') -> thelang='+thelang+' country='+country)
 	/* change language */
     $('#imglanguage').attr('class','imglanguage '+thelang);
