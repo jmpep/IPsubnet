@@ -5,6 +5,10 @@
 .container {
 }
 
+a, a:focus, a:hover {
+color:#a6a6a6;
+}
+
 .navbar-default{
 background-color:#4D4D4D;border-color:#4D4D4D;
 color:#999999;
@@ -109,6 +113,20 @@ button.btnlanguage:focus {
 background-color: #4D4D4D;
 border-color:#4D4D4D;
 }
+button.btntheoptions {
+background: transparent;
+color:#999999;
+border-color:#4D4D4D;
+}
+button.btntheoptions:hover {
+background-color: #8c8c8c;
+border-color:#4D4D4D;
+}
+button.btntheoptions:focus {
+background-color: #8c8c8c;
+border-color:#4D4D4D;
+}
+
 .open>.dropdown-toggle.btnlanguage:focus {
 border-color:#4D4D4D;
 }
@@ -169,7 +187,7 @@ border-bottom-color:#d9d9d9
 border-color:#d9d9d9
 }
 .panel-text>.panel-heading{
-color:#333;background-color:#808080;border-color:#d9d9d9
+color:#333;background-color:#bfbfbf;border-color:#d9d9d9
 }
 .panel-text>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#d9d9d9
