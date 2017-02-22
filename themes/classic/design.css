@@ -1,12 +1,17 @@
 /* *********************** */
 /* CSS not related to size */
 /* *********************** */
+/* theme classic */
 
 .container {
+background-color:#f2f2f2;
 }
-
+.panel-body {
+background-color:#f2f2f2;
+}
 .navbar-default{
-background-color:#00438c;border-color:grey;
+background-color:#00438c;
+border-color:grey;
 color:#e6e6fa;
 font-weight:bold;
 }
@@ -77,7 +82,14 @@ color:#333
 .navbar-default .btn-link[disabled]:focus,.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:focus,fieldset[disabled] .navbar-default .btn-link:hover{
 color:#ccc
 }
- 
+.btn,.panel,.panel-heading,.navbar-default,.form-control,.input-sm,select.input-sm.badged{
+border-radius: 0;
+}
+
+.nav,.panel-heading{
+padding:2px;
+}
+
 .ipsubnet>.panel-heading label{
 color:red;
 }
@@ -88,12 +100,12 @@ font-weight:bold;
 
 .btn-success {
     color: #fff;
-    background-color: #449d44;
+    background-color: #6d88ad;
     border-color: #398439;
 }
 .btn-success:hover{
     color: #fff;
-    background-color: #449d44;
+    background-color: #6d88ad;
     border-color: #398439;
 }
 
@@ -112,6 +124,18 @@ border-color:#00438c;
 }
 .open>.dropdown-toggle.btnlanguage:focus {
 border-color:#00438c;
+}
+button.btntheoptions {
+background: transparent;
+border-color:#00438c;
+}
+button.btntheoptions:hover {
+background-color: #6d88ad;
+border-color:#6d88ad;
+}
+button.btntheoptions:focus {
+background-color: #6d88ad;
+border-color:#6d88ad;
 }
 
 .flagmenu {
@@ -133,7 +157,7 @@ background:Gray;
 border-color:#337ab7
 }
 .panel-main>.panel-heading{
-color:#ffffff;background-color:darkBlue;border-color:#337ab7
+color:#ffffff;background-color:#003166;border-color:#337ab7
 }
 .panel-main>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#337ab7
@@ -153,14 +177,14 @@ border-color:#ddd;
 }
 .panel-calculation>.panel-heading{
 color:#000000;
-background-color:LightSteelBlue;
+background-color:#6d88ad;
 border-color:#ddd;
 }
 .panel-calculation>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#ddd
 }
 .panel-calculation>.panel-heading .badge{
-color:#f5f5f5;background-color:#333
+color:#f5f5f5;background-color:#6d88ad
 }
 .panel-calculation>.panel-footer+.panel-collapse>.panel-body{
 border-bottom-color:#ddd
@@ -170,7 +194,7 @@ border-bottom-color:#ddd
 border-color:#ddd
 }
 .panel-text>.panel-heading{
-color:#333;background-color:lightBlue;border-color:#ddd
+color:#333;background-color:#6d88ad;border-color:#ddd
 }
 .panel-text>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#ddd
@@ -186,7 +210,7 @@ border-bottom-color:#ddd
 border-color:#ddd
 }
 .panel-info>.panel-heading{
-color:#333;background-color:lightgreen;border-color:#ddd
+color:#333;background-color:#6d88ad;border-color:#ddd
 }
 .panel-info>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#ddd
@@ -202,7 +226,7 @@ border-bottom-color:#ddd
 border-color:#ddd
 }
 .panel-example>.panel-heading{
-color:#333;background-color:lime;border-color:#ddd
+color:#333;background-color:#6d88ad;border-color:#ddd
 }
 .panel-example>.panel-heading+.panel-collapse>.panel-body{
 border-top-color:#ddd
