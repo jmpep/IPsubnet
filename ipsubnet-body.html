@@ -4,11 +4,6 @@
 <DIV class="panel panel-main">
 <DIV ID="maintitle" class="panel-heading maintitle WORLD">
 <i class="fa fa-calculator fa-2x"></i>
-<SPAN lang="en">IP subnet calculator IPv4 & IPv6</SPAN>
-<SPAN lang="de">IPv4 & IPv6 subnet Rechner</SPAN>
-<SPAN lang="fr">IPv4 & IPv6 subnet calculatrice </SPAN>
-<SPAN lang="it">IPv4 & IPv6 subnet calcolatrice </SPAN>
-<SPAN lang="zh-hans">IP 子网 计算 IPv4 & IPv6</SPAN>
 </DIV>
 <DIV class="panel-body">
 <!-- panel group -->
@@ -22,20 +17,21 @@
 	   <BUTTON type="button" ID="selectlanguage" class="btn btn-primary dropdown-toggle btnlanguage" data-toggle="dropdown" >
  -->
        <BUTTON type="button" ID="selectlanguage" class="btn btn-primary btnlanguage" onClick="openDropDown('language');" >
-	   <IMG ID="imglanguage" class="WORLD" SRC="./images/WORLD-flg.png" />
-	   &nbsp;<SPAN class="fa fa-caret-down"></SPAN>&nbsp;
+	   <IMG ID="imglanguage" class="WORLD" SRC="images/WORLD-flg.png" />
+	   &nbsp;<SPAN id="selectlanguagedown" class="fa fa-caret-down"></SPAN>&nbsp;
 	   </BUTTON>
 <!-- 
         <ul id="selectlanguageul" class="languages" >
  -->
         <ul id="selectlanguageul" class="dropdown-menu languages" >
-          <li><a class="flagmenu" onClick="changelanguage('UK');" ><IMG ID="choiceUK" class="imglanguage" SRC="./images/UK-flg.png" />&nbsp;UK</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('FR');" ><IMG ID="choiceFR" class="imglanguage" SRC="./images/FR-flg.png" />&nbsp;FR</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('IT');" ><IMG ID="choiceIT" class="imglanguage" SRC="./images/IT-flg.png" />&nbsp;IT</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('US');" ><IMG ID="choiceUS" class="imglanguage" SRC="./images/US-flg.png" />&nbsp;US</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('DE');" ><IMG ID="choiceDE" class="imglanguage" SRC="./images/DE-flg.png" />&nbsp;DE</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('ZH-HANS');" ><IMG ID="choiceZH-HANS" class="imglanguage" SRC="./images/ZH-HANS-flg.png" />&nbsp;CN</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('WORLD');" ><IMG ID="choiceWORLD" class="imglanguage" SRC="./images/WORLD-flg.png" />&nbsp;default</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('EN-UK');" ><IMG ID="choiceUK" class="imglanguage" SRC="" />&nbsp;UK</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('FR');" ><IMG ID="choiceFR" class="imglanguage" SRC="" />&nbsp;FR</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('IT');" ><IMG ID="choiceIT" class="imglanguage" SRC="" />&nbsp;IT</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('EN-US');" ><IMG ID="choiceUS" class="imglanguage" SRC="" />&nbsp;US</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('DE');" ><IMG ID="choiceDE" class="imglanguage" SRC="" />&nbsp;DE</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('ZH-HANS');" ><IMG ID="choiceZH-HANS" class="imglanguage" SRC="" />&nbsp;CN</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('RU');" ><IMG ID="choiceRU" class="imglanguage" SRC="" />&nbsp;RU</a></li>
+          <li><a class="flagmenu" onClick="changelanguage('WORLD');" ><IMG ID="choiceWORLD" class="imglanguage" SRC="" />&nbsp;default</a></li>
         </ul>
 	   </DIV>
 	  </SPAN>
@@ -49,42 +45,38 @@
       <LABEL class="checkboxnav" for="IPv6cchk">
 		<a id="IPv6cmenutxt" class="WORLD"  href="#">
 	   </a>
-	  </LABEL>
-      <DIV >
        <input id="IPv6cchk" type="checkbox" class="checkbox-inline" value=" " onClick="setIPv6cCheckbox();" checked>
+	  </LABEL>
+<!--
+      <DIV >
       </DIV>
+-->
       </DIV>
 	   <DIV ID="theoptions" class="dropdown theoptions WORLD" >
 <!--
 	   <BUTTON type="button" ID="btntheoptions" class="btn dropdown-toggle btntheoptions" data-toggle="dropdown" onClick="openDropDown('language');" >
  -->
        <BUTTON type="button" ID="btntheoptions" class="btn btntheoptions" onClick="openDropDown('theoptions');" >
-	   &nbsp;<i class="fa fa-cog  fa-1x5"></i>&nbsp;<i class="fa fa-caret-down"></i>
+	   &nbsp;<i id="icotheoptions" class="fa fa-cog"></i>&nbsp;<i id="theoptionscaretdown" class="fa fa-caret-down"></i>
 	   </BUTTON>
         <ul id="theoptionsul" class="dropdown-menu theoptions">
 		 <li><a class="theoptions-menu" onClick="selectTheme('default');" >
-<SPAN lang="en">design modern </SPAN>
-<SPAN lang="de">modern Design</SPAN>
-<SPAN lang="fr">motif moderne</SPAN>
-<SPAN lang="it">design moderno </SPAN>
-<SPAN lang="zh-hans">现代设计</SPAN>
+         <SPAN id="theme_default" ></SPAN>
+		 </a></li>
+		 <li><a class="theoptions-menu" onClick="selectTheme('modern');" >
+         <SPAN id="theme_modern" ></SPAN>
 		 </a></li>
          <li><a class="theoptions-menu" onClick="selectTheme('classic');" >
-<SPAN lang="en">design cacti monitoring </SPAN>
-<SPAN lang="de">Cacti Monitoring Design</SPAN>
-<SPAN lang="fr">motif cacti monitoring</SPAN>
-<SPAN lang="it">motivo cacti monitoring </SPAN>
-<SPAN lang="zh-hans">设计 cacti 监控工具</SPAN>
+         <SPAN id="theme_classic" ></SPAN>
 		 </a></li>
          <li><a class="theoptions-menu" onClick="selectTheme('dark');" >
-<SPAN lang="en">design dark </SPAN>
-<SPAN lang="de">dunkel Design</SPAN>
-<SPAN lang="fr">motif sombre</SPAN>
-<SPAN lang="it">design buio</SPAN>
-<SPAN lang="zh-hans">黑暗的设计</SPAN>
+         <SPAN id="theme_dark" ></SPAN>
 		 </a></li>
-         <li><a class="theoptions-menu" onClick="selectThemeNew('grey');" >
-<SPAN id="themegrey" >design grey</SPAN>
+         <li><a class="theoptions-menu" onClick="selectTheme('grey');" >
+         <SPAN id="theme_grey" ></SPAN>
+		 </a></li>
+         <li><a class="theoptions-menu" onClick="selectTheme('paw');" >
+         <SPAN id="theme_paw" ></SPAN>
 		 </a></li>
         </ul>
 	   </DIV>
@@ -96,12 +88,6 @@
    <i ID="togglecollapse1" class="fa fa-toggle-on" aria-hidden="true"
       onclick="togglePanel(this,collapse1);"></i>
    <SPAN ID="panelcalculationtxt" class="WORLD">&nbsp;</SPAN>
-<SPAN lang="en">calculation</SPAN>
-<SPAN lang="de">Rechner</SPAN>
-<SPAN lang="fr">calculatrice</SPAN>
-<SPAN lang="it">calcolatrice</SPAN>
-<SPAN lang="zh-hans">计算</SPAN>
-
    &nbsp;<i class="fa fa-calculator fa-1x5"></i>&nbsp;
    </DIV>
    <DIV id="collapse1" class="panel-collapse in">
