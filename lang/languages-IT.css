@@ -10,26 +10,40 @@ a.IT[id|=IPv6cmenutxt]:after {
 a.IT[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativo';
 }
-/*
-div.IT[id|=maintitle]:after {
-	content: 'IPv4 & IPv6 subnet calcolatrice';
+:lang(it) #maintitle:after {
+   content:'opzioni di IP';
 }
-*/
+:lang(it) #theoptions:after {
+   content:'';
+}
+:lang(it) #panelcalculationtxt:after {
+   content:'calcolatrice';
+}
+:lang(it) #theme_default:after {
+   content:'disegno di default';
+}
+:lang(it) #theme_modern:after {
+   content:'moderno disegno';
+}
+:lang(it) #theme_classic:after {
+   content:'classico disegno';
+}
+:lang(it) #theme_dark:after {
+   content:'buio disegno';
+}
+:lang(it) #theme_grey:after {
+   content:'grigio disegno';
+}
+:lang(it) #theme_paw:after {
+   content:'paw disegno';
+}
+
 div.IT[id|=panelformat]:before{
 content: 'opzioni di IP';
 }
 #reinit[class~=IT]:after {
 content:'init ';
 }
-/*
-span.IT[id|=panelcalculationtxt]:before{
-content: 'calcolatrice';
-}
-
-div.IT[id|=theoptions]:before{
-content: '';
-}
-*/
 label.IT[id|=iplabel]:before{
 content: 'IP';
 }

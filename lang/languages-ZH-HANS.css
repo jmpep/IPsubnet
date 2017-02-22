@@ -12,17 +12,31 @@ a.ZH-HANS[id|=IPv6cmenutxt]:after {
 a.ZH-HANS[id|=IPv6amenutxt]:after {
 	content: 'IPV6 交替';
 }
-/*
-div.ZH-HANS[id|=maintitle]:after {
-	content: 'IP 子网 计算 IPv4 & IPv6';
+:lang(zh-hans) #maintitle:after {
+   content:'IP 子网 计算 IPv4 & IPv6';
 }
-div.ZH-HANS[id|=theoptions]:before{
-content: '';
+:lang(zh-hans) #theoptions:after {
+   content:'';
 }
-span.ZH-HANS[id|=panelcalculationtxt]:before{
-content: '计算';
+:lang(zh-hans) #panelcalculationtxt:after {
+   content:'计算';
 }
-*/
+
+:lang(zh-hans) #theme_default:after {
+   content:'默認';
+}
+:lang(zh-hans) #theme_modern:after {
+   content:'现代设计';
+}
+:lang(zh-hans) #theme_classic:after {
+   content:'设计 cacti 监控工具';
+}
+:lang(zh-hans) #theme_dark:after {
+   content:'黑暗的设计';
+}
+:lang(zh-hans) #theme_grey:after {
+   content:'灰色設計';
+}
 #reinit[class~=ZH-HANS]:after {
 content:'初始化 ';
 }

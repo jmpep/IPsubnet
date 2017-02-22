@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</HEAD>
+<BODY>
+<p id="p1">
+ <h1> IPv6 EN</h1>
+  <A href="https://tools.ietf.org/html/rfc4291#page-2">RFC 4291</A>
+ <h2>Summary:</h2>
+ <SPAN id="infoipv6txt" onload="this.innerHTML=this.innerHTML.replace(/\s/gi,'&nbsp;');">
+ <LI>The biggest allocation size is /32 which is reserved for internet provider.</LI>
+ <LI>Typically a big customer get /48, but could be bigger when requested with good reasons.</LI>
+ <LI>Above /48 it needs a registration by RIR (example for Europa RIPE NCC) with implementation plan.</LI>
+ <LI>IPv6 does not care like IPv4 about the number of devices. The standard subnet is /64 because the interface ID is 64 bits.</LI>
+ <LI>Exception on routers (/127). [https://tools.ietf.org/html/rfc6177]</LI>
+ <LI>/48 = 65536 subnets of /64.</LI>
+ <LI>::1/128 is the loopback address</LI>
+ <LI>::/128 is the undefined IP, for example when cannot be allocated.</LI>
+ <LI>LLA = Link-Local-Adresses. fe80::/10. link between routers, switchs.</LI>
+ <LI>ULA fc00::/7 (fc00… - fdff…) uses for internal customer communication (like before 192.168.x.x). Example internal link between to customers or tunnel.</LI>
+ <BR/>
+
+ <STYLE>
+ div.iptable { font-family:courier; margin:10px; padding: 5px; width:51em; }
+ div.iphead { margin:0; float:left; text-align: left;}
+ div.iptitle { margin:0; float:left; text-align: center;}
+ div.iptitle:first-child { margin:0; float:left; text-align: right;}
+ div.iptitle:after { clear: both;}
+ span.iptitle { font-weight:bold;font-size:large; }
+ div.col0 { width:17em; }
+ div.col1 { width:4em; }
+ div.col1a { width:1em; }
+ div.col2 { width:2em; }
+ div.col2a { width:2em; }
+ div.col2b { width:2em; }
+ div.col2c { width:2em; }
+ div.col2x { width:29em; }
+ div.col3 { width:3em; }
+ div.col2y { width:35em; }
+ div.col3b { width:2em; }
+ div.col4 { width:4em; }
+ div.col4a { width:9em; }
+ div.col3x { width:41em; }
+ div.col4x { width:41em; }
+ div.iprow { margin:0; text-align: right; vertical-align: middle; display:inline; font-size:100%; }
+ div.ipcell { margin:0; float:left; height:1.2em;}
+ span.iprow { font-size:80%; color:white;}
+ div.ipcelllast { margin:0; float:left; text-align: center; vertical-align: middle; }
+ span.iprowlast { font-size:100%; color:white;}
+ .center { text-align: center; }
+ .bold { font-weight:bold;}
+ .color0 { background-color:silver;}
+ .color1 { background-color:gold;}
+ .color2 { background-color:royalBlue;}
+ .color2a { background-color:CornflowerBlue;}
+ .color2b { background-color:CadetBlue;}
+ .color2c { background-color:DarkSlateBlue;}
+ .color3 { background-color:lightgreen;}
+ .color3b { background-color:green;}
+ .color4 { background-color:Brown;}
+ .color5 { background-color:Sienna;}
+ </STYLE>
+ <DIV class="iptable color0" >
+ <DIV class="iptitle" >
+ <DIV class="col0 iphead"><SPAN class="iptitle">IPv6</SPAN></DIV>
+ <DIV class="col1 iptitle color1"><SPAN class="iptitle">2001</SPAN></DIV>
+ <DIV class="col1a iptitle color0"><SPAN class="iptitle">:</SPAN></DIV>
+ <DIV class="col1 iptitle color1"><SPAN class="iptitle">20DB8</SPAN></DIV>
+ <DIV class="col1a iptitle color0"><SPAN class="iptitle">:</SPAN></DIV>
+ <DIV class="col2 iptitle color2"><SPAN class="iptitle">A</SPAN></DIV>
+ <DIV class="col2a iptitle color2a"><SPAN class="iptitle">B</SPAN></DIV>
+ <DIV class="col2b iptitle color2b"><SPAN class="iptitle">C</SPAN></DIV>
+ <DIV class="col2c iptitle color2c"><SPAN class="iptitle">D</SPAN></DIV>
+ <DIV class="col1a iptitle color0"><SPAN class="iptitle">:</SPAN></DIV>
+ <DIV class="col3 iptitle color3"><SPAN class="iptitle">523</SPAN></DIV>
+ <DIV class="col3b iptitle color3b"><SPAN class="iptitle">4</SPAN></DIV>
+ <DIV class="col1a iptitle color0"><SPAN class="iptitle">:</SPAN></DIV>
+ <DIV class="col4 iptitle color4"><SPAN class="iptitle">BCDE</SPAN></DIV>
+ <DIV class="col1a iptitle color0"><SPAN class="iptitle">:</SPAN></DIV>
+ <DIV class="col4 iptitle color4"><SPAN class="iptitle">5678</SPAN></DIV>
+ </DIV>
+ <DIV class="iprow" >
+ <DIV class="ipcell col2x color2" ><SPAN class="iprow" >'/32' biggest enterprise bit mask (from LIR)&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col2a  color2a" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col2b  color2b" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col2c  color2c" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col3  color3" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col3b  color3b" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col4  color4" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col4  color4" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ </DIV>
+ <BR/>
+ <DIV class="iprow" >
+ <DIV class="ipcell col2y color2c" ><SPAN class="iprow" >'/48' usual enterprise bit mask (from LIR)&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col3  color3" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col3b  color3b" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col4a  color4 center bold" ><SPAN class="iprow" >interface</SPAN></DIV>
+ </DIV>
+ <BR/>
+ <DIV class="iprow" >
+ <DIV class="ipcell col3x color3b" ><SPAN class="iprow" >'/64' smallest possible subnet&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col4a  color4 center bold" ><SPAN class="iprow" >identifiateur</SPAN></DIV>
+ </DIV>
+ <BR/>
+ <DIV class="iprow" >
+ <DIV class="ipcelllast col3x color5 bold" ><SPAN class="iprowlast" >IPv6 prefix</SPAN></DIV>
+ <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
+ <DIV class="ipcelllast col4a  color4" ><SPAN class="iprowlast" >&nbsp;</SPAN></DIV>
+ </DIV>
+ <BR/>
+ <BR/>
+ </DIV>
+ <BR/>
+
+ <h2>Tips:</h2>
+ <LI>https or http with IPv6. https://[IPv6]/.... example http://[2001:db8:4003:c00::6a] (IP beginning with '2001:db8:' are reserved for documentation)</LI>
+ <LI>https or http with IPv6 and port. https://[IPv6]:port/.... example http://[2001:db8:4003:c00::6a]:8080</LI>
+ <BR/>
+ <h2>Some Terms:</h2>
+ <LI>IANA = responsible for global coordination of the Internet Protocol addressing systems</LI>
+ <LI>RIR = Regional Internet Registry. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)</LI>
+ <LI>LIR = Local Internet Registry. In fact the direct provider of your compagny or as end user.</LI>
+ <LI>PI = Provider Independent Assignments</LI>
+ <LI>LLA = Link-Local-Adresses fe80::/10</LI>
+ <LI>ULA = Unique Local Addresses = fc00::/7 (fc00… - fdff…) uses for internal customer communication.</LI>
+ <h2>Detail:</h2>
+  IPv6 assignation IANA->RIR->LIR->customer<BR/>
+ <h2>Multicast:</h2>
+ <LI>FF00::/8</LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#ipv6-scope" >IPv6 Multicast Address Scopes.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#node-local" >Node-Local Scope Multicast Addresses.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#link-local" >Link-Local Scope Multicast Addresses.</A></LI>
+ <LI><A href="http://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml#site-local" >Site-Local Scope Multicast Addresses.</A></LI>
+ </p>
+ <p ID="iframeinfoIPfield" style="display:none">
+ text for IP text !!!!!!!!!
+ <p>
+</BODY>
+</HTML>

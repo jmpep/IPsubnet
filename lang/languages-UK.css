@@ -10,16 +10,29 @@ a.UK[id|=IPv6cmenutxt]:after {
 a.UK[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
-/*
-div.UK[id|=maintitle]:after {
-	content: 'IP subnet calculator IPv4 & IPv6';
+:lang(en_uk) #maintitle:after {
+   content:'IP subnet calculator IPv4 & IPng (IPv6).';
 }
-span.UK[id|=panelcalculationtxt]:before{
-content: 'calculation';
+:lang(en_uk) #theoptions:after {
+   content:'';
 }
-*/
-div.UK[id|=theoptions]:before{
-content: '';
+:lang(en_uk) #panelcalculationtxt:after {
+   content:'calculator';
+}
+:lang(en_uk) #theme_default:after {
+   content:'initial design';
+}
+:lang(en_uk) #theme_modern:after {
+   content:'modern design';
+}
+:lang(en_uk) #theme_classic:after {
+   content:'classic design';
+}
+:lang(en_uk) #theme_dark:after {
+   content:'dark design';
+}
+:lang(en_uk) #theme_grey:after {
+   content:'grey design';
 }
 #reinit[class~=UK]:after {
 content:'re-init ';

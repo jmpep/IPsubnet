@@ -11,23 +11,37 @@ a.DE[id|=IPv6cmenutxt]:after {
 a.DE[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternativ';
 }
-/*
-div.DE[id|=maintitle]:after {
-	content: 'IPv4 & IPv6 subnet Rechner';
+:lang(de) #maintitle:after {
+   content:'IPv4 & IPv6 subnet Rechner';
 }
-*/
+:lang(de) #theoptions:after {
+   content:'';
+}
+:lang(de) #panelcalculationtxt:after {
+   content:'Rechner';
+}
+:lang(de) #theme_default:after {
+   content:'default Thema';
+}
+:lang(de) #theme_modern:after {
+   content:'modern Thema';
+}
+:lang(de) #theme_classic:after {
+   content:'Klassik Thema';
+}
+:lang(de) #theme_dark:after {
+   content:'dunkel Thema';
+}
+:lang(de) #theme_grey:after {
+   content:'grau Thema';
+}
+:lang(de) #theme_paw:after {
+   content:'paw Thema';
+}
 
 #reinit[class~=DE]:after {
 content:'Wiedererstellung ';
 }
-/*
-span.DE[id|=panelcalculationtxt]:before{
-content: 'Rechner';
-}
-div.DE[id|=theoptions]:before{
-content: '';
-}
-*/
 label.DE[id|=iplabel]:before{
 content: 'IP';
 }

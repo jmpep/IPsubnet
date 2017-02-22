@@ -10,16 +10,38 @@ a.FR[id|=IPv6cmenutxt]:after {
 a.FR[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternative';
 }
+:lang(fr) #maintitle:after {
+   content:'IPv4 & IPv6 subnet calculatrice';
+}
+:lang(fr) #theoptions:after {
+   content:'';
+}
+:lang(fr) #panelcalculationtxt:after {
+   content:'calculatrice';
+}
+:lang(fr) #theme_default:after {
+   content:'motif initial';
+}
+:lang(fr) #theme_modern:after {
+   content:'motif moderne';
+}
+:lang(fr) #theme_classic:after {
+   content:'motif cacti monitoring';
+}
+:lang(fr) #theme_dark:after {
+   content:'motif sombre';
+}
+:lang(fr) #theme_grey:after {
+   content:'motif gris';
+}
+:lang(fr) #theme_paw:after {
+   content:'motif paw';
+}
+
 /*
 div.FR[id|=maintitle]:after {
 	content: 'IPv4 & IPv6 subnet calculatrice';
 }
-*/
-
-#reinit[class~=FR]:after {
-content:'re-initialisation ';
-}
-/*
 span.FR[id|=panelcalculationtxt]:before{
 content: 'calculatrice';
 }
@@ -27,6 +49,10 @@ div.FR[id|=theoptions]:before{
 content: '';
 }
 */
+
+#reinit[class~=FR]:after {
+content:'re-initialisation ';
+}
 label.FR[id|=iplabel]:before{
 content: 'IP';
 }
