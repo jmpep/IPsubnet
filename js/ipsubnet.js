@@ -1995,13 +1995,16 @@ function change_class(theclass)
 function infoIPv4v6(){
   var infoIPv4v6txt = document.getElementById("infoIPv4v6txt");
   var infoIPv4v6btn = document.getElementById("infoIPv4v6btn");
-  var iframeinfo = document.getElementById("iframeinfo");
   //var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
-  var thelang;
+  var theexamples,lang,thelang,country;
+	lang=getLang( $('body').attr('lang').trim() ).toUpperCase();
+    thelang=getLang(lang.trim()).toUpperCase();
+	country=getCountry(lang.trim()).toUpperCase();
+
 	txt=infoIPv4v6txt.className;
 	btn=infoIPv4v6btn.className;
-	iframeinfo.style.display='none';
+	$('#iframeinfo').css('display','none');
 	if (txt.indexOf('hidetxt')<0){
 	  txt= txt.replace('showtxt','').trim();
 	  txt= txt.replace(/\s+/gi," ");
@@ -2016,16 +2019,9 @@ function infoIPv4v6(){
 	  btn= btn.replace(/\s+/gi," ");
 	  infoIPv4v6txt.className=txt +' showtxt';
 	  infoIPv4v6btn.className=btn +' showtxt';
-	  iframeinfo.style.display='inline';
+	  $('#iframeinfo').css('display','inline');
 
-	  //lang= imglanguage.className.replace('imglanguage','').trim();
-	  //if ((lang=='WORLD') || (lang=='US')|| (lang=='UK')) lang='EN';
-	  //iframeinfo.src ="./lang/infoIPv4v6-"+lang+".html"; // #p1";
-	  thelang=getLang( $('body').attr('lang').trim() ).toUpperCase();
-	  iframeinfo.src ="./lang/infoIPv4v6-"+thelang+".html"; // #p1";
-
-      //iframeinfo.contentDocument.location.reload(true);
-	  iframeinfo.style.display='inline';
+	  setFileiframeinfo(thelang,country);
 	}
 }
 function textipimportdivOnscroll() {
@@ -2412,7 +2408,7 @@ function getCountry(langfull){
   	ctry='world';
   } else {
     /* not China to complex */
-    if (( langfull!='zh-hans') && (langfull.indexOf('-')>=0) ) {
+    if (( langfull!='ZH-HANS') && (langfull.indexOf('-')>=0) ) {
   	  var temp;
   	  temp=langfull.split('-');
       ctry = temp[1];
@@ -2422,6 +2418,18 @@ function getCountry(langfull){
   }
   return ctry;
 }
+function setFileiframeinfo(lng,ctry) {
+	var thefile;
+	thefile= lng.toUpperCase();
+	switch (lng) {
+	    case 'ZH': thefile='ZH-HANS'; break;
+	    case 'WORLD': thefile='EN'; break;
+	    default:
+	      ;
+	}
+	$('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thefile+".html");
+}
+
 function setlanguageObjects(lang) {
   /* the DOM variable above are for compatibility wit IE */
   var theexamples,thelang,country;
@@ -2464,17 +2472,14 @@ function setlanguageObjects(lang) {
 	for (i=0;i<theexamples.length;i++) {
 	   changeDivLanguageTextById(theexamples[i],thelang);
 	}
-	//if ((thelang=='WORLD') || (thelang=='EN')|| (thelang=='US')|| (thelang=='UK')) filelang='EN';
-    //$('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+filelang+".html");
-    $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thelang+".html");
+	setFileiframeinfo(thelang,country);
+
 	if (infoIPv4v6btn.className.indexOf('hidetxt')<0){
 	  $('#iframeinfo').css('display','inline');
 	} else {
 	  $('#iframeinfo').css('display','none');		
 	}
 	readselectbits(country);
-	//if (thelang=='WORLD') thelang='EN';
-	//if ((thelang=='US')|| (thelang=='UK')) thelang='EN_'+thelang;
 	$('body').attr('lang',lang.toLowerCase());
 }
 
