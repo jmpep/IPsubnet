@@ -2393,7 +2393,7 @@ function getCountry(langfull){
   var ctry='us';
   langfull= langfull.toUpperCase();
   if ( (langfull=='') || (langList.indexOf(langfull)<0) ) {
-  	ctry='world';
+  	ctry='WORLD';
   } else {
     /* not China to complex */
     if (( langfull!='ZH-HANS') && (langfull.indexOf('-')>=0) ) {
