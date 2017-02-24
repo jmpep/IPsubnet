@@ -237,6 +237,14 @@ textarea.textipimport {
 textarea.textipimport[class~=warning] {
   border-left: 5px Red solid;
 }
+div.textimportexamplediv {
+    display:inline-block;
+	vertical-align:top;
+	padding: 5px;
+}
+span.textimportexample {
+	font-size:80%;
+}
 .statusicons {
   visibility:visible;
 }
