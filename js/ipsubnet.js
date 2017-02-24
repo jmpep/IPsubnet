@@ -685,8 +685,6 @@ function transformIPtotxt(ipversion,tip) {
 function changeSubnet() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
-  var btIPv6 = document.getElementById("btIPv6");
-  var btIPv6a = document.getElementById("btIPv6a");
   var bits = document.getElementById("bits");
   var IPv6cchk = document.getElementById("IPv6cchk");
   var subnet = document.getElementById("subnet");
@@ -698,8 +696,8 @@ function changeSubnet() {
   var nbbits,ipversion,ipval;
 
   ipversion = 'v4';
-  if (btIPv6.className.indexOf('active')>=0)  ipversion='v6';
-  if (btIPv6a.className.indexOf('active')>=0) ipversion='v6a';
+  if ($('#btIPv6').hasClass('active'))  ipversion='v6';
+  if ($('#btIPv6a').hasClass('active')) ipversion='v6a';
   if ((ipversion.indexOf('v6')>=0) && (IPv6cchk.checked)) ipversion=ipversion+'c';
   //if (btIPv6c.className.indexOf('active')>=0) ipversion='v6c';
   // calcul de l'IP dans le format ipv6
@@ -743,14 +741,13 @@ function calculMaskIPv4(nbbits) {
 function calculeMaskBits()
 {
   var IP = document.getElementById("IP");
-  var btIPv4 = document.getElementById("btIPv4");
   var bits = document.getElementById("bits");
   var netmask = document.getElementById("netmask");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var valmask,maxbits,minbits,valbits,ipval;
   
-  ipversionv4=(btIPv4.className.indexOf('active')>=0);
+  ipversionv4=$('#btIPv4').hasClass('active');
   valbits=bits.value;
   if (ipversionv4) {
      ipval=IP.value;
@@ -1695,16 +1692,9 @@ function changeIPv4() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
   var bits = document.getElementById("bits");
-  var subnet = document.getElementById("subnet");
-  var hostfrom = document.getElementById("hostfrom");
-  var hostto = document.getElementById("hostto");
-  var netmask = document.getElementById("netmask");
-  var netmasklabel = document.getElementById("netmasklabel");
-  var hostsnb = document.getElementById("hostsnb");
-  var ipsnb = document.getElementById("ipsnb");
+  //var hostsnb = document.getElementById("hostsnb");
+  //var ipsnb = document.getElementById("ipsnb");
   var imglanguage = document.getElementById("imglanguage");
-  var selecthostsnb = document.getElementById("selecthostsnb");
-  var sectionbroadcast = document.getElementById("sectionbroadcast");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var ipval,ipvaltxt;
@@ -1728,32 +1718,29 @@ function changeIPv4() {
   bitszone=96;
   if (tempval>bitszone) {
  	   bits.value= tempval-bitszone;
- 	   netmask.value= tempval-bitszone;
-  	   hostsnb.value= tempval-bitszone;
- 	   ipsnb.value= tempval-bitszone;
+  	   //hostsnb.value= tempval-bitszone;
+ 	   //ipsnb.value= tempval-bitszone;
 	   }
   else if (tempval>64) {
  	   bits.value= tempval-64;
- 	   netmask.value= tempval-64;
-  	   hostsnb.value= tempval-64;
- 	   ipsnb.value= tempval-64;
+  	   //hostsnb.value= tempval-64;
+ 	   //ipsnb.value= tempval-64;
   } else if (tempval>48) {
  	   bits.value= tempval-48;
- 	   netmask.value= tempval-48;
-  	   hostsnb.value= tempval-48;
- 	   ipsnb.value= tempval-48;
+  	   //hostsnb.value= tempval-48;
+ 	   //ipsnb.value= tempval-48;
   } else if (tempval>32) {
  	   bits.value= tempval-32;
- 	   netmask.value= tempval-32;
-  	   hostsnb.value= tempval-32;
- 	   ipsnb.value= tempval-32;
+  	   //hostsnb.value= tempval-32;
+ 	   //ipsnb.value= tempval-32;
   } else {
  	   bits.value= tempval;
- 	   netmask.value= tempval;
- 	   hostsnb.value= tempval;
- 	   ipsnb.value= tempval;
+ 	   //hostsnb.value= tempval;
+ 	   //ipsnb.value= tempval;
  	}
   changeSubnet();
+  valmasktxt= calculMaskIPv4(bits.value);
+  $('#netmask').val(valmasktxt);
   bitsToHostsnb();
   bitsToIPsnb();
   getBroadcast();
@@ -1763,13 +1750,13 @@ function changeIPv4() {
   calculBitsToSelectHostsnb();
   calculreversenetmaskval();
   if (btIPv4.className.indexOf('active')>=0) {
-	  sectionbroadcast.style.display='inline';
-	  netmask.style.visibility ='visible';
-	  netmasklabel.style.visibility ='visible';	  
+	  $('#sectionbroadcast').css('display','inline');
+	  $('#netmask').css('visibility','visible');	  
+	  $('#netmasklabel').css('visibility','visible');	  
   } else {
-	  sectionbroadcast.style.display='none';
-	  netmask.style.visibility ='hidden';
-	  netmasklabel.style.visibility ='hidden';	  
+	  $('#sectionbroadcast').css('display','none');
+	  $('#netmask').css('visibility','hidden');	  
+	  $('#netmasklabel').css('visibility','hidden');	  
   }
   fillinfotxtip();
   storeAllStorage();
@@ -2050,6 +2037,7 @@ function loadTextIPbtn() {
 //console.log('loadTextIPbtn xi='+xi+' v1='+v1+' v2='+v2+' vx='+vx+' XSTOP='+xstop);
 	    switch (vx) {
 		  case 'IP': 
+		  case 'CIDR': 
 		    vy=v2[1].trim();
 			a=checkIPformat(vy);
             b=checkCDIRMask(vy);
@@ -2064,7 +2052,7 @@ function loadTextIPbtn() {
 				  ip = vz[0].trim();
                   $('#IP').val(ip);
 				  bits = vz[1].trim();
-//console.log('loadTextIPbtn '+' vy='+vy+' a='+a+' b='+b+' vz='+vz+' ip='+ip+' bits='+bits);
+//console.log('loadTextIPbtn '+' vy='+vy+' a='+a+' b='+b+' vz='+vz+' ip='+ip+' bits='+bits+' b='+b);
 //if (xstop>=10) exit;
                   if (b==1) {
 					nb = convertNetmaskToBits(bits);
@@ -2084,8 +2072,8 @@ function loadTextIPbtn() {
 					} else {
 						ret =3;
 					}
-		            if (ret<3) { changeIPv4(); } else { changeIPv6(); }
 					$('#bits').val(bits);
+		            if (ret<3) { changeIPv4(); } else { changeIPv6(); }
 		            lines = lines + '<i class="fa fa-check-square-o statusicons ok" aria-hidden="true"></i>'+'<BR>';
 				  }
 			    } else {
