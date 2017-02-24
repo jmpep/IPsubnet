@@ -284,7 +284,18 @@
 	   <SPAN id="textvalid" class="textvalid" >
 	 </SPAN>
 	 </DIV>
-    </DIV>
+     <DIV id="textimportexamplediv" class="textimportexamplediv" >
+	   <i class="fa fa-info-circle" aria-hidden="true" onClick="togglePanel(togglePaneltextimportexample,textimportexample);" ></i>
+	   <i id="togglePaneltextimportexample" class="fa fa-toggle-on" aria-hidden="true" onClick="togglePanel(this,textimportexample);" ></i>
+	   <BR>
+	   <DIV id="textimportexample" class="textimportexample" ><SPAN >
+	   IP=192.168.0.10/20<BR>
+	   CIDR=192.168.0.10 / 20<BR>
+	   IP=192.168.0.10 / 255.255.240.0<BR>
+	   netmask=255.255.224.0<BR>
+	 </SPAN></DIV>
+	 </DIV>
+	 </DIV>
    </DIV>
   </DIV>
   <!-- end panel IP TEXT -->
@@ -303,12 +314,6 @@
 	 &nbsp;</BUTTON>
 	 <DIV ID="infoIPv4v6txt" class="infoIPv4v6txt hidetxt" readonly ></DIV>
      <iframe id="iframeinfo" type="text/html" src="" class="iframeinfo WORLD" ></iframe>
-<!--
-     <iframe id="iframeinfo" type="text/html" src="lang/infoIPv4v6-EN.html" class="iframeinfo WORLD" ></iframe>
-	 <DIV ID="infoIPfieldtxt" type="hidden" readonly ></DIV>
-     <iframe id="iframeinfoIPfield" type="text/html" src="" class="iframeinfo WORLD" ></iframe>
-    </DIV>
--->
    </DIV>
   </DIV>
  <!-- end panel IP Info -->
