@@ -160,7 +160,10 @@ select.input-sm.badged{
 color:#ffffff;
 background:Gray;
 }
-
+select.input-sm{
+color:#ffffff;
+background:Gray;
+}
 .panel-main{
 border-color:#737373
 }
