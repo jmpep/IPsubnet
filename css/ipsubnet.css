@@ -1,101 +1,6 @@
 /* *********************** */
 /* CSS general             */
 /* *********************** */
-body:lang(en) span:lang(fr) {
-        display: none;
-}
-body:lang(en) span:lang(it) {
-        display: none;
-}
-body:lang(en) span:lang(de) {
-        display: none;
-}
-body:lang(en) span:lang(zh-hans) {
-        display: none;
-}
-body:lang(en) span:lang(ru) {
-        display: none;
-}
-
-body:lang(fr) span:lang(en) {
-        display: none;
-}
-body:lang(fr) span:lang(it) {
-        display: none;
-}
-body:lang(fr) span:lang(de) {
-        display: none;
-}
-body:lang(fr) span:lang(zh-hans) {
-        display: none;
-}
-body:lang(fr) span:lang(ru) {
-        display: none;
-}
-
-body:lang(de) span:lang(en) {
-        display: none;
-}
-body:lang(de) span:lang(fr) {
-        display: none;
-}
-body:lang(de) span:lang(it) {
-        display: none;
-}
-body:lang(de) span:lang(zh-hans) {
-        display: none;
-}
-body:lang(de) span:lang(ru) {
-        display: none;
-}
-
-body:lang(it) span:lang(en) {
-        display: none;
-}
-body:lang(it) span:lang(fr) {
-        display: none;
-}
-body:lang(it) span:lang(de) {
-        display: none;
-}
-body:lang(it) span:lang(zh-hans) {
-        display: none;
-}
-body:lang(it) span:lang(ru) {
-        display: none;
-}
-
-body:lang(zh-hans) span:lang(en) {
-        display: none;
-}
-body:lang(zh-hans) span:lang(fr) {
-        display: none;
-}
-body:lang(zh-hans) span:lang(it) {
-        display: none;
-}
-body:lang(zh-hans) span:lang(de) {
-        display: none;
-}
-body:lang(zh-hans) span:lang(ru) {
-        display: none;
-}
-
-body:lang(ru) span:lang(en) {
-        display: none;
-}
-body:lang(ru) span:lang(fr) {
-        display: none;
-}
-body:lang(ru) span:lang(it) {
-        display: none;
-}
-body:lang(ru) span:lang(de) {
-        display: none;
-}
-body:lang(ru) span:lang(zh-hans) {
-        display: none;
-}
 
 .imglanguage{
   position:relative;display:inline-block;
@@ -119,7 +24,7 @@ border-radius: 5px;
 .WORLD {
  /* marking of the language always empty */
 }
-.UK {
+.EN {
  /* marking of the language always empty */
 }
 .FR {
@@ -543,4 +448,27 @@ height:33px;
 .flagmenu {
  font-size:90%;
 }
-
+.flagmenuico {
+}
+.flagmenuicofield1{
+min-width:5em;
+display:inline-block;
+}
+.flag-1x5 {
+font-size:150%;
+}
+.flag-2x {
+font-size:200%;
+}
+.flag-icon[id|=flag]:hover{
+position:relative;
+/*font-size:350%;*/
+-webkit-transform:scale(2);
+transform:scale(2);
+transition-timing-function: ease-in-out;
+z-index:100M;
+}
+.flag-icon[id|=flag]{
+-webkit-transition: all 0.7s ease;
+transition: all 0.7s ease;
+}
