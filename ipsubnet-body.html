@@ -14,18 +14,60 @@
       <SPAN class="navbar-brand" >
 	   <DIV class="dropdown" id="language" >
        <BUTTON type="button" ID="selectlanguage" class="btn btn-primary btnlanguage" onClick="openDropDown('language');" >
-	   <IMG ID="imglanguage" class="WORLD" SRC="" />
+	   <span ID="imglanguage" class="flag-icon flag-icon-world flag-2x" ></span>
 	   &nbsp;<SPAN id="selectlanguagedown" class="fa fa-caret-down"></SPAN>&nbsp;
 	   </BUTTON>
         <ul id="selectlanguageul" class="dropdown-menu languages" >
-          <li><a class="flagmenu" onClick="changelanguage('EN-UK');" ><IMG ID="choiceUK" class="imglanguage" SRC="" />&nbsp;UK</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('FR');" ><IMG ID="choiceFR" class="imglanguage" SRC="" />&nbsp;FR</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('IT');" ><IMG ID="choiceIT" class="imglanguage" SRC="" />&nbsp;IT</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('EN-US');" ><IMG ID="choiceUS" class="imglanguage" SRC="" />&nbsp;US</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('DE');" ><IMG ID="choiceDE" class="imglanguage" SRC="" />&nbsp;DE</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('ZH-HANS');" ><IMG ID="choiceZH-HANS" class="imglanguage" SRC="" />&nbsp;CN</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('RU');" ><IMG ID="choiceRU" class="imglanguage" SRC="" />&nbsp;RU</a></li>
-          <li><a class="flagmenu" onClick="changelanguage('WORLD');" ><IMG ID="choiceWORLD" class="imglanguage" SRC="" />&nbsp;default</a></li>
+		  <li><a class="flagmenuico" onClick="changelanguage('world');" >
+		    <span class="flagmenuicofield1" >default&nbsp;</span>
+		    <span ID="flag-world" class="flag-icon flag-icon-world flag-2x"></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('zh-hans');" >CN&nbsp;</span>
+		    <span ID="flag-cn" class="flag-icon flag-icon-cn flag-2x" onClick="changelanguage('zh-hans');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('cs-cz');" >CZ&nbsp;</span>
+		    <span ID="flag-cs-cz" class="flag-icon flag-icon-cz flag-2x" onClick="changelanguage('cs-cz');" ></span>
+		  </a></li>
+		  <li><a class="flagmenuico" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('en-gb');" >EN &nbsp;</span>
+		    <span ID="flag-en-us" class="flag-icon flag-icon-us flag-2x" onClick="changelanguage('en-us');" ></span>
+		    <span ID="flag-en-gb" class="flag-icon flag-icon-gb flag-2x" onClick="changelanguage('en-gb');" ></span>
+		    <span ID="flag-en-ca" class="flag-icon flag-icon-ca flag-2x" onClick="changelanguage('en-ca');" ></span>
+		    <span ID="flag-en-au" class="flag-icon flag-icon-au flag-2x" onClick="changelanguage('en-au');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('de-de');" >DE&nbsp;</span>
+		    <span ID="flag-de-de" class="flag-icon flag-icon-de flag-2x" onClick="changelanguage('de-de');" ></span>
+		    <span ID="flag-de-at" class="flag-icon flag-icon-at flag-2x" onClick="changelanguage('de-at');" ></span>
+		    <span ID="flag-de-ch" class="flag-icon flag-icon-ch flag-2x" onClick="changelanguage('de-ch');" ></span>
+		    <span ID="flag-de-li" class="flag-icon flag-icon-li flag-2x" onClick="changelanguage('de-li');" ></span>
+		    <span ID="flag-de-lu" class="flag-icon flag-icon-lu flag-2x" onClick="changelanguage('de-lu');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('fr-fr');" >FR&nbsp;</span>
+		    <span ID="flag-fr-fr" class="flag-icon flag-icon-fr flag-2x" onClick="changelanguage('fr-fr');" ></span>
+		    <span ID="flag-fr-ca" class="flag-icon flag-icon-ca flag-2x" onClick="changelanguage('fr-ca');" ></span>
+		    <span ID="flag-fr-ch" class="flag-icon flag-icon-ch flag-2x" onClick="changelanguage('fr-ch');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('it-it');" >IT&nbsp;</span>
+		    <span ID="flag-it-it" class="flag-icon flag-icon-it flag-2x" onClick="changelanguage('it-it');" ></span>
+		    <span ID="flag-it-ch" class="flag-icon flag-icon-ch flag-2x" onClick="changelanguage('it-ch');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('pl');" >PL&nbsp;</span>
+		    <span ID="flag-pl-pl" class="flag-icon flag-icon-pl flag-2x" onClick="changelanguage('pl');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('ru-ru');" >RU&nbsp;</span>
+		    <span ID="flag-ru-ru" class="flag-icon flag-icon-ru flag-2x" onClick="changelanguage('ru-ru');" ></span>
+		  </a></li>
+          <li><a class="flagmenu" >
+		    <span class="flagmenuicofield1" onClick="changelanguage('tr');" >TR&nbsp;</span>
+		    <span ID="flag-tr" class="flag-icon flag-icon-tr flag-2x" onClick="changelanguage('tr');" ></span>
+		  </a></li>
         </ul>
 	   </DIV>
 	  </SPAN>
@@ -198,9 +240,9 @@
    <div class="row">
     <div class="form-group">
       <label id="historylabel" class="control-label col-sm-1 labelling WORLD" for="history"></label>
-      <div class="col-sm-2" id="historydiv" >
-	   <select id="history" class="input-sm" value="" placeholder="choose history" onchange="setHistoryToIP();">
-	   <option val="" >history empty</option>
+      <div class="col-sm-3" id="historydiv" >
+	   <select id="history" class="input-sm" placeholder="choose history" onchange="setHistoryToIP();">
+	   <option value="192.168.0.1/24" >192.168.0.1/24</option>
 	   </select>
       </div>
 	</div>
@@ -238,14 +280,15 @@
 	 </SPAN>
 	 </DIV>
      <DIV id="textimportexamplediv" class="textimportexamplediv" >
-	   <i class="fa fa-info-circle" aria-hidden="true" onClick="togglePanel(togglePaneltextimportexample,textimportexample);" ></i>
-	   <i id="togglePaneltextimportexample" class="fa fa-toggle-on" aria-hidden="true" onClick="togglePanel(this,textimportexample);" ></i>
+	   <i class="fa fa-info-circle" aria-hidden="true" onClick="togglePanel(toggletextimportexample,textimportexample);" ></i>
+	   <i id="toggletextimportexample" class="fa fa-toggle-on" aria-hidden="true" onClick="togglePanel(this,textimportexample);" ></i>
 	   <BR>
 	   <DIV id="textimportexample" class="textimportexample" ><SPAN >
 	   IP=192.168.0.10/20<BR>
 	   CIDR=192.168.0.10 / 20<BR>
 	   IP=192.168.0.10 / 255.255.240.0<BR>
 	   netmask=255.255.224.0<BR>
+	   bits=25<BR>
 	 </SPAN></DIV>
 	 </DIV>
 	 </DIV>
@@ -387,3 +430,4 @@
 <!-- end container -->
 </DIV>
 </FORM>
+
