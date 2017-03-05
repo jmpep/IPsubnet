@@ -1,6 +1,11 @@
 // GitHub project ipsubnet
 // Licensed under https://github.com/jmpep/ipsubnet/blob/master/LICENSE-MIT
 
+//var langList="WORLD,EN,EN-GB,EN-US,UK,FR,US,DE,IT,ZH,ZH-HANS,RU,CZ,PL";
+var langList="WORLD,CN,CS,EN,DE,FR,IT,PL,TR,RU,ZH,";
+var flgList ="WORLD,AU,AT,CA,CN,CZ,CH,GB,FR,US,GE,IT,LI,LU,PL,HANS,RU,US,TR,ZH,";
+var infoList ="WORLD,CN,CS-CZ,EN,DE,FR,IT,PL,RU,TR,ZH,ZH-HANS,";
+
 var localstore;
 $(document).ready(function() {
    initializeIPsubnet();
@@ -243,23 +248,11 @@ function initializeFunctions() {
     if ( ($("#language").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#language')) ){
        $("#language").removeClass('open');
     }
-  });
-  $('body').click(function(e) {
-	if (!$('#'+e.target.id).isChildOf('#theoptions')) {
-      if ( ($("#theoptions").hasClass('open')) ) {
-//alert('for target.id='+e.target.id+' theoptions.removeClass(open)');
-       $("#theoptions").removeClass('open');
-	  }
+    if ( ($("#theoptions").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#theoptions')) ) {
+         $("#theoptions").removeClass('open');
     }
   });
-  $('#choiceUK').attr('src','./images/'+'UK'+'-flg.png');
-  $('#choiceFR').attr('src','./images/'+'FR'+'-flg.png');
-  $('#choiceIT').attr('src','./images/'+'IT'+'-flg.png');
-  $('#choiceUS').attr('src','./images/'+'US'+'-flg.png');
-  $('#choiceDE').attr('src','./images/'+'DE'+'-flg.png');
-  $('#choiceZH-HANS').attr('src','./images/'+'ZH-HANS'+'-flg.png');
-  $('#choiceWORLD').attr('src','./images/'+'WORLD'+'-flg.png');
-  $('#choiceRU').attr('src','./images/'+'RU'+'-flg.png');
+  settoggledPanel('textimportexample',0);
 }
 
 function openDropDown(theul) {
@@ -304,32 +297,18 @@ function reinitip() {
   getHistory();
 }
 
-var MAXHISTORY=10;
-
 function storeAllStorage() {
-  var IP = document.getElementById("IP");
-  var btIPv4 = document.getElementById("btIPv4");
-  var btIPv6 = document.getElementById("btIPv6");
-  var btIPv6a = document.getElementById("btIPv6a");
-  var bits = document.getElementById("bits");
-  var subnet = document.getElementById("subnet");
-  var broadcast = document.getElementById("broadcast");
-  var hostfrom = document.getElementById("hostfrom");
-  var hostto = document.getElementById("hostto");
-  var netmask = document.getElementById("netmask");
-  var hostsnb = document.getElementById("hostsnb");
-  var ipsnb = document.getElementById("ipsnb");
   var IPv6cchk = document.getElementById("IPv6cchk");
   /* the DOM variable above are for compatibility wit IE */
   var xi;
   var lang;
   if (localstore) {
    var days = 60;
-   if (btIPv4.className.indexOf('active')>=0) {
+   if ($('#btIPv4').hasClass('active')) {
      localStorage.setItem('IPv4v6','IPv4');
-   } else if (btIPv6.className.indexOf('active')>=0) {
+   } else if ($('#btIPv6').hasClass('active')) {
      localStorage.setItem('IPv4v6','IPv6');
-   } else if (btIPv6a.className.indexOf('active')>=0) {
+   } else if ($('#btIPv6a').hasClass('active')) {
      localStorage.setItem('IPv4v6','IPv6a');
    } else {
      localStorage.setItem('IPv4v6','default');
@@ -339,38 +318,19 @@ function storeAllStorage() {
    } else {
      localStorage.setItem('IPv6cchk','0');  
    }
-   cidr=IP.value.trim()+'/'+bits.value.trim();
+   cidr=$('#IP').val().trim()+'/'+$('#bits').val().trim();
    b=checkCDIRMask(cidr);
    if (b>0) {
-     localStorage.setItem('IP',IP.value);
-     localStorage.setItem('bits',bits.value);
-     localStorage.setItem('netmask',netmask.value);
-     localStorage.setItem('subnet',subnet.value);
-     localStorage.setItem('broadcast',broadcast.value);
-     localStorage.setItem('hostfrom',hostfrom.value);
-     localStorage.setItem('hostto',hostto.value);
-     localStorage.setItem('hostsnb',hostsnb.value);
-     localStorage.setItem('ipsnb',ipsnb.value);
-	 exist = false;
-	 for (xi=MAXHISTORY; xi>=0;xi--) {
-	   val=localStorage.getItem('history'+xi);
-	   if ((exist) || (val==cidr)){
-		 nbr=xi-1;
-		 val=localStorage.getItem('history'+nbr);
-		 localStorage.setItem('history'+xi,val);
-		 exist=true;
-	   }
-	 }
-	 if (!exist) {
-	   for (xi=MAXHISTORY; xi>0;xi--) {
-		 nbr=xi-1;
-		 val=localStorage.getItem('history'+nbr);
-		 localStorage.setItem('history'+xi,val);
-	   }
-	   localStorage.setItem('history'+0,cidr);
-	 } else {
-	   localStorage.setItem('history'+0,cidr);
-	 }
+     localStorage.setItem('IP',$('#IP').val().trim());
+     localStorage.setItem('bits',$('#bits').val().trim());
+     localStorage.setItem('netmask',$('#netmask').val().trim());
+     localStorage.setItem('subnet',$('#subnet').val().trim());
+     localStorage.setItem('broadcast',$('#broadcast').val().trim());
+     localStorage.setItem('hostfrom',$('#hostfrom').val().trim());
+     localStorage.setItem('hostto',$('#hostto').val().trim());
+     localStorage.setItem('hostsnb',$('#hostsnb').val().trim());
+     localStorage.setItem('ipsnb',$('#ipsnb').val().trim());
+	 addInHistory(cidr);
 	 getHistory();
    }
    //var lang= imglanguage.className.replace('imglanguage','').trim();
@@ -429,7 +389,6 @@ function getAllStorage() {
   var hostsnb = document.getElementById("hostsnb");
   var ipsnb = document.getElementById("ipsnb");
   var IPv6cchk = document.getElementById("IPv6cchk");
-  var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
   var ipid,ipidlist; 
   var lasttheme;
@@ -1640,7 +1599,6 @@ function calculwithIPv6alternative() {
   var broadcast = document.getElementById("broadcast");
   var hostfrom = document.getElementById("hostfrom");
   var hostto = document.getElementById("hostto");
-  var imglanguage = document.getElementById("imglanguage");
   var IPv6cchk = document.getElementById("IPv6cchk");
   var sectionbroadcast = document.getElementById("sectionbroadcast");
   var netmask = document.getElementById("netmask");
@@ -1653,8 +1611,7 @@ function calculwithIPv6alternative() {
   if (ipversionv4) changeIPv4IPv6();
   changeClassButton(btIPv6a);
   changeClassSelecthostsnb('IPv6');
-  lang=imglanguage.className.replace('imglanguage').trim();
-  readselectbits(lang);
+  readhtmlselectbits();
   createselectSubnet();
   error=checkIPaddress(IP.value,retval);
   IP.value=transformIPtotxt('v6a',retval);
@@ -1692,9 +1649,6 @@ function changeIPv4() {
   var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
   var bits = document.getElementById("bits");
-  //var hostsnb = document.getElementById("hostsnb");
-  //var ipsnb = document.getElementById("ipsnb");
-  var imglanguage = document.getElementById("imglanguage");
   /* the DOM variable above are for compatibility wit IE */
   var retval= new Array(8);
   var ipval,ipvaltxt;
@@ -1711,8 +1665,7 @@ function changeIPv4() {
 
   changeClassButton(btIPv4);
   changeClassSelecthostsnb('IPv4');
-  lang=imglanguage.className.replace('imglanguage').trim();
-  readselectbits(lang);
+  readhtmlselectbits();
   createselectSubnet();
   var tempval=parseInt(bits.value,10);
   bitszone=96;
@@ -1803,7 +1756,6 @@ function changeIPv6() {
   var netmasklabel = document.getElementById("netmasklabel");
   var hostsnb = document.getElementById("hostsnb");
   var ipsnb = document.getElementById("ipsnb");
-  var imglanguage = document.getElementById("imglanguage");
   var IPv6cchk = document.getElementById("IPv6cchk");
   var sectionbroadcast = document.getElementById("sectionbroadcast");
   /* the DOM variable above are for compatibility wit IE */
@@ -1832,8 +1784,7 @@ function changeIPv6() {
   IP.value= ipvaltxt;
   changeClassButton(btIPv6);
   changeClassSelecthostsnb('IPv6');
-  lang=imglanguage.className.replace('imglanguage').trim();
-  readselectbits(lang);
+  readhtmlselectbits();
   createselectSubnet();
   tempval=parseInt(bits.value,10);
   if (0>=tempval) tempval=1;
@@ -1963,6 +1914,7 @@ function change_class(theclass)
     case 'ipv6example_16': //'IPv6':
 	  setIPtype('IPv6a',1);
 	  setCIDRIP('2001:DB8::123.45.67.89/48');
+	  calculwithIPv6alternative();
       break;
     case 'ipv6example_17': //'IPv6':
 	  setIPtype('IPv6',1);
@@ -1986,8 +1938,8 @@ function infoIPv4v6(){
   /* the DOM variable above are for compatibility wit IE */
   var theexamples,lang,thelang,country;
 	lang=getLang( $('body').attr('lang').trim() ).toUpperCase();
-    thelang=getLang(lang.trim()).toUpperCase();
-	country=getCountry(lang.trim()).toUpperCase();
+    thelang=getLang(lang.trim());
+	country=getCountry(lang.trim());
 
 	txt=infoIPv4v6txt.className;
 	btn=infoIPv4v6btn.className;
@@ -2138,7 +2090,6 @@ function setCIDRIP(vy) {
   if (b>0)	{
     vz = vy.split('/');
     ip = vz[0].trim();
-//console.log('setHistoryToIP val='+val+' vz='+vz);
     $('#IP').val(ip);
     bits = vz[1].trim();
     if (b==1) {
@@ -2156,17 +2107,70 @@ function setCIDRIP(vy) {
   }
 }
 
+var MAXHISTORY=20;
+function isInHistory(cidr) {
+  var val;
+  if (localStorage.getItem('thehistory')!=null) {
+     val=localStorage.getItem('thehistory');
+     if (val.indexOf(cidr)>=0) {
+  	   return 1;
+     } else  {
+	   return 0;
+	 }
+  }
+  return 0;
+}
+function removeFromHistory(cidr) {
+  var val;
+  if (localStorage.getItem('thehistory')!=null) {
+     val = localStorage.getItem('thehistory');
+	 val = val.replace(",#"+cidr+"#","");
+	 val = val.replace("#"+cidr+"#","");
+	 val = val.replace(/,,/g,",");
+	 if (val==',') val= '';
+     localStorage.setItem('thehistory',val);
+  }
+}
+function addInHistory(cidr) {
+  var val,vallist;
+//console.log('addInHistory BEFORE cidr='+cidr+' localStorage.getItem(thehistory)='+localStorage.getItem('thehistory'))
+  if ((localStorage.getItem('thehistory')!=null) && (localStorage.getItem('thehistory')!='')) {
+     removeFromHistory(cidr);
+	 val = localStorage.getItem('thehistory');
+	 if (val!='') vallist=val.split(',');
+	 if (vallist.length>=(MAXHISTORY-1) ){
+		 var torem=MAXHISTORY-vallist.length;
+		 vallist.splice(0,torem);
+	 }
+	 vallist.push("#"+cidr+"#");
+	 val = vallist.join(',');
+     localStorage.setItem('thehistory',val);
+  } else {
+	 localStorage.setItem('thehistory',"#"+cidr+"#");
+  }
+//console.log('addInHistory AFTER cidr='+cidr+' localStorage.getItem(thehistory)='+localStorage.getItem('thehistory'))
+}
+
 function setHistoryToIP() {
+//console.log('setHistoryToIP val->'+$('#history').val());
   vy = $('#history').val();
+  vy = vy.trim();
   setCIDRIP(vy);
 }
 
 function getHistory() {
   var history = document.getElementById("history");
   selectstr='';
-  for (i=MAXHISTORY; i>=0;i--) {
-	  val=localStorage.getItem('history'+i);
-	  if ((val!=null) && (typeof(val)!='undefined')) {
+  if (localStorage.getItem('thehistory')==null) {
+	vallist = [];
+  } else {
+    valhist=localStorage.getItem('thehistory');
+    vallist = valhist.split(',');
+  }
+  for (i=vallist.length; i>=0;i--) {
+	  val= vallist[i];
+	  if (val!=null) {
+		val = val.replace(/#/g,'');
 	    if (selectstr!='') {
 			selectstr = selectstr+';;' + 'history'+i+';'+val;
 		} else {
@@ -2175,10 +2179,13 @@ function getHistory() {
 	  }
   }
 //  $('#history').val(vals);
+//console.log('getHistory selectstr='+selectstr);
   if (selectstr!='') {
     selectstrlist= selectstr.split(';;');
     var x = history.childNodes;
+	var last ="";
     for (var i = x.length-1; i >=0 ; i--) {
+//console.log('getHistory remove child val->'+x[i].value);
       history.removeChild(x[i]);
     }
     for (i=0;i<selectstrlist.length;i++) {
@@ -2188,10 +2195,19 @@ function getHistory() {
 	  option.value=val[1];
 	  option.id=val[0];
 	  history.add(option);
+	  last=val[0];
     }
-    history.value='';	
+    if (selectstrlist.length>=0) {
+      //history.selectedIndex=1; //selectstrlist.length-1;
+      history.value= history.options[history.selectedIndex].value;
+//console.log('getHistory selectedIndex='+history.selectedIndex+' history.value='+history.value);
+    } else {
+      history.value=last;
+    }
+	$('#history').selectmenu('refresh');
   }
 }
+
 
 function changeInfo() {
   var IP = document.getElementById("IP");
@@ -2348,7 +2364,6 @@ function openhelp3() {
   }
 }
 
-var langList="WORLD,EN,EN-UK,EN-US,UK,FR,US,DE,IT,ZH-HANS,RU";
 function changeDivLanguageTextByName(objectname,lg){
   var list;
   if (lg!=='') {
@@ -2356,8 +2371,6 @@ function changeDivLanguageTextByName(objectname,lg){
 	for (var i=0;i<list.length;i++) {
 		$('#'+objectname).removeClass(list[i]);
 	}
-    //$('#'+objectname).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
-    //$('#'+objectname).removeClass('ZH-HANS').removeClass('RU');
     $('#'+objectname).addClass(lg);
   }
 }
@@ -2367,99 +2380,74 @@ function changeDivLanguageTextById(objectid,lg){
 	for (var i=0;i<list.length;i++) {
 		$(objectid).removeClass(list[i]);
 	}
-	//$(objectid).removeClass('WORLD').removeClass('UK').removeClass('FR').removeClass('US').removeClass('DE').removeClass('IT');
-	//$(objectid).removeClass('ZH-HANS').removeClass('RU');
 	$(objectid).addClass(lg);
   }
 }
 function getLang(langfull){
-  var lng='en';
+  var lng='EN';
   langfull= langfull.toUpperCase();
-  if ( (langfull=='') || (langList.indexOf(langfull)<0) ) {
-    lng='en';
-  } else {
-    /* not China to complex */
-    if (( langfull!='zh-hans') && (langfull.indexOf('-')>=0) ) {
+  if ( (langfull.indexOf('-')>=0) ) {
   	  var temp;
   	  temp=langfull.split('-');
   	  lng = temp[0];
     } else {
   	  lng = langfull;
-    }
+  }
+  if ( (langList.indexOf(lng)<0) ) {
+    lng='WORLD';
   }
   return lng;
 }
+
 function getCountry(langfull){
-  var ctry='us';
+  var ctry='US';
   langfull= langfull.toUpperCase();
-  if ( (langfull=='') || (langList.indexOf(langfull)<0) ) {
-  	ctry='WORLD';
-  } else {
-    /* not China to complex */
-    if (( langfull!='ZH-HANS') && (langfull.indexOf('-')>=0) ) {
+  if ( (langfull.indexOf('-')>=0) ) {
   	  var temp;
   	  temp=langfull.split('-');
       ctry = temp[1];
-    } else {
+	  switch (ctry) {
+	      case 'HANS': ctry='CN'; break;
+	      case 'UK': ctry='GB'; break;
+	  }
+  } else {
       ctry =langfull;
-    }
+  }
+  if ( (flgList.indexOf(ctry)<0) ) {
+  	ctry='WORLD';
   }
   return ctry;
 }
 function setFileiframeinfo(lng,ctry) {
-	var thefile;
-	thefile= lng.toUpperCase();
-	switch (lng) {
-	    case 'ZH': thefile='ZH-HANS'; break;
-	    case 'WORLD': thefile='EN'; break;
-	    default:
-	      ;
+  var thefile;
+  thefile= lng.toUpperCase();
+  ctry = ctry.toUpperCase();
+  switch (lng) {
+      //case 'ZH': thefile='ZH-HANS'; break;
+      case 'WORLD': thefile='EN'; break;
+      default:
+        ;
+  }
+  if (infoList.indexOf(thefile+'-'+ctry)>=0) {
+	thefile= thefile+'-'+ctry;
+  } else {
+    if (infoList.indexOf(thefile+',')<0) {
+  	  thefile='EN';
 	}
-	$('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thefile+".html");
+  }
+//console.log('setFileiframeinfo -> thefile='+thefile);
+  $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thefile+".html");
 }
 
 function setlanguageObjects(lang) {
   /* the DOM variable above are for compatibility wit IE */
   var theexamples,thelang,country;
-    thelang=getLang(lang.trim()).toUpperCase();
-	country=getCountry(lang.trim()).toUpperCase();
-//console.log('setlanguageObjects('+lang+') -> thelang='+thelang+' country='+country)
+    thelang=getLang(lang.trim());
+	country=getCountry(lang.trim());
 	/* change language */
-    $('#imglanguage').attr('class','imglanguage '+thelang);
-	$('#imglanguage').attr('src','./images/'+country+'-flg.png');
-	changeDivLanguageTextByName('maintitle',thelang);
-	changeDivLanguageTextByName('theoptions',thelang);
-	changeDivLanguageTextByName('hostfromlabel',thelang);
-	changeDivLanguageTextByName('broadcastlabel',thelang);
-	changeDivLanguageTextByName('hosttolabel',thelang);
-	changeDivLanguageTextByName('IPv4menutxt',thelang);
-	changeDivLanguageTextByName('IPv6menutxt',thelang);
-	changeDivLanguageTextByName('IPv6cmenutxt',thelang);
-	changeDivLanguageTextByName('IPv6amenutxt',thelang);
-	changeDivLanguageTextByName('panelcalculationtxt',thelang);
-	changeDivLanguageTextByName('panelinfo',thelang);
-	changeDivLanguageTextByName('panelexample',thelang);
-	changeDivLanguageTextByName('infoIPv4v6btn',thelang);
-	changeDivLanguageTextByName('iframeinfo',thelang);
-	changeDivLanguageTextByName('reversenetmasklabel',thelang);
-	changeDivLanguageTextByName('historylabel',thelang);
-	changeDivLanguageTextByName('infotxtip',thelang);
-	changeDivLanguageTextByName('textipbtn',thelang);
-	changeDivLanguageTextByName('iplabel',thelang);
-	changeDivLanguageTextByName('netmasklabel',thelang);
-	changeDivLanguageTextByName('subnetlabel',thelang);
-	changeDivLanguageTextByName('bitslabel',thelang);
-	changeDivLanguageTextByName('hostnbrlabel',thelang);
-	changeDivLanguageTextByName('ipnbrlabel',thelang);
-    theexamples = $('*[id^="ipv4example_"]');
-	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageTextById(theexamples[i],thelang);
-	}
-    theexamples = $('*[id^="ipv6example_"]');
-    //theexamples = document.getElementsByTagName('ipv6example_*');
-	for (i=0;i<theexamples.length;i++) {
-	   changeDivLanguageTextById(theexamples[i],thelang);
-	}
+	theflag = country.toLowerCase();
+	theclass="flag-icon flag-icon-"+theflag+" flag-2x";
+    $('#imglanguage').attr('class',theclass);
 	setFileiframeinfo(thelang,country);
 
 	if (infoIPv4v6btn.className.indexOf('hidetxt')<0){
@@ -2467,8 +2455,11 @@ function setlanguageObjects(lang) {
 	} else {
 	  $('#iframeinfo').css('display','none');		
 	}
-	readselectbits(country);
-	$('body').attr('lang',lang.toLowerCase());
+	if (thelang!=country) langused=thelang+'-'+country;
+	else langused=thelang;
+//console.log('setlanguageObjects('+lang+') -> thelang='+thelang+' country='+country+' langused='+langused);
+	$('body').attr('lang',langused.toLowerCase());
+	readhtmlselectbits();
 }
 
 function changelanguage(lang) {
@@ -2478,21 +2469,18 @@ function changelanguage(lang) {
 }
 
 function readhtmlselectbits(){
-  var imglanguage = document.getElementById("imglanguage");
-  var lang = imglanguage.className.replace('imglanguage','');
+  var lang;
+  lang = $('body').attr('lang');
   lang = lang.trim();
   readselectbits(lang);
 }
 
 function readselectbits(lang) {
-  var IP = document.getElementById("IP");
   var btIPv4 = document.getElementById("btIPv4");
-  var bits = document.getElementById("bits");
   var selecthostsnb = document.getElementById("selecthostsnb");
   /* the DOM variable above are for compatibility wit IE */
   var selectstr="",selectval="",options ='';
-  lang = lang.replace('imglanguage','');
-  lang = lang.trim();
+  //lang = lang.replace('imglanguage','');
   ipversion=(btIPv4.className.indexOf('active')>=0) ? 'IPv4':'IPv6';
   selectstr= getBitsHumanformat(ipversion,lang);
   if (selectstr=='') {
@@ -2518,7 +2506,7 @@ function readselectbits(lang) {
 	option.value=val[0];
 	option.id='optionselectstr'+val[0];
 	selecthostsnb.add(option);
-    selecthostsnb.value=bits.value;	
+    selecthostsnb.value=$('#bits').val();
   }
 }
 
@@ -2535,13 +2523,13 @@ function fillinfotxtip() {
   ipversion=(btIPv4.className.indexOf('active')>=0) ? 'IPv4':'IPv6';
   valx = "";
   if (ipversion=='IPv4') {
-   valx = valx + "IP="+IP.value+" / " +netmask.value+"<BR>";	  
-   valx = valx + "CIDR="+IP.value+" / " +bits.value+"<BR>";	  
-   valx = valx + "subnet="+subnet.value+" / " +netmask.value+"<BR>";	  
-   valx = valx + "wilcard="+reversenetmask.value;	  
+   valx = valx + "<span>IP="+IP.value+" / " +netmask.value+"</span><BR>";	  
+   valx = valx + "<span>CIDR="+IP.value+" / " +bits.value+"</span><BR>";	  
+   valx = valx + "<span class='fillinfotxtresultsubnet' >="+subnet.value+" / " +netmask.value+"</span><BR>";	  
+   valx = valx + "<span>wilcard="+reversenetmask.value+"</span>";	  
   } else {
-   valx = valx + "CIDR="+IP.value+" / " +bits.value+"<BR>";	  
-   valx = valx + "subnet="+subnet.value+" / " +bits.value;	  
+   valx = valx + "<span>CIDR="+IP.value+" / " +bits.value+"</span><BR>";	  
+   valx = valx + "<span class='fillinfotxtresultsubnet' >="+subnet.value+" / " +bits.value+"</span>";	  
   }
   // $('#textip').val(valx);
   $('#textip').html(valx);
@@ -2684,7 +2672,7 @@ function getBitsHumanformat(version,lang) {
      ,'3.40282366920938E+038'
 	 ];
   large_numbers = [
-[0,'US','UK','EU','CN'],
+[0,'US','GB','EU','CN'],
 [1,'','','',''],
 [2,'','','',''],
 [3,'','','',''],
@@ -2729,7 +2717,6 @@ function getBitsHumanformat(version,lang) {
 	  case 'FR': fi = 3; break;
 	  case 'DE': fi = 3; break;
 	  case 'IT': fi = 3; break;
-	  case 'UK': fi = 2; break;
 	  case 'EN': fi = 2; break;
 	  case 'DE': fi = 3; break;
 	  case 'CN': fi = 3; break;
