@@ -145,13 +145,13 @@ border-color:#25331a;
 }
 
 .flagmenu {
- color: #000000;
+color: #000000;
 }
 .fa-toggle-on{
-	color:white;
+color:white;
 }
 .fa-toggle-off{
-	color:gray;
+color:#006400;
 }
 
 select.input-sm.badged{
