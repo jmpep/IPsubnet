@@ -229,4 +229,8 @@ content: 'FF01::2, FF02::2, FF05::1  all routers IPs should answer. FF01::/8 are
 span[class~=infoIP6_12]:before{
 content: '::/128 is the undefined IPv6. Used when IPv6 does not exist or showing an issue.';
 }
+span[class|=fillinfotxtresultsubnet]:before{
+content: 'subnet';
+}
+
 	

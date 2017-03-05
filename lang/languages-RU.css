@@ -1,13 +1,15 @@
-a.RU[id|=IPv4menutxt]:after {
+@charset "UTF-8";
+
+:lang(ru) a[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
-a.RU[id|=IPv6menutxt]:after {
+:lang(ru) a[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-a.RU[id|=IPv6cmenutxt]:after {
+:lang(ru) a[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 сокращенный';
 }
-a.RU[id|=IPv6amenutxt]:after {
+:lang(ru) a[id|=IPv6amenutxt]:after {
 	content: 'IPV6 альтернативный';
 }
 :lang(ru) #maintitle:after {
@@ -35,193 +37,200 @@ a.RU[id|=IPv6amenutxt]:after {
    content:'серая тема';
 }
 
-#reinit[class~=RU]:after {
+:lang(ru) #reinit:after {
 content:'инициализация';
 }
-label.RU[id|=iplabel]:before{
+:lang(ru) label[id|=iplabel]:before{
 content: 'IP';
 }
-label.RU[id|=netmasklabel]:before{
+:lang(ru) label[id|=netmasklabel]:before{
 content: 'Сетевая маска';
 }
-label.RU[id|=subnetlabel]:before{
+:lang(ru) label[id|=subnetlabel]:before{
 content: 'Подсеть';
 }
-label.RU[id|=bitslabel]:before{
+:lang(ru) label[id|=bitslabel]:before{
 content: 'bits';
 }
-label.RU[id|=hostnbrlabel]:before{
+:lang(ru) label[id|=hostnbrlabel]:before{
 content: 'Всего хостов #';
 }
-label.RU[id|=ipnbrlabel]:before{
+:lang(ru) label[id|=ipnbrlabel]:before{
 content: 'IP #';
 }
-label.RU[id|=broadcastlabel]:before{
+:lang(ru) label[id|=broadcastlabel]:before{
 content: 'Broadcast адрес';
 }
-label.RU[id|=hostfromlabel]:before{
+:lang(ru) label[id|=hostfromlabel]:before{
 content: 'Первый хост';
 }
-label.RU[id|=hosttolabel]:before{
+:lang(ru) label[id|=hosttolabel]:before{
 content: 'Последний хост';
 }
-label.RU[id|=historylabel]:before{
+:lang(ru) label[id|=historylabel]:before{
 content: 'история';
 }
 
-span.RU[id|=paneltext]:after{
+:lang(ru) span[id|=paneltext]:after{
 content: 'Текстовый формат';
 }
-span.RU[id|=panelinfo]:after{
+:lang(ru) span[id|=panelinfo]:after{
 content: 'Информация';
 }
 
-span.RU[id|=panelexample]:after{
+:lang(ru) span[id|=panelexample]:after{
 content: 'Пример';
 }
-label.RU[id|=reversenetmasklabel]:before{
+:lang(ru) label[id|=reversenetmasklabel]:before{
 content: 'Обратная маска';
 }
 
-#textipbtn[class~=RU]:after {
+:lang(ru) #textipbtn:after {
 content:'импортировать текст';
 }
-#infoIPv4v6btn.hidetxt[class~=RU]:after {
+:lang(ru) #infoIPv4v6btn.hidetxt:after {
 content:'Подробная информация о IPv6';
 }
-#infoIPv4v6btn.showtxt[class~=RU]:after {
+:lang(ru) #infoIPv4v6btn.showtxt:after {
 content:'скрыть информацию о IPv6';
 }
-label.RU[id|=ipv4example_1]:after{
+:lang(ru) label[id|=ipv4example_1]:after{
 content: 'Класс A';
 }
-label.RU[id|=ipv4example_2]:after{
+:lang(ru) label[id|=ipv4example_2]:after{
 content: 'Класс B';
 }
-label.RU[id|=ipv4example_3]:after{
+:lang(ru) label[id|=ipv4example_3]:after{
 content: 'Класс C';
 }
-label.RU[id|=ipv4example_4]:after{
+:lang(ru) label[id|=ipv4example_4]:after{
 content: 'Multicast';
 }
-label.RU[id|=ipv6example_1]:after{
+:lang(ru) label[id|=ipv6example_1]:after{
 content: 'зарезервированный';
 }
-label.RU[id|=ipv6example_2]:after{
+:lang(ru) label[id|=ipv6example_2]:after{
 content: 'loopback';
 }
-label.RU[id|=ipv6example_3]:after{
+:lang(ru) label[id|=ipv6example_3]:after{
 content: 'Интернет первые адреса';
 }
-label.RU[id|=ipv6example_4]:after{
+:lang(ru) label[id|=ipv6example_4]:after{
 content: 'Первые адреса интернета';
 }
-label.RU[id|=ipv6example_5]:after{
+:lang(ru) label[id|=ipv6example_5]:after{
 content: 'Маршрутизация IPv6 в IPV4';
 }
-label.RU[id|=ipv6example_6]:after{
+:lang(ru) label[id|=ipv6example_6]:after{
 content: 'multicast mDNSv6';
 }
-label.RU[id|=ipv6example_7]:after{
+:lang(ru) label[id|=ipv6example_7]:after{
 content: 'multicast';
 }
-label.RU[id|=ipv6example_8]:after{
+:lang(ru) label[id|=ipv6example_8]:after{
 content: 'Link-local unicast';
 }
-label.RU[id|=ipv6example_9]:after{
+:lang(ru) label[id|=ipv6example_9]:after{
 content: 'Site-local unicast';
 }
-label.RU[id|=ipv6example_10]:after{
+:lang(ru) label[id|=ipv6example_10]:after{
 content: 'local IPv4 к IPv6';
 }
-label.RU[id|=ipv6example_11]:after{
+:lang(ru) label[id|=ipv6example_11]:after{
 content: '6bone (для тестирования протоколов)';
 }
-label.RU[id|=ipv6example_12]:after{
+:lang(ru) label[id|=ipv6example_12]:after{
 content: 'multicast сети';
 }
-label.RU[id|=ipv6example_13]:after{
+:lang(ru) label[id|=ipv6example_13]:after{
 content: 'multicast маршруты';
 }
-label.RU[id|=ipv6example_14]:after{
+:lang(ru) label[id|=ipv6example_14]:after{
 content: 'не определено IP';
-}label.RU[id|=ipv6example_15]:after{
+}
+:lang(ru) label[id|=ipv6example_15]:after{
 content: 'IPv6 сокращенный';
-}label.RU[id|=ipv6example_16]:after{
+}
+:lang(ru) label[id|=ipv6example_16]:after{
 content: 'IPv6 альтернативный';
-}label.RU[id|=ipv6example_17]:after{
+}
+:lang(ru) label[id|=ipv6example_17]:after{
 content: 'IPv6 сокращенный для компании';
-}label.RU[id|=ipv6example_18]:after{
+}
+:lang(ru) label[id|=ipv6example_18]:after{
 content: 'IPv6 не сокращающиеся';
 }
 
-span.RU[class~=infoIP4_00]:before{
+:lang(ru) span[class~=infoIP4_00]:before{
 content: 'IP версия 4  aaa.bbb.ccc.ddd где aaa, bbb, ccc, ddd являются числами между 0 и 255.';
 }
-span.RU[class~=infoIP4_01]:before{
+:lang(ru) span[class~=infoIP4_01]:before{
 content: 'частный класс A';
 }
-span.RU[class~=infoIP4_02]:before{
+:lang(ru) span[class~=infoIP4_02]:before{
 content: 'частный класс B';
 }
-span.RU[class~=infoIP4_03]:before{
+:lang(ru) span[class~=infoIP4_03]:before{
 content: 'частный класс C';
 }
-span.RU[class~=infoIP4_04]:before{
+:lang(ru) span[class~=infoIP4_04]:before{
 content: 'класс A из 1.x.x.x 127.x.x.x';
 }
-span.RU[class~=infoIP4_05]:before{
+:lang(ru) span[class~=infoIP4_05]:before{
 content: 'класс B из 128.x.x.x к 191.x.x.x';
 }
-span.RU[class~=infoIP4_06]:before{
+:lang(ru) span[class~=infoIP4_06]:before{
 content: 'класс C из 192.x.x.x к 223.x.x.x';
 }
-span.RU[class~=infoIP4_07]:before{
+:lang(ru) span[class~=infoIP4_07]:before{
 content: 'multicast 224.x.x.x к 239.x.x.x';
 }
-span.RU[class~=infoIP4_08]:before{
+:lang(ru) span[class~=infoIP4_08]:before{
 content: 'other     240.x.x.x к 255.x.x.x';
 }
-span.RU[class~=infoIP4_09]:before{
+:lang(ru) span[class~=infoIP4_09]:before{
 content: 'localhost 127.x.x.x';
 }
 
-span.RU[class~=infoIP6_00]:before{
+:lang(ru) span[class~=infoIP6_00]:before{
 content: 'зарезервированный & Loopback=::1 & any=::';
 }
-span.RU[class~=infoIP6_01]:before{
+:lang(ru) span[class~=infoIP6_01]:before{
 content: 'Неназначенный.';
 }
-span.RU[class~=infoIP6_02]:before{
+:lang(ru) span[class~=infoIP6_02]:before{
 content: 'зарезервированный для NSAP распределение, Префикс(двоичный)=0000 001 .';
 }
-span.RU[class~=infoIP6_03]:before{
+:lang(ru) span[class~=infoIP6_03]:before{
 content: 'зарезервированный для IPX распределение, Префикс(двоичный)=0000 010 .';
 }
-span.RU[class~=infoIP6_04]:before{
+:lang(ru) span[class~=infoIP6_04]:before{
 content: "'2000::/3' фактически выделено IPv6-адрес для Интернета. '2000::/16' до 2001. '2001::/16' после 2001. '2002::/16' для маршрутизации из IPv6 для IPv4 в Интернете.";
 }
-span.RU[class~=infoIP6_05]:before{
+:lang(ru) span[class~=infoIP6_05]:before{
 content: 'Multicast. FF00::/8 (FF00:: к FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF).';
 }
-span.RU[class~=infoIP6_06]:before{
+:lang(ru) span[class~=infoIP6_06]:before{
 content: 'Unique Local Unicast subnet. Unique Local Addresses (ULA) являются стажер IP-адреса. FC00::/7. Например, для подключения туннеля.';
 }
-span.RU[class~=infoIP6_07]:before{
+:lang(ru) span[class~=infoIP6_07]:before{
 content: 'Link-Local-Adressen. FE80::/10. Между сетевыми устройствами.';
 }
-span.RU[class~=infoIP6_08]:before{
+:lang(ru) span[class~=infoIP6_08]:before{
 content: '6bone "3ffe::/16" для тестирования протоколов IPv6.';
 }
-span.RU[class~=infoIP6_09]:before{
+:lang(ru) span[class~=infoIP6_09]:before{
 content: 'IP зарезервировано для будущего использования.';
 }
-span.RU[class~=infoIP6_10]:before{
+:lang(ru) span[class~=infoIP6_10]:before{
 content: 'FF01::1, FF02::1 IPv6 broadcast. Все устройства должны отвечать. FF01::/8 они есть Node-Local Scope Multicast Адреса. FF02::/8 Link-Local Scope Multicast Адреса.';
 }
-span.RU[class~=infoIP6_11]:before{
+:lang(ru) span[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  все маршрутизаторы IP-адреса должны отвечать. FF01::/8 они есть Node-Local Scope Multicast Адреса. FF02::/8 Link-Local Scope Multicast Адреса.';
 }
-span.RU[class~=infoIP6_12]:before{
+:lang(ru) span[class~=infoIP6_12]:before{
 content: '::/128 является неопределенным IPv6. Используется при IPv6 не существует или показывая вопрос.';
+}
+:lang(ru) span[class|=fillinfotxtresultsubnet]:before{
+content: 'Подсеть';
 }

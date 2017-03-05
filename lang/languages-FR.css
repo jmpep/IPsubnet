@@ -1,13 +1,13 @@
-a.FR[id|=IPv4menutxt]:after {
+:lang(fr) a[id|=IPv4menutxt]:after {
 	content: 'IPv4';
 }
-a.FR[id|=IPv6menutxt]:after {
+:lang(fr) a[id|=IPv6menutxt]:after {
 	content: 'IPv6';
 }
-a.FR[id|=IPv6cmenutxt]:after {
+:lang(fr) a[id|=IPv6cmenutxt]:after {
 	content: 'IPV6 condens\E9';
 }
-a.FR[id|=IPv6amenutxt]:after {
+:lang(fr) a[id|=IPv6amenutxt]:after {
 	content: 'IPV6 alternative';
 }
 :lang(fr) #maintitle:after {
@@ -38,205 +38,200 @@ a.FR[id|=IPv6amenutxt]:after {
    content:'motif paw';
 }
 
-/*
-div.FR[id|=maintitle]:after {
-	content: 'IPv4 & IPv6 subnet calculatrice';
-}
-span.FR[id|=panelcalculationtxt]:before{
-content: 'calculatrice';
-}
-div.FR[id|=theoptions]:before{
-content: '';
-}
-*/
-
-#reinit[class~=FR]:after {
+:lang(fr) #reinit:after {
 content:'re-initialisation ';
 }
-label.FR[id|=iplabel]:before{
+:lang(fr) label[id|=iplabel]:before{
 content: 'IP';
 }
-label.FR[id|=netmasklabel]:before{
+:lang(fr) label[id|=netmasklabel]:before{
 content: 'masque';
 }
-label.FR[id|=subnetlabel]:before{
+:lang(fr) label[id|=subnetlabel]:before{
 content: 'r\E9seau';
 }
-label.FR[id|=bitslabel]:before{
+:lang(fr) label[id|=bitslabel]:before{
 content: 'bits';
 }
-label.FR[id|=hostnbrlabel]:before{
+:lang(fr) label[id|=hostnbrlabel]:before{
 content: 'appareils #';
 }
-label.FR[id|=ipnbrlabel]:before{
+:lang(fr) label[id|=ipnbrlabel]:before{
 content: 'IP #';
 }
-label.FR[id|=broadcastlabel]:before{
+:lang(fr) label[id|=broadcastlabel]:before{
 content: 'broadcast';
 }
-label.FR[id|=hostfromlabel]:before{
+:lang(fr) label[id|=hostfromlabel]:before{
 content: 'premier host';
 }
-label.FR[id|=hosttolabel]:before{
+:lang(fr) label[id|=hosttolabel]:before{
 content: 'dernier host';
 }
-label.FR[id|=historylabel]:before{
+:lang(fr) label[id|=historylabel]:before{
 content: 'chronique';
 }
-span.FR[id|=paneltext]:after{
+:lang(fr) span[id|=paneltext]:after{
 content: 'version textuelle';
 }
 
-span.FR[id|=panelinfo]:after{
+:lang(fr) span[id|=panelinfo]:after{
 content: 'Informations';
 }
 
-span.FR[id|=panelexample]:after{
+:lang(fr) span[id|=panelexample]:after{
 content: 'Exemples';
 }
-label.FR[id|=reversenetmasklabel]:before{
+:lang(fr) label[id|=reversenetmasklabel]:before{
 content: 'inverse:';
 }
 
-#textipbtn[class~=FR]:after {
+:lang(fr) #textipbtn:after {
 content:'importer le text';
 }
-#infoIPv4v6btn.hidetxt[class~=FR]:after {
+:lang(fr) #infoIPv4v6btn.hidetxt:after {
 content:"plus d'information sur IPv6";
 }
-#infoIPv4v6btn.showtxt[class~=FR]:after {
+:lang(fr) #infoIPv4v6btn.showtxt:after {
 content:'cache les informations sur IPv6';
 }
 
-label.FR[id|=ipv4example_1]:after {
+:lang(fr) label[id|=ipv4example_1]:after {
 content: 'Classe A';
 }
-label.FR[id|=ipv4example_2]:after{
+:lang(fr) label[id|=ipv4example_2]:after{
 content: 'Classe B';
 }
-label.FR[id|=ipv4example_3]:after{
+:lang(fr) label[id|=ipv4example_3]:after{
 content: 'Classe C';
 }
-label.FR[id|=ipv4example_4]:after{
+:lang(fr) label[id|=ipv4example_4]:after{
 content: 'Multicast';
 }
-label.FR[id|=ipv6example_1]:after{
+:lang(fr) label[id|=ipv6example_1]:after{
 content: 'reserv\E9';
 }
-label.FR[id|=ipv6example_2]:after{
+:lang(fr) label[id|=ipv6example_2]:after{
 content: 'loopback';
 }
-label.FR[id|=ipv6example_3]:after{
+:lang(fr) label[id|=ipv6example_3]:after{
 content: 'premi\E8re addresses internet';
 }
-label.FR[id|=ipv6example_4]:after{
+:lang(fr) label[id|=ipv6example_4]:after{
 content: 'nouveau standard internet';
 }
-label.FR[id|=ipv6example_5]:after{
+:lang(fr) label[id|=ipv6example_5]:after{
 content: "routing internet d'IPv6 vers IPV4";
 }
-label.FR[id|=ipv6example_6]:after{
+:lang(fr) label[id|=ipv6example_6]:after{
 content: 'multicast mDNSv6';
 }
-label.FR[id|=ipv6example_7]:after{
+:lang(fr) label[id|=ipv6example_7]:after{
 content: 'multicast';
 }
-label.FR[id|=ipv6example_8]:after{
+:lang(fr) label[id|=ipv6example_8]:after{
 content: 'local-link unicast';
 }
-label.FR[id|=ipv6example_9]:after{
+:lang(fr) label[id|=ipv6example_9]:after{
 content: 'local-site unicast';
 }
-label.FR[id|=ipv6example_10]:after{
+:lang(fr) label[id|=ipv6example_10]:after{
 content: 'IPv4 locale vers IPv6';
 }
-label.FR[id|=ipv6example_11]:after{
+:lang(fr) label[id|=ipv6example_11]:after{
 content: '6bone (pour la recherche sur le backbone)';
 }
-label.FR[id|=ipv6example_12]:after{
+:lang(fr) label[id|=ipv6example_12]:after{
 content: 'multicast r\E9seau';
 }
-label.FR[id|=ipv6example_13]:after{
+:lang(fr) label[id|=ipv6example_13]:after{
 content: 'multicast routeurs';
 }
-label.FR[id|=ipv6example_14]:after{
+:lang(fr) label[id|=ipv6example_14]:after{
 content: 'IP ind\E9finie';
-}label.FR[id|=ipv6example_15]:after{
+}
+:lang(fr) label[id|=ipv6example_15]:after{
 content: 'IPv6 condensé';
-}label.FR[id|=ipv6example_16]:after{
+}
+:lang(fr) label[id|=ipv6example_16]:after{
 content: 'IPv6 alternatif';
-}label.FR[id|=ipv6example_17]:after{
+}
+:lang(fr) label[id|=ipv6example_17]:after{
 content: 'IPv6 condensé pour entreprise';
-}label.FR[id|=ipv6example_18]:after{
+}
+:lang(fr) label[id|=ipv6example_18]:after{
 content: 'IPv6 non condensé';
 }
-span.FR[class~=infoIP4_00]:before{
+:lang(fr) span[class~=infoIP4_00]:before{
 content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd sont des chiffres entre 0 et 255.';
 }
-span.FR[class~=infoIP4_01]:before{
+:lang(fr) span[class~=infoIP4_01]:before{
 content: 'classe A';
 }
-span.FR[class~=infoIP4_02]:before{
+:lang(fr) span[class~=infoIP4_02]:before{
 content: 'classe B';
 }
-span.FR[class~=infoIP4_03]:before{
+:lang(fr) span[class~=infoIP4_03]:before{
 content: 'classe C';
 }
-span.FR[class~=infoIP4_04]:before{
+:lang(fr) span[class~=infoIP4_04]:before{
 content: 'classe A de 1.x.x.x \E0 127.x.x.x';
 }
-span.FR[class~=infoIP4_05]:before{
+:lang(fr) span[class~=infoIP4_05]:before{
 content: 'classe B de 128.x.x.x \E0 191.x.x.x';
 }
-span.FR[class~=infoIP4_06]:before{
+:lang(fr) span[class~=infoIP4_06]:before{
 content: 'classe C de 192.x.x.x \E0 223.x.x.x';
 }
-span.FR[class~=infoIP4_07]:before{
+:lang(fr) span[class~=infoIP4_07]:before{
 content: 'multicast 224.x.x.x \E0 239.x.x.x';
 }
-span.FR[class~=infoIP4_08]:before{
+:lang(fr) span[class~=infoIP4_08]:before{
 content: 'autre IPs  240.x.x.x \E0 255.x.x.x';
 }
-span.FR[class~=infoIP4_09]:before{
+:lang(fr) span[class~=infoIP4_09]:before{
 content: 'localhost 127.x.x.x';
 }
 
-span.FR[class~=infoIP6_00]:before{
+:lang(fr) span[class~=infoIP6_00]:before{
 content: 'reserv\E9  et Loopback=::1 et any=::';
 }
-span.FR[class~=infoIP6_01]:before{
+:lang(fr) span[class~=infoIP6_01]:before{
 content: 'non assign\E9.';
 }
-span.FR[class~=infoIP6_02]:before{
+:lang(fr) span[class~=infoIP6_02]:before{
 content: 'Reserv\E9  pour NSAP , Prefix(binary)=0000 001 .';
 }
-span.FR[class~=infoIP6_03]:before{
+:lang(fr) span[class~=infoIP6_03]:before{
 content: 'Reserv\E9 pour IPX Allocation, Prefix(binary)=0000 010 .';
 }
-span.FR[class~=infoIP6_04]:before{
+:lang(fr) span[class~=infoIP6_04]:before{
 content: "'2000::/3' IPv6 allou\E9s pour l'internet. "2000::/16" avant l'ann\E9  2001. '2001::/16' apr\E8  l'ann\E9  2001. '2002::/16' pour le routing d'IPv6 vers IPv4.";
 }
-span.FR[class~=infoIP6_05]:before{
+:lang(fr) span[class~=infoIP6_05]:before{
 content: "Multicast. FF00::/8 (de FF00:: \E0  FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF).";
 }
-span.FR[class~=infoIP6_06]:before{
+:lang(fr) span[class~=infoIP6_06]:before{
 content: "r\E9seau Unique Local Unicast. Les adresses Unique Local (ULA) sont des adresses internes. FC00::/7. Par example pour l'interconnection entre clients ou des liaisons tunnel.";
 }
-span.FR[class~=infoIP6_07]:before{
+:lang(fr) span[class~=infoIP6_07]:before{
 content: 'Link-Local-Adresse. FE80::/10. Pour la liaison entre le appareils r\E9seau.';
 }
-span.FR[class~=infoIP6_08]:before{
+:lang(fr) span[class~=infoIP6_08]:before{
 content: '6bone "3ffe::/16" pour la recherche IPv6 dans le backbone.';
 }
-span.FR[class~=infoIP6_09]:before{
+:lang(fr) span[class~=infoIP6_09]:before{
 content: 'IP reserv\E9 pour des usages futures.';
 }
-span.FR[class~=infoIP6_10]:before{
+:lang(fr) span[class~=infoIP6_10]:before{
 content: 'FF01::1, FF02::1 IPv6 broadcast. Tous les appareils doivent r\E9pondre. FF01::/8 sont des adresses Node-Local Scope Multicast. FF02::/8 sont des adresses Link-Local Scope Multicast.';
 }
-span.FR[class~=infoIP6_11]:before{
+:lang(fr) span[class~=infoIP6_11]:before{
 content: 'FF01::2, FF02::2, FF05::1  Tous les routeurs doivent r\E9pondre. FF01::/8 sont des adresses Node-Local Scope Multicast. FF02::/8 sont des adresses Link-Local Scope Multicast.';
 }
-span.FR[class~=infoIP6_12]:before{
+:lang(fr) span[class~=infoIP6_12]:before{
 content: "::/128 est l'IPv6 ind\E9 finie. Utilis\E9 quand l'IP manque ou un probl\E8 me.";
+}
+:lang(fr) span[class|=fillinfotxtresultsubnet]:before{
+content: 'réseau';
 }

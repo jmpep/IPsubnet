@@ -4,14 +4,14 @@
 </HEAD>
 <BODY>
 <p id="p1">
- <h1> IPv6 中文 ZH-HANS</h1>
+ <h1> IPv6 EN</h1>
   <A href="https://tools.ietf.org/html/rfc4291#page-2">RFC 4291</A>
- <h2>摘要</h2>
+ <h2>Summary:</h2>
  <SPAN id="infoipv6txt" onload="this.innerHTML=this.innerHTML.replace(/\s/gi,'&nbsp;');">
- <LI>最大的分配大小是 /32 ，保留給互聯網提供商.</LI>
- <LI>通常一個大客戶得到 /48, 可能更大如果好的理由.</LI>
- <LI>以上 /48 它需要RIR的註冊 (example for Europa RIPE NCC) with implementation plan.</LI>
- <LI>IPv6 不在乎設備的數量. The standard subnet is /64 because the interface ID is 64 bits.</LI>
+ <LI>The biggest allocation size is /32 which is reserved for internet provider.</LI>
+ <LI>Typically a big customer get /48, but could be bigger when requested with good reasons.</LI>
+ <LI>Above /48 it needs a registration by RIR (example for Europa RIPE NCC) with implementation plan.</LI>
+ <LI>IPv6 does not care like IPv4 about the number of devices. The standard subnet is /64 because the interface ID is 64 bits.</LI>
  <LI>Exception on routers (/127). [https://tools.ietf.org/html/rfc6177]</LI>
  <LI>/48 = 65536 subnets of /64.</LI>
  <LI>::1/128 is the loopback address</LI>
@@ -80,7 +80,7 @@
  <DIV class="col4 iptitle color4"><SPAN class="iptitle">5678</SPAN></DIV>
  </DIV>
  <DIV class="iprow" >
- <DIV class="ipcell col2x color2" ><SPAN class="iprow" >'/32' 最大子网IP由LIR为企业提供 &nbsp;</SPAN></DIV>
+ <DIV class="ipcell col2x color2" ><SPAN class="iprow" >'/32' biggest enterprise bit mask (from LIR)&nbsp;</SPAN></DIV>
  <DIV class="ipcell col2a  color2a" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
  <DIV class="ipcell col2b  color2b" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
  <DIV class="ipcell col2c  color2c" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
@@ -94,7 +94,7 @@
  </DIV>
  <BR/>
  <DIV class="iprow" >
- <DIV class="ipcell col2y color2c" ><SPAN class="iprow" >'/48' 企業通常的位掩碼由LIR提供&nbsp;</SPAN></DIV>
+ <DIV class="ipcell col2y color2c" ><SPAN class="iprow" >'/48' usual enterprise bit mask (from LIR)&nbsp;</SPAN></DIV>
  <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
  <DIV class="ipcell col3  color3" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
  <DIV class="ipcell col3b  color3b" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
@@ -105,11 +105,11 @@
  <DIV class="iprow" >
  <DIV class="ipcell col3x color3b" ><SPAN class="iprow" >'/64' smallest possible subnet&nbsp;</SPAN></DIV>
  <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
- <DIV class="ipcell col4a  color4 center bold" ><SPAN class="iprow" >识别</SPAN></DIV>
+ <DIV class="ipcell col4a  color4 center bold" ><SPAN class="iprow" >identifiateur</SPAN></DIV>
  </DIV>
  <BR/>
  <DIV class="iprow" >
- <DIV class="ipcelllast col3x color5 bold" ><SPAN class="iprowlast" >IPv6 前缀</SPAN></DIV>
+ <DIV class="ipcelllast col3x color5 bold" ><SPAN class="iprowlast" >IPv6 prefix</SPAN></DIV>
  <DIV class="ipcell col1a  color0" ><SPAN class="iprow" >&nbsp;</SPAN></DIV>
  <DIV class="ipcelllast col4a  color4" ><SPAN class="iprowlast" >&nbsp;</SPAN></DIV>
  </DIV>
@@ -118,18 +118,18 @@
  </DIV>
  <BR/>
 
- <h2>技巧和窍门</h2>
+ <h2>Tips:</h2>
  <LI>https or http with IPv6. https://[IPv6]/.... example http://[2001:db8:4003:c00::6a] (IP beginning with '2001:db8:' are reserved for documentation)</LI>
  <LI>https or http with IPv6 and port. https://[IPv6]:port/.... example http://[2001:db8:4003:c00::6a]:8080</LI>
  <BR/>
- <h2>首字母缩写词</h2>
+ <h2>Some Terms:</h2>
  <LI>IANA = responsible for global coordination of the Internet Protocol addressing systems</LI>
  <LI>RIR = Regional Internet Registry. RIPE NCC	(Europe,Middle East,Central Asia), ARIN	(Canada,USA), LACNIC (Latin America), AFRINIC (Africa), APNIC (Asia/Pacific)</LI>
  <LI>LIR = Local Internet Registry. In fact the direct provider of your compagny or as end user.</LI>
  <LI>PI = Provider Independent Assignments</LI>
  <LI>LLA = Link-Local-Adresses fe80::/10</LI>
  <LI>ULA = Unique Local Addresses = fc00::/7 (fc00… - fdff…) uses for internal customer communication.</LI>
- <h2>细节</h2>
+ <h2>Detail:</h2>
   IPv6 assignation IANA->RIR->LIR->customer<BR/>
  <h2>Multicast:</h2>
  <LI>FF00::/8</LI>

@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+:lang(cs-cz) a[id|=IPv4menutxt]:after {
+	content: 'IPv4';
+}
+:lang(cs-cz) a[id|=IPv6menutxt]:after {
+	content: 'IPv6';
+}
+:lang(cs-cz) a[id|=IPv6cmenutxt]:after {
+	content: 'IPV6 kondenzované';
+}
+:lang(cs-cz) a[id|=IPv6amenutxt]:after {
+	content: 'IPV6 alternativní';
+}
+:lang(cs-cz) #maintitle:after {
+   content:'IP subnet kalkulačka IPv4 & IPng (IPv6).';
+}
+:lang(cs-cz) #theoptions:after {
+   content:'';
+}
+:lang(cs-cz) #panelcalculationtxt:after {
+   content:'kalkulačka';
+}
+:lang(cs-cz) #theme_default:after {
+   content:'výchozí motiv';
+}
+:lang(cs-cz) #theme_modern:after {
+   content:'téma moderní';
+}
+:lang(cs-cz) #theme_classic:after {
+   content:'téma classic';
+}
+:lang(cs-cz) #theme_dark:after {
+   content:'černé téma';
+}
+:lang(cs-cz) #theme_grey:after {
+   content:'šedá téma';
+}
+:lang(cs-cz) #reinit:after {
+content:'inicializace';
+}
+:lang(cs-cz) label[id|=iplabel]:before{
+content: 'IP';
+}
+:lang(cs-cz) label[id|=netmasklabel]:before{
+content: 'netmask';
+}
+:lang(cs-cz) label[id|=subnetlabel]:before{
+content: 'sub sítě';
+}
+:lang(cs-cz) label[id|=bitslabel]:before{
+content: 'bits';
+}
+:lang(cs-cz) label[id|=hostnbrlabel]:before{
+content: 'pomysłowość #';
+}
+:lang(cs-cz) label[id|=ipnbrlabel]:before{
+content: 'IP #';
+}
+:lang(cs-cz) label[id|=broadcastlabel]:before{
+content: 'broadcast';
+}
+:lang(cs-cz) label[id|=hostfromlabel]:before{
+content: 'První zařízení';
+}
+:lang(cs-cz) label[id|=hosttolabel]:before{
+content: 'poslední zařízení';
+}
+:lang(cs-cz) label[id|=historylabel]:before{
+content: 'historie';
+}
+
+:lang(cs-cz) span[id|=paneltext]:after{
+content: 'textový formát';
+}
+:lang(cs-cz) span[id|=panelinfo]:after{
+content: 'informace';
+}
+
+:lang(cs-cz) span[id|=panelexample]:after{
+content: 'příklady';
+}
+:lang(cs-cz) label[id|=reversenetmasklabel]:before{
+content: 'wildcard';
+}
+
+:lang(cs-cz) #textipbtn:after {
+content:'Import textu';
+}
+:lang(cs-cz) #infoIPv4v6btn.hidetxt:after {
+content:'více informací o IPv6';
+}
+:lang(cs-cz) #infoIPv4v6btn.showtxt:after {
+content:'skrýt informace o IPv6';
+}
+:lang(cs-cz) label[id|=ipv4example_1]:after{
+content: 'Třída A';
+}
+:lang(cs-cz) label[id|=ipv4example_2]:after{
+content: 'Třída B';
+}
+:lang(cs-cz) label[id|=ipv4example_3]:after{
+content: 'Třída C';
+}
+:lang(cs-cz) label[id|=ipv4example_4]:after{
+content: 'Multicast';
+}
+:lang(cs-cz) label[id|=ipv6example_1]:after{
+content: 'Rezervováno';
+}
+:lang(cs-cz) label[id|=ipv6example_2]:after{
+content: 'loopback';
+}
+:lang(cs-cz) label[id|=ipv6example_3]:after{
+content: 'internet first addresses';
+}
+:lang(cs-cz) label[id|=ipv6example_4]:after{
+content: 'internet new official';
+}
+:lang(cs-cz) label[id|=ipv6example_5]:after{
+content: 'internet routing IPv6 to IPV4';
+}
+:lang(cs-cz) label[id|=ipv6example_6]:after{
+content: 'multicast mDNSv6';
+}
+:lang(cs-cz) label[id|=ipv6example_7]:after{
+content: 'multicast';
+}
+:lang(cs-cz) label[id|=ipv6example_8]:after{
+content: 'Link-local unicast';
+}
+:lang(cs-cz) label[id|=ipv6example_9]:after{
+content: 'Site-local unicast';
+}
+:lang(cs-cz) label[id|=ipv6example_10]:after{
+content: 'local IPv4 to IPv6';
+}
+:lang(cs-cz) label[id|=ipv6example_11]:after{
+content: '6bone (for backbone research)';
+}
+:lang(cs-cz) label[id|=ipv6example_12]:after{
+content: 'multicast subnet';
+}
+:lang(cs-cz) label[id|=ipv6example_13]:after{
+content: 'multicast routers';
+}
+:lang(cs-cz) label[id|=ipv6example_14]:after{
+content: 'undefined IP';
+}
+:lang(cs-cz) label[id|=ipv6example_15]:after{
+content: 'IPv6 kondenzované';
+}
+:lang(cs-cz) label[id|=ipv6example_16]:after{
+content: 'IPv6 alternative';
+}
+:lang(cs-cz) label[id|=ipv6example_17]:after{
+content: 'IPv6 kondenzované pro firmu';
+}
+:lang(cs-cz) label[id|=ipv6example_18]:after{
+content: 'IPv6 not kondenzované';
+}
+:lang(cs-cz) span[class~=infoIP4_00]:before{
+content: 'IP version 4  aaa.bbb.ccc.ddd where aaa, bbb, ccc, ddd are numbers between 0 and 255.';
+}
+:lang(cs-cz) span[class~=infoIP4_01]:before{
+content: 'soukromá třída A';
+}
+:lang(cs-cz) span[class~=infoIP4_02]:before{
+content: 'soukromá třída B';
+}
+:lang(cs-cz) span[class~=infoIP4_03]:before{
+content: 'soukromá třída C';
+}
+:lang(cs-cz) span[class~=infoIP4_04]:before{
+content: 'Třída A from 1.x.x.x 127.x.x.x';
+}
+:lang(cs-cz) span[class~=infoIP4_05]:before{
+content: 'Třída B from 128.x.x.x 191.x.x.x';
+}
+:lang(cs-cz) span[class~=infoIP4_06]:before{
+content: 'Třída C from 192.x.x.x 223.x.x.x';
+}
+:lang(cs-cz) span[class~=infoIP4_07]:before{
+content: 'multicast 224.x.x.x 239.x.x.x';
+}
+:lang(cs-cz) span[class~=infoIP4_08]:before{
+content: 'other     240.x.x.x 255.x.x.x';
+}
+:lang(cs-cz) span[class~=infoIP4_09]:before{
+content: 'localhost 127.x.x.x';
+}
+
+:lang(cs-cz) span[class~=infoIP6_00]:before{
+content: 'reserved & Loopback=::1 & any=::';
+}
+:lang(cs-cz) span[class~=infoIP6_01]:before{
+content: 'Unassigned.';
+}
+:lang(cs-cz) span[class~=infoIP6_02]:before{
+content: 'Reserved for NSAP Allocation, Prefix(binary)=0000 001 .';
+}
+:lang(cs-cz) span[class~=infoIP6_03]:before{
+content: 'Reserved for IPX Allocation, Prefix(binary)=0000 010 .';
+}
+:lang(cs-cz) span[class~=infoIP6_04]:before{
+content: "'2000::/3' actually allocated IPv6 address for internet. '2000::/16' before the official begin 2001. '2001::/16' after 2001. '2002::/16' for routing IPv6 to IPv4 on the internet.";
+}
+:lang(cs-cz) span[class~=infoIP6_05]:before{
+content: 'Multicast. FF00::/8 (FF00:: to FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF).';
+}
+:lang(cs-cz) span[class~=infoIP6_06]:before{
+content: 'Unique Local Unicast subnet. Unique Local Addresses (ULA) are intern IPs. FC00::/7. For example for tunnel connection.';
+}
+:lang(cs-cz) span[class~=infoIP6_07]:before{
+content: 'Link-Local-Adressen. FE80::/10. Between network devices.';
+}
+:lang(cs-cz) span[class~=infoIP6_08]:before{
+content: '6bone "3ffe::/16" for research in IPv6 backbone.';
+}
+:lang(cs-cz) span[class~=infoIP6_09]:before{
+content: 'IP reserved for future usage.';
+}
+:lang(cs-cz) span[class~=infoIP6_10]:before{
+content: 'FF01::1, FF02::1 IPv6 broadcast. All devices should answer. FF01::/8 are Node-Local Scope Multicast Addresses. FF02::/8 Link-Local Scope Multicast Addresses.';
+}
+:lang(cs-cz) span[class~=infoIP6_11]:before{
+content: 'FF01::2, FF02::2, FF05::1  all routers IPs should answer. FF01::/8 are Node-Local Scope Multicast Addresses. FF02::/8 Link-Local Scope Multicast Addresses.';
+}
+:lang(cs-cz) span[class~=infoIP6_12]:before{
+content: '::/128 is the undefined IPv6. Used when IPv6 does not exist or showing an issue.';
+}
+:lang(cs-cz) span[class|=fillinfotxtresultsubnet]:before{
+content: 'subnet';
+}
+
