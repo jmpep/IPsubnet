@@ -138,10 +138,14 @@ border-color:#4D4D4D;
 	color:#808080;
 }
 .fa-toggle-off{
-	color:gray;
+	color:white;
 }
 
 select.input-sm.badged{
+color:#ffffff;
+background:Gray;
+}
+select.input-sm{
 color:#ffffff;
 background:Gray;
 }
