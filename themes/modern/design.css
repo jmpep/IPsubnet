@@ -301,3 +301,18 @@ div.infotxt {
 .infoIPv4v6txt {
 color:gray;
 }
+.historymenu>li>a:focus, .historymenu>li>a:hover {
+background-color:#a3c388;
+}
+.panel-footer {
+color:#f5f5f5;
+background: rgba(138,179,105,1);
+background: -moz-linear-gradient(top, rgba(138,179,105,1) 0%, rgba(63,117,15,1) 100%);
+background: -webkit-linear-gradient(top, rgba(138,179,105,1) 0%, rgba(63,117,15,1) 100%);
+background: -o-linear-gradient(top, rgba(138,179,105,1) 0%, rgba(63,117,15,1) 100%);
+background: -ms-linear-gradient(top, rgba(138,179,105,1) 0%, rgba(63,117,15,1) 100%);
+}
+button[id|=reinit] {
+padding: 5px;
+background-color:#3e552b;
+}
