@@ -98,15 +98,26 @@ color:#e6e6fa;
 font-weight:bold;
 }
 
-.btn-success {
-    color: #fff;
-    background-color: #6d88ad;
-    border-color: #398439;
+.btn-success, .btn-success:focus, .btn-success:active {
+color: #fff;
+background-color: #6d88ad;
+border-color: #0056b3;
 }
 .btn-success:hover{
-    color: #fff;
-    background-color: #6d88ad;
-    border-color: #398439;
+color: #fff;
+background-color: #6d88ad;
+border-color: #0056b3;
+}
+.infoIPv4v6btn, .infoIPv4v6btn:focus, .infoIPv4v6btn:active {
+color: #fff;
+background-color: #6d88ad;
+border-color: #536d93;
+border-width:3px;
+font-weight: 400;
+}
+.infoIPv4v6btn:hover {
+color: #fff;
+border-color: #8da2bf;
 }
 
 .btnlanguage {
@@ -257,4 +268,14 @@ div.infotxt {
 }
 .infoIPv4v6txt {
 color:gray;
+}
+.historymenu>li>a:focus, .historymenu>li>a:hover {
+background-color:#80bbff;
+}
+.panel-footer {
+background-color:#6d88ad;
+}
+button[id|=reinit] {
+padding: 5px;
+background-color:#496183;
 }
