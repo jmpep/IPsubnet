@@ -141,7 +141,7 @@
       </DIV>
 	   <DIV ID="theoptions" class="dropdown theoptions WORLD" >
        <BUTTON type="button" ID="btntheoptions" class="btn btntheoptions" onClick="openDropDown('theoptions');" >
-	   &nbsp;<i id="icotheoptions" class="fa fa-cog"></i>&nbsp;<i id="theoptionscaretdown" class="fa fa-caret-down"></i>
+	   &nbsp;<i id="icotheoptions" class="fa fa-cog fa-1x5"></i>&nbsp;<i id="theoptionscaretdown" class="fa fa-caret-down fa-1x5"></i>
 	   </BUTTON>
         <ul id="theoptionsul" class="dropdown-menu theoptions">
 		 <li><a class="theoptions-menu" onClick="selectTheme('default');" >
@@ -168,9 +168,8 @@
   <!-- end panel IP format -->
   <!-- begin panel calculation -->
   <DIV class="panel panel-calculation ipsubnet">
-   <DIV class="panel-heading">
-   <i ID="togglecollapse1" class="fa fa-toggle-on" aria-hidden="true"
-      onclick="togglePanel(this,collapse1);"></i>
+   <DIV class="panel-heading" onclick="togglePanel('togglecollapse1','collapse1');">
+   <i ID="togglecollapse1" class="fa fa-toggle-on" aria-hidden="true"></i>
    <SPAN ID="panelcalculationtxt" class="WORLD">&nbsp;</SPAN>
    &nbsp;<i class="fa fa-calculator fa-1x5"></i>&nbsp;
    </DIV>
@@ -294,12 +293,23 @@
    </div>
    <div class="row">
     <div class="form-group">
-      <label id="historylabel" class="control-label col-sm-1 labelling WORLD" for="history"></label>
-      <div class="col-sm-3" id="historydiv" >
-	   <select id="history" class="input-sm" placeholder="choose history" onchange="setHistoryToIP();">
-	   <option value="192.168.0.1/24" >192.168.0.1/24</option>
-	   </select>
-      </div>
+      <label id="historylabel" class="control-label col-sm-1 labelling WORLD" for="selecthistory"></label>
+<div class="dropdown historymenu" id="thehistorydiv" >
+   <button id="historybtn" class="btn dropdown-toggle" type="button" data-toggle="dropdown" onClick="openDropDown('selecthistory');" >192.168.0.1/24
+   </button>
+   <SPAN id="selecthistorydown" class="fa fa-caret-down fa-1x5" onClick="openDropDown('selecthistory');" >&nbsp;</SPAN>
+   <ul id="selecthistory" class="dropdown-menu historymenu" >
+    <li>
+      <span id="STN0" class="fa fa-star-o historymenu" ></span>
+	  <span class="fa fa-star history" ></span>
+	  <a class="historymenu" onClick="setHistoryIP('historybtn','192.168.0.1/24');" >192.168.0.1/24</a>
+	</li>
+    <li>
+	  <span class="fa fa-star history" ></span>
+	  <a class="historymenu" onClick="setHistoryIP('historybtn','172.30.8.1/25');" >172.30.8.1/25</a>
+	</li>
+  </ul>
+</div>
 	</div>
    </div>
    <!-- end   row -->
@@ -311,9 +321,8 @@
   <!-- end panel IP calculation -->
   <!-- panel IP TEXT -->
   <DIV class="panel panel-text ipsubnet">
-   <DIV class="panel-heading">
-   <i ID="togglecollapse4" class="fa fa-toggle-on" aria-hidden="true"
-      onclick="togglePanel(this,collapse4);"></i>
+   <DIV class="panel-heading" onclick="togglePanel('togglecollapse4','collapse4');">
+   <i ID="togglecollapse4" class="fa fa-toggle-on" aria-hidden="true"></i>
    <SPAN id="paneltext" class="WORLD" >&nbsp;</SPAN>
    &nbsp;<i class="fa fa-sticky-note-o fa-1x5"></i>&nbsp;
    </DIV>
@@ -335,8 +344,8 @@
 	 </SPAN>
 	 </DIV>
      <DIV id="textimportexamplediv" class="textimportexamplediv" >
-	   <i class="fa fa-info-circle" aria-hidden="true" onClick="togglePanel(toggletextimportexample,textimportexample);" ></i>
-	   <i id="toggletextimportexample" class="fa fa-toggle-on" aria-hidden="true" onClick="togglePanel(this,textimportexample);" ></i>
+	   <i class="fa fa-info-circle" aria-hidden="true" onClick="togglePanel('toggletextimportexample','textimportexample');" ></i>
+	   <i id="toggletextimportexample" class="fa fa-toggle-on" aria-hidden="true" onClick="togglePanel('toggletextimportexample','textimportexample');" ></i>
 	   <BR>
 	   <DIV id="textimportexample" class="textimportexample" ><SPAN >
 	   IP=192.168.0.10/20<BR>
@@ -352,9 +361,8 @@
   <!-- end panel IP TEXT -->
   <!-- panel IP Info -->
   <DIV class="panel panel-info ipsubnet">
-   <DIV class="panel-heading">
-   <i ID="togglecollapse2" class="fa fa-toggle-on" aria-hidden="true"
-      onclick="togglePanel(this,collapse2);"></i>
+   <DIV class="panel-heading" onclick="togglePanel('togglecollapse2','collapse2');">
+   <i ID="togglecollapse2" class="fa fa-toggle-on" aria-hidden="true"></i>
    <SPAN id="panelinfo" class="WORLD" >&nbsp;</SPAN>
    &nbsp;<i class="fa fa-comment-o fa-1x5"></i>&nbsp;
    </DIV>
@@ -370,9 +378,8 @@
  <!-- end panel IP Info -->
   <!-- panel IP example -->
   <DIV class="panel panel-example ipsubnet">
-   <DIV class="panel-heading">
-   <i ID="togglecollapse3" class="fa fa-toggle-on" aria-hidden="true"
-      onclick="togglePanel(this,collapse3);"></i>
+   <DIV class="panel-heading" onclick="togglePanel('togglecollapse3','collapse3');">
+   <i ID="togglecollapse3" class="fa fa-toggle-off" aria-hidden="true"></i>
    <SPAN id="panelexample" class="WORLD" >&nbsp;</SPAN>
    &nbsp;<i class="fa fa-child fa-1x5"></i>&nbsp;<i class="fa fa-lightbulb-o fa-1x5"></i>&nbsp;
    </DIV>
@@ -475,8 +482,11 @@
  </DIV>
  <DIV class="panel-footer">
     <div class="">
-	 <BUTTON ID="reinit" type="button" class="btn btn-success infoIPv4v6btn WORLD" onClick="reinitip();" >
+	 <BUTTON ID="reinit" type="button" class="btn infoIPv4v6btn WORLD" onClick="reinitip();" >
 	 &nbsp;</BUTTON>
+    </div>
+    <div class="version">
+	<span>v1.0.11</span>
     </div>
  </DIV>
 </DIV>
