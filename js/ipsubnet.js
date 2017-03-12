@@ -1,10 +1,10 @@
 // GitHub project ipsubnet
 // Licensed under https://github.com/jmpep/ipsubnet/blob/master/LICENSE-MIT
 
-//var langList="WORLD,EN,EN-GB,EN-US,UK,FR,US,DE,IT,ZH,ZH-HANS,RU,CZ,PL";
 var langList="WORLD,CN,CS,EN,DE,FR,IT,PL,TR,RU,ZH,";
 var flgList ="WORLD,AU,AT,CA,CN,CZ,CH,GB,FR,US,GE,IT,LI,LU,PL,HANS,RU,US,TR,ZH,";
 var infoList ="WORLD,CN,CS-CZ,EN,DE,FR,IT,PL,RU,TR,ZH,ZH-HANS,";
+var themesList="classic,dark,modern,grey,default,paw";
 
 var localstore;
 $(document).ready(function() {
@@ -132,7 +132,6 @@ function checkIPformat(txt) {
 			res = 2;
 		}
 	  }
-//console.log('checkIPformat '+i+'->'+ltxt[i]+' ->'+res);
 	  if (res<0){
 		  formataddr= -1
 		  break;
@@ -141,7 +140,6 @@ function checkIPformat(txt) {
 	}
 
   }
-//console.log('checkIPformat ->'+formataddr);
   return formataddr;	
 }
 
@@ -251,8 +249,10 @@ function initializeFunctions() {
     if ( ($("#theoptions").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#theoptions')) ) {
          $("#theoptions").removeClass('open');
     }
+    if ( ($("#selecthistory").hasClass('open')) && (!$('#'+e.target.id).isChildOf('#thehistorydiv')) ) {
+         $("#selecthistory").removeClass('open');
+    }
   });
-  settoggledPanel('textimportexample',0);
 }
 
 function openDropDown(theul) {
@@ -271,7 +271,6 @@ function initializeIPsubnet() {
   initializeValues('IPv4',-1,'192.168.0.10',24,'255.255.255.0','192.168.0.0','192.168.0.255','192.168.0.1','192.168.0.254',253,255)
   initializeFunctions();
   localstore= (typeof(Storage) !== "undefined");
-
   if (localstore) {
     temp = localStorage.getItem('lang');
     if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='')) storeAllStorage();
@@ -287,7 +286,17 @@ function reinitip() {
   IPv6cchk.checked = true;
   setlanguageObjects('WORLD');
   setCIDRIP('192.168.0.10/24');
-  initializeFunctions();
+  settoggledPanel('collapse1','1');
+  settoggledPanel('collapse4','1');
+  settoggledPanel('collapse3','0');
+  settoggledPanel('collapse2','0');
+  if (typeof(defaulttheme) !== "undefined") {
+	  selectTheme(defaulttheme);
+  }
+  if (typeof(defaultlang) !== "undefined") {
+	setlanguageObjects(defaultlang);
+  }
+ //initializeFunctions();
   localstorage= (typeof(Storage) !== "undefined");
   if (localstorage) {
     storeAllStorage();
@@ -336,10 +345,10 @@ function storeAllStorage() {
    //var lang= imglanguage.className.replace('imglanguage','').trim();
    var lang= $('body').attr('lang').trim();
    localStorage.setItem('lang',lang);
-   if (istoggledPanel('collapse1')==1) {   localStorage.setItem('collapse1',1); } else {   localStorage.setItem('collapse1',0); }
-   if (istoggledPanel('collapse2')==1) {   localStorage.setItem('collapse2',1); } else {   localStorage.setItem('collapse2',0); }
-   if (istoggledPanel('collapse3')==1) {   localStorage.setItem('collapse3',1); } else {   localStorage.setItem('collapse3',0); }
-   if (istoggledPanel('collapse4')==1) {   localStorage.setItem('collapse4',1); } else {   localStorage.setItem('collapse4',0); }
+   if (istoggledPanel('collapse1')=='1') {   localStorage.setItem('collapse1','1'); } else {   localStorage.setItem('collapse1','0'); }
+   if (istoggledPanel('collapse2')=='1') {   localStorage.setItem('collapse2','1'); } else {   localStorage.setItem('collapse2','0'); }
+   if (istoggledPanel('collapse3')=='1') {   localStorage.setItem('collapse3','1'); } else {   localStorage.setItem('collapse3','0'); }
+   if (istoggledPanel('collapse4')=='1') {   localStorage.setItem('collapse4','1'); } else {   localStorage.setItem('collapse4','0'); }
    vals=$('#textipimport').val();
    vals=vals.replace(/\n/g,'<BR>');
    vals=vals.replace(/=/g,'#');
@@ -427,10 +436,10 @@ function getAllStorage() {
     } else {
       IPv6cchk.checked = false;
     }
-    if (localStorage.getItem('collapse1')=='1') {   settoggledPanel('collapse1',1); } else {  settoggledPanel('collapse1',0); }
-    if (localStorage.getItem('collapse2')=='1') {   settoggledPanel('collapse2',1); } else {  settoggledPanel('collapse2',0); }
-    if (localStorage.getItem('collapse3')=='1') {   settoggledPanel('collapse3',1); } else {  settoggledPanel('collapse3',0); }
-    if (localStorage.getItem('collapse4')=='1') {   settoggledPanel('collapse4',1); } else {  settoggledPanel('collapse4',0); }
+    if (localStorage.getItem('collapse1')=='1') {   settoggledPanel('collapse1','1'); } else {  settoggledPanel('collapse1','0'); }
+    if (localStorage.getItem('collapse2')=='1') {   settoggledPanel('collapse2','1'); } else {  settoggledPanel('collapse2','0'); }
+    if (localStorage.getItem('collapse3')=='1') {   settoggledPanel('collapse3','1'); } else {  settoggledPanel('collapse3','0'); }
+    if (localStorage.getItem('collapse4')=='1') {   settoggledPanel('collapse4','1'); } else {  settoggledPanel('collapse4','0'); }
     lang= localStorage.getItem('lang');
 	if (lang===null) lang="WORLD";
 	setlanguageObjects(lang);
@@ -441,7 +450,14 @@ function getAllStorage() {
 	  $('#textipimport').val(vals);
 	}
     lasttheme= localStorage.getItem('theme');
-	selectTheme(lasttheme);
+    if (lasttheme==null) {
+       if (typeof(defaulttheme) != "undefined") {
+          lasttheme= defaulttheme;
+       } else {
+          lasttheme= 'default';
+       }
+    }
+    selectTheme(lasttheme);
   }
 }
 function setCookie(cname, cvalue, days) {
@@ -493,7 +509,6 @@ function extractIPformat(val,tpart,tpartip4) {
 	  switch (typeIP) {
 		  case 1: {
 			  tpartip4 = val.split('.');
-//console.log('extractIPformat -> ='+tpartip4);
 			  tparttxt[6]=(tpartip4[0]*256+tpartip4[1]*1).toString(16);
 			  tparttxt[7]=(tpartip4[2]*256+tpartip4[3]*1).toString(16);
 			  break;
@@ -514,7 +529,6 @@ function extractIPformat(val,tpart,tpartip4) {
 	  }
 	  for (var i=0;i<8;i++) { tpart[i]=parseInt(tparttxt[i],16); }
   }
-//console.log('extractIPformat -> typeIP='+typeIP+' ='+tparttxt);
   return typeIP;
 }
 
@@ -1977,16 +1991,12 @@ function loadTextIPbtn() {
 	vals=$('#textipimport').val();
 	tval= vals.split("\n");
 	ret = -1;warning=0;
-//var xstop=0;
-//console.log('loadTextIPbtn '+' vals='+vals+' tval='+tval+' tval.length='+tval.length);
 	lines=''; //<i class="fa fa-times warning statusicons warning" aria-hidden="true"></i>
 	for (xi=0;xi<tval.length;xi++) {
 	  v1 = tval[xi].toUpperCase();
 	  if ((v1!='')&&(v1.indexOf('=')>-1)) {
 	    v2 = v1.split('=');
 	    vx = v2[0].trim();
-//xstop++;
-//console.log('loadTextIPbtn xi='+xi+' v1='+v1+' v2='+v2+' vx='+vx+' XSTOP='+xstop);
 	    switch (vx) {
 		  case 'IP': 
 		  case 'CIDR': 
@@ -2004,8 +2014,6 @@ function loadTextIPbtn() {
 				  ip = vz[0].trim();
                   $('#IP').val(ip);
 				  bits = vz[1].trim();
-//console.log('loadTextIPbtn '+' vy='+vy+' a='+a+' b='+b+' vz='+vz+' ip='+ip+' bits='+bits+' b='+b);
-//if (xstop>=10) exit;
                   if (b==1) {
 					nb = convertNetmaskToBits(bits);
 					if (nb>0) {
@@ -2127,14 +2135,17 @@ function removeFromHistory(cidr) {
 	 val = val.replace(",#"+cidr+"#","");
 	 val = val.replace("#"+cidr+"#","");
 	 val = val.replace(/,,/g,",");
+	 val = val.replace(/^,/, '').replace(/,$/, '');
 	 if (val==',') val= '';
      localStorage.setItem('thehistory',val);
   }
 }
 function addInHistory(cidr) {
-  var val,vallist;
-//console.log('addInHistory BEFORE cidr='+cidr+' localStorage.getItem(thehistory)='+localStorage.getItem('thehistory'))
-  if ((localStorage.getItem('thehistory')!=null) && (localStorage.getItem('thehistory')!='')) {
+  var val,vallist,historystars;
+  historystars=localStorage.getItem('historystars');
+  if ((historystars!=null) && (historystars!='')) {
+  if (historystars.indexOf('#'+cidr+'#')<0) {
+    if ((localStorage.getItem('thehistory')!=null) && (localStorage.getItem('thehistory')!='')) {
      removeFromHistory(cidr);
 	 val = localStorage.getItem('thehistory');
 	 if (val!='') vallist=val.split(',');
@@ -2145,66 +2156,98 @@ function addInHistory(cidr) {
 	 vallist.push("#"+cidr+"#");
 	 val = vallist.join(',');
      localStorage.setItem('thehistory',val);
-  } else {
+    } else {
 	 localStorage.setItem('thehistory',"#"+cidr+"#");
+    }
   }
-//console.log('addInHistory AFTER cidr='+cidr+' localStorage.getItem(thehistory)='+localStorage.getItem('thehistory'))
+  }
 }
 
-function setHistoryToIP() {
-//console.log('setHistoryToIP val->'+$('#history').val());
-  vy = $('#history').val();
-  vy = vy.trim();
+function setHistoryIP(menu,vy) {
+  $('#'+menu).html(vy);
   setCIDRIP(vy);
 }
 
-function getHistory() {
-  var history = document.getElementById("history");
-  selectstr='';
-  if (localStorage.getItem('thehistory')==null) {
-	vallist = [];
-  } else {
-    valhist=localStorage.getItem('thehistory');
-    vallist = valhist.split(',');
-  }
-  for (i=vallist.length; i>=0;i--) {
-	  val= vallist[i];
-	  if (val!=null) {
-		val = val.replace(/#/g,'');
-	    if (selectstr!='') {
-			selectstr = selectstr+';;' + 'history'+i+';'+val;
-		} else {
-			selectstr = 'history'+i+';'+val;
-		}
-	  }
-  }
-//  $('#history').val(vals);
-//console.log('getHistory selectstr='+selectstr);
-  if (selectstr!='') {
-    selectstrlist= selectstr.split(';;');
-    var x = history.childNodes;
-	var last ="";
-    for (var i = x.length-1; i >=0 ; i--) {
-//console.log('getHistory remove child val->'+x[i].value);
-      history.removeChild(x[i]);
+function flipStar(id,va) {
+  var historystars,historystarslist,selectstrlist,selectstr;
+  historystars=localStorage.getItem('historystars');
+  if ($('#'+id).hasClass('fa-star-o')) {
+    if (historystars==null) {
+	  historystars='#'+va+'#';
+    } else {
+	  historystars= historystars.replace(/^,/, '').replace(/,$/, '') + ',#'+va+'#';
     }
+	$('#'+id).removeClass('fa-star-o').addClass('fa-star');
+    localStorage.setItem('historystars',historystars);
+  } else {
+    if (historystars==null) {
+	  historystars='';
+    } else {
+	  historystars= historystars.replace('#'+va+'#','');
+	  historystars= historystars.replace(',,',',');
+    }
+	$('#'+id).removeClass('fa-star').addClass('fa-star-o');
+    localStorage.setItem('historystars',historystars);
+  }
+  getHistory();
+}
+
+function getHistory() {
+  var historystars,historystarslist,selectstrlist,selectstr,valul;
+  historystars=localStorage.getItem('historystars');
+  if ((historystars==null) || (historystars=='')) {
+	historystars='';
+	historystarslist= [];
+  } else {
+    historystars=historystars.replace(/^,/, '').replace(/,$/, '');
+    historystarslist=historystars.split(',');
+  }
+  selectstr=localStorage.getItem('thehistory')
+  if ((selectstr==null) ||(selectstr=='')) {
+	selectstr='';
+	selectstrlist = [];
+  } else {
+    selectstr=selectstr.replace(/^,/, '').replace(/,$/, '');
+    selectstrlist = selectstr.split(',');
+  }
+  $('#selecthistory li').each(function() { $(this).remove();});
+  $('#selecthistory hr').each(function() { $(this).remove();});
+  $ul= $('#selecthistory');
+  if (historystarslist.length>0) {
+    for (i=0;i<historystarslist.length;i++) {
+	  var val = historystarslist[i];
+	  val = val.replace(/#/g,'');
+		valul= '';
+		valul= valul+'<li class="historymenu" >';
+		valul= valul+'<span class="historymenu" onClick="flipStar('+'\'STY'+i+'\',\''+val+'\');" >&nbsp;';
+		valul= valul+'<span id="STY'+i+'" class="fa fa-star historymenu" >&nbsp;</span>&nbsp;</span>';
+		valul= valul+'<a class="historymenu" onClick="setHistoryIP(\'historybtn\',\''+val+'\');" >'+val+'</a>';
+		valul= valul+'</li>';
+	  $ul.append(valul);
+    }
+    $ul.append('<hr class="historymenuseparation">');
+  }
+  if (selectstrlist.length>0) {
+	var last ="";
     for (i=0;i<selectstrlist.length;i++) {
-	  var val = selectstrlist[i].split(';');
-      var option=document.createElement("option");
-	  option.text=val[1];
-	  option.value=val[1];
-	  option.id=val[0];
-	  history.add(option);
-	  last=val[0];
+	  var val = selectstrlist[i];
+	  if (historystars.indexOf(val)<0) {
+		val = val.replace(/#/g,'');
+		valul= '';
+		valul= valul+'<li class="historymenu" >';
+		valul= valul+'<span class="historymenu" onClick="flipStar('+'\'STN'+i+'\',\''+val+'\');" >&nbsp;';
+		valul= valul+'<span id="STN'+i+'" class="fa fa-star-o historymenu" ></span>&nbsp;</span>';
+		valul= valul+'<a class="historymenu" onClick="setHistoryIP(\'historybtn\',\''+val+'\');" >'+val+'</a>';
+		valul= valul+'</li>';
+	    $ul.append(valul);
+	  }
+	  last=val.replace(/#/g,'');
     }
     if (selectstrlist.length>=0) {
-      //history.selectedIndex=1; //selectstrlist.length-1;
-      history.value= history.options[history.selectedIndex].value;
-//console.log('getHistory selectedIndex='+history.selectedIndex+' history.value='+history.value);
+      $('#historybtn').html(last);
     } else {
-      history.value=last;
-    }
-	$('#history').selectmenu('refresh');
+      $('#historybtn').html("");
+	}
   }
 }
 
@@ -2435,7 +2478,6 @@ function setFileiframeinfo(lng,ctry) {
   	  thefile='EN';
 	}
   }
-//console.log('setFileiframeinfo -> thefile='+thefile);
   $('#iframeinfo').attr('src',"./lang/infoIPv4v6-"+thefile+".html");
 }
 
@@ -2457,7 +2499,6 @@ function setlanguageObjects(lang) {
 	}
 	if (thelang!=country) langused=thelang+'-'+country;
 	else langused=thelang;
-//console.log('setlanguageObjects('+lang+') -> thelang='+thelang+' country='+country+' langused='+langused);
 	$('body').attr('lang',langused.toLowerCase());
 	readhtmlselectbits();
 }
@@ -2905,53 +2946,56 @@ function browsertype(){
 }
 
 function settoggledPanel(pannel,val) {
-  var pannelobj = document.getElementById(pannel);
-  var toggleobj = document.getElementById('toggle'+pannel);
-  /* the DOM variable above are for compatibility wit IE */
-	if (val==1){
-	    toggleobj.className = 'fa fa-toggle-on';
-		pannelobj.style.display='';
-	} else {
-	    toggleobj.className = 'fa fa-toggle-off';
-		pannelobj.style.display='none';
-	};
+  $('#toggle'+pannel).removeClass('fa-toggle-off').removeClass('fa-toggle-on');
+  if (val=='1'){
+    $('#toggle'+pannel).addClass('fa-toggle-on');
+	$('#'+pannel).css('display','');
+  } else {
+    $('#toggle'+pannel).addClass('fa-toggle-off');
+  	$('#'+pannel).css('display','none')
+  }
+  localStorage.setItem(pannel,val);
 }
 function istoggledPanel(pannel) {
-  var pannelobj = document.getElementById(pannel);
-  var toggleobj = document.getElementById('toggle'+pannel);
-  /* the DOM variable above are for compatibility wit IE */
   var ret;
-	if (pannelobj.style.display==''){
-		ret= 1;
-	} else {
-		ret= 0;
-	};
+  if ($('#toggle'+pannel).hasClass('fa-toggle-on')){
+  	ret= '1';
+  } else {
+  	ret= '0';
+  };
   return ret;
 }
 function togglePanel(obj,pannelobj) {
-	if (obj.className.indexOf('fa-toggle-off')>=0){
-		obj.className='fa fa-toggle-on';
-		pannelobj.style.display='';
-	} else {
-		obj.className='fa fa-toggle-off';
-		pannelobj.style.display='none';
-	};
+  if ($('#toggle'+pannelobj).hasClass('fa-toggle-off')){
+  	$('#toggle'+pannelobj).removeClass('fa-toggle-off').addClass('fa-toggle-on');
+  	$('#'+pannelobj).css('display','');
+	localStorage.setItem(pannelobj.id,'1');
+  } else {
+  	$('#toggle'+pannelobj).removeClass('fa-toggle-on').addClass('fa-toggle-off');
+  	$('#'+pannelobj).css('display','none');
+	localStorage.setItem(pannelobj.id,'0');
+  }
 }
-var themesList="classic,dark,modern,grey,default,paw";
+
 function selectTheme(theme) {
-	var thetheme;
-	thetheme = theme;
-	if ( (thetheme=='') || (themesList.indexOf(thetheme) <0)) {
-		thetheme ='default';
-	}
-	if ($('#design').attr("href").indexOf('themes')>=0) {
-        val1 = $('#design').attr("href");
-        val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
-        $('#design').attr("href", val ); //+"?id=" + new Date().getMilliseconds());
-	} else {
-        val1 = $('#design').attr("href");
-        val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
-        $('#design').attr("href", val ); //+ "?id=" + new Date().getMilliseconds());
-	}
-    localStorage.setItem('theme',thetheme);	
+  var thetheme;
+  thetheme = theme;
+  if (thetheme!='') {
+    thetheme = theme.trim();
+    if ( themesList.indexOf(thetheme) <0) {
+      thetheme ='default';
+    }
+    if ($('#design').attr("href").indexOf('themes')>=0) {
+      val1 = $('#design').attr("href");
+      val = val1.replace(/themes\/(.+)\/design.css$/,"themes/"+thetheme+"/design.css");
+      $('#design').attr("href", val );
+    } else {
+      val1 = $('#design').attr("href");
+      val = val1.replace(/css\/design.css$/,"themes/"+thetheme+"/design.css");
+      $('#design').attr("href", val );
+    }
+    localStorage.setItem('theme',thetheme);
+  } else {
+    console.log('WARNING selectTheme theme is empty!);
+  }
 }
