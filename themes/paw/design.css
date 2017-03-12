@@ -356,3 +356,26 @@ div.infotxt {
 .infoIPv4v6txt {
 color:gray;
 }
+.historymenu{
+background-color:#b3b3b3;
+}
+.historymenu>li>a {
+background-color:#b3b3b3;
+}
+.historymenu>li>a:focus, .historymenu>li>a:hover {
+background-color:#8c8c8c;
+}
+.panel-footer {
+border-top-color:#ddd;
+background:#f2f2f2;
+background: -moz-linear-gradient(left, #cccccc 0%, #f2f2f2 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#cccccc), color-stop(100%,#f2f2f2));
+background: -webkit-linear-gradient(left, #cccccc 0%,#f2f2f2 100%);
+background: -o-linear-gradient(left, #cccccc 0%,#f2f2f2 100%);
+background: -ms-linear-gradient(left, #cccccc 0%,#f2f2f2 100%);
+background: linear-gradient(to right, #cccccc 0%,#f2f2f2 100%);
+}
+button[id|=reinit] {
+padding: 5px;
+background-color:#b3b3b3;
+}
