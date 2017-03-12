@@ -287,3 +287,13 @@ div.infotxt {
 .infoIPv4v6txt {
 color:gray;
 }
+.historymenu>li>a:focus, .historymenu>li>a:hover {
+background-color:#b3b3b3;
+}
+.panel-footer {
+background-color:#1a1a1a;
+}
+button[id|=reinit] {
+padding: 5px;
+background-color:#b3b3b3;
+}
