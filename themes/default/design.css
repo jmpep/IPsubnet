@@ -250,3 +250,6 @@ div.infotxt {
 .infoIPv4v6txt {
 color:gray;
 }
+.historymenu>li>a:focus, .historymenu>li>a:hover {
+background-color:#f5f5f5;
+}
