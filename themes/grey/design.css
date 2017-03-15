@@ -1,8 +1,11 @@
 /* *********************** */
 /* CSS not related to size */
 /* *********************** */
+/* THEME: grey */
 
 .container {
+background-color:transparent;
+color:black;
 }
 
 a, a:focus, a:hover {
@@ -83,11 +86,12 @@ color:#ccc
 }
  
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#999999;
 font-weight:bold;
+text-decoration:none;
 }
 
 .btn-success {
@@ -113,6 +117,10 @@ button.btnlanguage:focus {
 background-color: #4D4D4D;
 border-color:#4D4D4D;
 }
+.open>.dropdown-toggle.btnlanguage:focus {
+border-color:#4D4D4D;
+}
+
 button.btntheoptions {
 background: transparent;
 color:#999999;
@@ -124,10 +132,6 @@ border-color:#4D4D4D;
 }
 button.btntheoptions:focus {
 background-color: #8c8c8c;
-border-color:#4D4D4D;
-}
-
-.open>.dropdown-toggle.btnlanguage:focus {
 border-color:#4D4D4D;
 }
 
