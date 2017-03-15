@@ -4,6 +4,8 @@
 /* theme: default */
 
 .container {
+background-color:transparent;
+color:#ffffff;
 }
 
 .navbar-default{
@@ -80,11 +82,12 @@ color:#ccc
 }
  
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#e6e6fa;
 font-weight:bold;
+text-decoration:none;
 }
 
 .btn-success {
@@ -96,6 +99,9 @@ font-weight:bold;
     color: #fff;
     background-color: #449d44;
     border-color: #398439;
+}
+.open>.dropdown-toggle.btnlanguage:focus {
+border-color:#00438c;
 }
 
 .btnlanguage {
@@ -111,9 +117,7 @@ button.btnlanguage:focus {
 background-color: #6d88ad;
 border-color:transparent;
 }
-.open>.dropdown-toggle.btnlanguage:focus {
-border-color:#00438c;
-}
+
 button.btntheoptions {
 background: transparent;
 color:#e6e6fa;
