@@ -95,6 +95,7 @@ color:#ffffff;
 .checkboxnav a{
 color:#ffffff;
 font-weight:bold;
+text-decoration:none;
 }
 .btn,.btn:focus {
 color:#ffffff;
@@ -127,6 +128,10 @@ button.btnlanguage:focus {
 background-color: #4D4D4D;
 border-color:#4D4D4D;
 }
+.open>.dropdown-toggle.btnlanguage:focus {
+border-color:#4D4D4D;
+}
+
 button.btntheoptions {
 background: transparent;
 color:white;
@@ -141,10 +146,6 @@ background-color: #8c8c8c;
 border-color:#4D4D4D;
 }
 
-
-.open>.dropdown-toggle.btnlanguage:focus {
-border-color:#4D4D4D;
-}
 
 .flagmenu {
  color: black;
@@ -286,6 +287,9 @@ div.infotxt {
 }
 .infoIPv4v6txt {
 color:gray;
+}
+.historymenu>li {
+color:black;
 }
 .historymenu>li>a:focus, .historymenu>li>a:hover {
 background-color:#b3b3b3;
