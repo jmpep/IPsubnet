@@ -9,6 +9,7 @@ background-color:#f2f2f2;
 .panel-body {
 background-color:#f2f2f2;
 }
+
 .navbar-default{
 background-color:#00438c;
 border-color:grey;
@@ -91,11 +92,12 @@ padding:2px;
 }
 
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#e6e6fa;
 font-weight:bold;
+text-decoration:none;
 }
 
 .btn-success, .btn-success:focus, .btn-success:active {
