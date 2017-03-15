@@ -124,7 +124,8 @@ font-size:110%;
 .bits {
 /*  width:5em;*/
 }
-.reversenetmask{
+.reversenetmask {
+/* */
 }
 .row.examples {
 	margin: 1px 5px;
@@ -136,6 +137,7 @@ div.textipdiv {
 	margin: 5px;
     display:inline-block;
 }
+
 textarea.textip {
 	content:' ';
 	min-height: 6em;
