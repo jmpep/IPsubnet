@@ -6,6 +6,7 @@
 .container {
 font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Segoe UI Symbol', 'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
 background-color:#ffffff;
+color:black;
 }
 a, a:focus, a:hover {
 color:#333333;
@@ -32,6 +33,7 @@ background-color: #1a1a1a;
 }
 .navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{
 color:#ffffff;
+background-color:transparent;
 }
 .navbar-default .navbar-text{
 color:#ffffff;
@@ -69,6 +71,7 @@ color:#555;
 background-color:#a6a6a6;
 }	
 .dropdown-menu{
+background-color:#3F75A2;
 }
 .dropdown-menu>li>a{
 background-color:#a6a6a6;
@@ -77,13 +80,13 @@ font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Segoe UI Symbol', 'Helvetica N
 font-weight:bold;
 }
 .navbar-default .navbar-nav .open .dropdown-menu>li>a{
-
+color:#333;background-color:transparent;
 }
 .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
 color:#ffffff;background-color:transparent
 }
 .navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
-color:#ffffff;background-color:#e7e7e7
+color:#ffffff;background-color:#e7e7e7;
 }
 .navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover{
 color:#ccc;background-color:transparent
@@ -111,11 +114,12 @@ padding:2px;
 }
 
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#e6e6fa;
 font-weight:bold;
+text-decoration:none;
 }
 
 .btn-success {
