@@ -30,7 +30,12 @@
     ================================================== -->
 	<!-- using flags of https://github.com/lipis/flag-icon-css/ licence MIT-->
     <link href="fonts/flag-icon-css/css/flag-icon.css" rel="stylesheet" >
-    <SCRIPT src="js/ipsubnet.js"></SCRIPT>
+    <!-- set default -->
+    <script>
+	var defaultlang="en";
+    var defaulttheme="modern";
+	var defaultIP="192.168.0.1",defaultBits="24";
+	</script>
     <!-- application's class -->
     <link href="css/ipsubnet.css" rel="stylesheet" >
     <link href="lang/languages-WORLD.css" rel="stylesheet" >
@@ -47,6 +52,7 @@
     <link href="lang/languages-ZH-HANS.css" rel="stylesheet" >
     <link href="lang/languages-ZH.css" rel="stylesheet" >
     <link id="design" href="css/design.css" rel="stylesheet" >
+    <SCRIPT src="js/ipsubnet.js"></SCRIPT>
 </HEAD>
 <BODY translate="no" dir="auto" >
 <FORM class="form" >
@@ -486,7 +492,7 @@
 	 &nbsp;</BUTTON>
     </div>
     <div class="version">
-	<span>v1.0.11</span>
+	<span>v1.0.12</span>
     </div>
  </DIV>
 </DIV>
