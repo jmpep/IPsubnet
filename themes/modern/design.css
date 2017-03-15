@@ -4,7 +4,8 @@
 /* theme: modern */
 
 .container {
-	background-color:snow;
+background-color:snow;
+color:black;
 }
 a, a:focus, a:hover {
 color:#008000;
@@ -94,11 +95,12 @@ color:#ccc
 }
  
 .ipsubnet>.panel-heading label{
-color:red;
+color:#ffffff;
 }
 .checkboxnav a{
 color:#e6e6fa;
 font-weight:bold;
+text-decoration:none;
 }
 
 .btn-success {
@@ -125,6 +127,10 @@ button.btnlanguage:focus {
 background-color: #00438c;
 border-color:#25331a;
 }
+.open>.dropdown-toggle.btnlanguage:focus {
+border-color:#25331a;
+}
+
 button.btntheoptions {
 background: transparent;
 color:#e6e6fa;
@@ -140,10 +146,6 @@ background-color: #6d88ad;
 color:white;
 border-color:#25331a;
 }
-.open>.dropdown-toggle.btnlanguage:focus {
-border-color:#25331a;
-}
-
 .flagmenu {
 color: #000000;
 }
