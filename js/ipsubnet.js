@@ -103,6 +103,9 @@ function checkIP4format(txt) {
   return formataddr;
 }
 
+/**
+return 1 if IPv4, 2 if IPv6, 3 if IPv6a
+*/
 function checkIPformat(txt) {
   var res,formataddr,formataddr2,i,ltxt;
   res = -1;
@@ -267,12 +270,111 @@ function leaveDropDown(theul) {
 	$('#'+theul).removeClass('open');
 }
 
+function setDefault(force) {
+  var temp,temp2,tempip,thetheme;
+  temp = localStorage.getItem('lang');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+    if (typeof(defaultlang) !== "undefined") {
+	  temp= defaultlang;
+    } else {
+	  temp= 'WORLD';
+	}
+  }
+  setlanguageObjects(temp);
+  tempip = localStorage.getItem('IP');
+  if ((tempip===null) || (typeof(tempip) === 'undefined') || (tempip=='') || (force==1)) {
+    if (typeof(defaultIP) !== "undefined") {
+	  tempip= defaultIP;
+    } else {
+	  tempip= "172.16.0.1";
+	}
+  }
+  $('#IP').val(tempip);
+  temp = localStorage.getItem('bits');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+    if (typeof(defaultBits) !== "undefined") {
+	  temp=defaultBits;
+    } else {
+	  temp="24";
+	}
+  }
+  $('#bits').val(temp);
+  temp = localStorage.getItem('IPv6cchk');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	  temp = 1;
+  }
+  if (temp=='1') {
+	$('#IPv6cchk').prop('checked',true);
+  } else {
+	$('#IPv6cchk').prop('checked',false);
+  }
+  temp = localStorage.getItem('collapse1');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	  temp = 1;
+  }
+  settoggledPanel('collapse1',temp);
+  temp = localStorage.getItem('collapse2');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	  temp = 0;
+  }
+  settoggledPanel('collapse2',temp);
+  temp = localStorage.getItem('collapse3');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	  temp = 0;
+  }
+  settoggledPanel('collapse3',temp);
+  temp = localStorage.getItem('collapse4');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	  temp = 1;
+  }
+  settoggledPanel('collapse4',temp);
+  //$('#subnet').val();
+  //$('#netmask').val();
+  //$('#broadcast').val();
+  //$('#hostfrom').val();
+  //$('#hostto').val();
+  //$('#hostsnb').val();
+  //$('#ipsnb').val();
+  temp = localStorage.getItem('IPv4v6');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	var iptype;
+	/* at this time storage could be empty */
+	iptype=checkIPformat(tempip);
+	switch (iptype) {
+		case 1: temp= 'IPv4'; break;
+		case 2: temp= 'IPv6'; break;
+		case 3: temp= 'IPv6a'; break;
+		default:temp= 'IPv4';
+	}
+	//temp = 'IPv4';
+  }
+  localStorage.setItem('IPv4v6',temp);
+  setIPv4v6GUI();
+
+  temp = localStorage.getItem('historystars');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='')) {
+	temp = '';
+  }
+  localStorage.setItem('historystars',temp);
+  temp = localStorage.getItem('thehistory');
+  if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='') || (force==1)) {
+	temp = '';
+  }
+  localStorage.setItem('thehistory',temp);
+  thetheme=getTheme();
+  selectTheme(thetheme);
+  localStorage.setItem('theme',thetheme);
+  calculeIPEnter();
+}
+
 function initializeIPsubnet() {
+  var temp;
   initializeValues('IPv4',-1,'192.168.0.10',24,'255.255.255.0','192.168.0.0','192.168.0.255','192.168.0.1','192.168.0.254',253,255)
   initializeFunctions();
   localstore= (typeof(Storage) !== "undefined");
   if (localstore) {
-    temp = localStorage.getItem('lang');
+	// initialize when 
+    setDefault(0);
     if ((temp===null) || (typeof(temp) === 'undefined') || (temp=='')) storeAllStorage();
     else getAllStorage();
   }
@@ -282,20 +384,7 @@ function initializeIPsubnet() {
 }
 
 function reinitip() {
-  var IPv6cchk = document.getElementById("IPv6cchk");
-  IPv6cchk.checked = true;
-  setlanguageObjects('WORLD');
-  setCIDRIP('192.168.0.10/24');
-  settoggledPanel('collapse1','1');
-  settoggledPanel('collapse4','1');
-  settoggledPanel('collapse3','0');
-  settoggledPanel('collapse2','0');
-  if (typeof(defaulttheme) !== "undefined") {
-	  selectTheme(defaulttheme);
-  }
-  if (typeof(defaultlang) !== "undefined") {
-	setlanguageObjects(defaultlang);
-  }
+  setDefault(1);
  //initializeFunctions();
   localstorage= (typeof(Storage) !== "undefined");
   if (localstorage) {
@@ -304,6 +393,13 @@ function reinitip() {
   }
   changeInfo();
   getHistory();
+}
+
+function setlocalStorageItem(tag,defaultval) {
+  var val;
+  if ($('#'+tag).val()==null) val =defaultval;
+  else val =$('#'+tag).val().trim();
+  localStorage.setItem(tag,val);
 }
 
 function storeAllStorage() {
@@ -332,15 +428,15 @@ function storeAllStorage() {
    if (b>0) {
      localStorage.setItem('IP',$('#IP').val().trim());
      localStorage.setItem('bits',$('#bits').val().trim());
-     localStorage.setItem('netmask',$('#netmask').val().trim());
      localStorage.setItem('subnet',$('#subnet').val().trim());
+     localStorage.setItem('netmask',$('#netmask').val().trim());
      localStorage.setItem('broadcast',$('#broadcast').val().trim());
      localStorage.setItem('hostfrom',$('#hostfrom').val().trim());
      localStorage.setItem('hostto',$('#hostto').val().trim());
      localStorage.setItem('hostsnb',$('#hostsnb').val().trim());
      localStorage.setItem('ipsnb',$('#ipsnb').val().trim());
-	 addInHistory(cidr);
-	 getHistory();
+     addInHistory(cidr);
+     getHistory();
    }
    //var lang= imglanguage.className.replace('imglanguage','').trim();
    var lang= $('body').attr('lang').trim();
@@ -353,10 +449,8 @@ function storeAllStorage() {
    vals=vals.replace(/\n/g,'<BR>');
    vals=vals.replace(/=/g,'#');
    localStorage.setItem('textipimport',vals);
-   thetheme=localStorage.getItem('theme');	
-   if ((thetheme== 'undefined') || (thetheme=='')) {
-	   localStorage.setItem('theme','default');
-   }
+   thetheme=getTheme();
+   localStorage.setItem('theme',thetheme);
   }
 }
 function setIPtype(iptype,condense) {
@@ -384,45 +478,58 @@ function setIPtype(iptype,condense) {
 	  $('#netmasklabel').attr('visibility','visible');	  
     }
 }
+
+function getLocalStorageItem(tag,defaultval) {
+  var val;
+  val = localStorage.getItem(tag);
+  if ((val===null) || (typeof(val) === 'undefined') || (val=='')) {
+	val = defaultval;
+  }
+  return val;
+}
+
+function setIPv4v6GUI() {
+  var ipid;
+  ipid=getLocalStorageItem('IPv4v6','IPv4');
+  $('#btIPv4').removeClass('active');
+  $('#btIPv6').removeClass('active');
+  $('#btIPv6a').removeClass('active');
+  switch (ipid) {
+    case 'IPv4': $('#btIPv4').addClass('active'); break;
+    case 'IPv6': $('#btIPv6').addClass('active'); break;
+    case 'IPv6a': $('#btIPv6a').addClass('active'); break;
+    default:  $('#btIPv4').addClass('active');
+  }
+  if (ipid=='IPv4') {
+    $('#sectionbroadcast').attr('display','inline');
+    $('#netmask').attr('visibility','visible');
+    $('#netmasklabel').attr('visibility','visible');	  
+  } else {
+    $('#sectionbroadcast').attr('display','none');
+    $('#netmask').attr('visibility','hidden');
+    $('#netmasklabel').attr('visibility','hidden');	  
+  }	
+}
+
 function getAllStorage() {
-  var IP = document.getElementById("IP");
+  //var IP = document.getElementById("IP");
   var bits = document.getElementById("bits");
   var subnet = document.getElementById("subnet");
   var broadcast = document.getElementById("broadcast");
   var hostfrom = document.getElementById("hostfrom");
   var hostto = document.getElementById("hostto");
-  var btIPv4 = document.getElementById("btIPv4");
-  var btIPv6 = document.getElementById("btIPv6");
-  var btIPv6a = document.getElementById("btIPv6a");
   var netmask = document.getElementById("netmask");
   var hostsnb = document.getElementById("hostsnb");
   var ipsnb = document.getElementById("ipsnb");
   var IPv6cchk = document.getElementById("IPv6cchk");
   /* the DOM variable above are for compatibility wit IE */
-  var ipid,ipidlist; 
+  var val; 
   var lasttheme;
   if (localstore) {
-    IP.value = localStorage.getItem('IP');
-	ipid=localStorage.getItem('IPv4v6');
+    val = getLocalStorageItem('IP','192.168.0.1');
+    $('#IP').val(val);
+    setIPv4v6GUI();
 
-	btIPv4.className = btIPv4.className.replace('active','');
-	btIPv6.className = btIPv6.className.replace('active','');
-	btIPv6a.className = btIPv6a.className.replace('active','');
-	switch (ipid) {
-		case 'IPv4': btIPv4.className = 'active '+btIPv4.className; break;
-		case 'IPv6': btIPv6.className = 'active '+btIPv6.className; break;
-		case 'IPv6a': btIPv6a.className = 'active '+btIPv6a.className; break;
-		default:  btIPv4.className = 'active '+btIPv4.className;
-	}
-    if (ipid=='IPv4') {
-	  sectionbroadcast.style.display='inline';
-	  netmask.style.visibility ='visible';
-	  netmasklabel.style.visibility ='visible';	  
-    } else {
-	  sectionbroadcast.style.display='none';
-	  netmask.style.visibility ='hidden';
-	  netmasklabel.style.visibility ='hidden';	  
-    }
     bits.value= localStorage.getItem('bits');
     netmask.value= localStorage.getItem('netmask');
     subnet.value= localStorage.getItem('subnet');
@@ -449,14 +556,7 @@ function getAllStorage() {
   	  vals=vals.replace(/#/g,'=');		
 	  $('#textipimport').val(vals);
 	}
-    lasttheme= localStorage.getItem('theme');
-    if (lasttheme==null) {
-       if (typeof(defaulttheme) != "undefined") {
-          lasttheme= defaulttheme;
-       } else {
-          lasttheme= 'default';
-       }
-    }
+    lasttheme= getTheme();
     selectTheme(lasttheme);
   }
 }
@@ -2141,9 +2241,11 @@ function removeFromHistory(cidr) {
   }
 }
 function addInHistory(cidr) {
-  var val,vallist,historystars;
+  var val,vallist=[],historystars;
   historystars=localStorage.getItem('historystars');
-  if ((historystars!=null) && (historystars!='')) {
+  if ((historystars==null) || (historystars=='')) {
+	historystars= '';
+  }
   if (historystars.indexOf('#'+cidr+'#')<0) {
     if ((localStorage.getItem('thehistory')!=null) && (localStorage.getItem('thehistory')!='')) {
      removeFromHistory(cidr);
@@ -2159,7 +2261,6 @@ function addInHistory(cidr) {
     } else {
 	 localStorage.setItem('thehistory',"#"+cidr+"#");
     }
-  }
   }
 }
 
@@ -2492,10 +2593,10 @@ function setlanguageObjects(lang) {
     $('#imglanguage').attr('class',theclass);
 	setFileiframeinfo(thelang,country);
 
-	if (infoIPv4v6btn.className.indexOf('hidetxt')<0){
-	  $('#iframeinfo').css('display','inline');
-	} else {
+	if ($('#infoIPv4v6btn').hasClass('hidetxt')){
 	  $('#iframeinfo').css('display','none');		
+	} else {
+	  $('#iframeinfo').css('display','inline');
 	}
 	if (thelang!=country) langused=thelang+'-'+country;
 	else langused=thelang;
@@ -2977,13 +3078,30 @@ function togglePanel(obj,pannelobj) {
   }
 }
 
+function getTheme(force) {
+  var theme;
+  theme = localStorage.getItem('theme');
+  if ((theme===null) || (typeof(theme) === 'undefined') || (theme=='') || (force==1)) {
+     if (typeof(defaulttheme) != "undefined") {
+        if ( themesList.indexOf(defaulttheme) <0) {
+          theme= 'classic';
+        } else {
+          theme= defaulttheme;
+		}
+     } else {
+        theme= 'classic';
+     }
+  }
+  return theme;
+}
+
 function selectTheme(theme) {
   var thetheme;
   thetheme = theme;
   if (thetheme!='') {
     thetheme = theme.trim();
     if ( themesList.indexOf(thetheme) <0) {
-      thetheme ='default';
+      thetheme = getTheme();
     }
     if ($('#design').attr("href").indexOf('themes')>=0) {
       val1 = $('#design').attr("href");
@@ -2996,6 +3114,6 @@ function selectTheme(theme) {
     }
     localStorage.setItem('theme',thetheme);
   } else {
-    console.log('WARNING selectTheme theme is empty!);
+    console.log('WARNING selectTheme theme is empty!');
   }
 }
